@@ -1,6 +1,6 @@
 # tsw-test
 
-> Test z Technologi Sieci Web
+> Test z Technologii Sieci Web
 
 ## Build Setup
 
