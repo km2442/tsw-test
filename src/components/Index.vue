@@ -1,7 +1,7 @@
 <template>
 <div>
 <div class="Welcome">
-    <div class="card-panel deep-orange darken-4" style="margin: 2%; padding: 3%;">
+    <div class="card-panel light-blue darken-4" style="margin: 2%; padding: 3%;">
         <div class="card-content white-text">
           <span class="card-title" style="text-align: center">
             <h4>Witaj na przykładowym teście z Technologii Sieci Web</h4>

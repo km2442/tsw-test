@@ -3,10 +3,12 @@
     <footer class="page-footer">
       <div class="container up">
         <a class="grey-text text-lighten-3 browser-default" href="#" style="text-decoration: underline">Powrót na górę strony</a>
+        <br>
+        <router-link class="grey-text text-lighten-3 browser-default" :to="{name: 'Index'}" style="text-decoration: underline">Powrót na stronę główną</router-link>
       </div>
       <div class="footer-copyright">
         <div class="container">
-        Copyright © 2019 Kamil Klecha
+        <p>Copyright © 2019 Politechnika Rzeszowska Autor: Kamil Klecha</p>
         </div>
       </div>
     </footer>
