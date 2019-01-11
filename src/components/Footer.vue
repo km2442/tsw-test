@@ -4,7 +4,7 @@
       <div class="container up">
         <a class="grey-text text-lighten-3 browser-default" href="#" style="text-decoration: underline">Powrót na górę strony</a>
         <br>
-        <router-link class="grey-text text-lighten-3 browser-default" :to="{name: 'Index'}" style="text-decoration: underline">Powrót na stronę główną</router-link>
+        <router-link class="grey-text text-lighten-3 browser-default" :to="{name: 'Index'}" v-if="this.$route !== 'Index'" style="text-decoration: underline">Powrót na stronę główną</router-link>
       </div>
       <div class="footer-copyright">
         <div class="container">

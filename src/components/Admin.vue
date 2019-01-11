@@ -1,6 +1,12 @@
 <template>
-  <div class="index container" style="margin-top: 20px; margin-bottom: 10px;">
-    <div class="card blue-grey darken-1" v-for="(Question, index) in Questions" :key="index">
+  <div>
+    <div class="AdminView">
+      <h3 class="title">Panel administracyjny</h3>
+      <a class="waves-effect waves-light btn" @click="toggleQuestionsVisibility()">Wyświetl wszystkie pytania</a>
+      <a class="waves-effect waves-light btn">Dodaj pytanie</a>
+    </div>
+    <div v-if="showQuestions" style="margin-top: 20px; margin-bottom: 10px;">
+        <div class="card blue-grey darken-1" v-for="(Question, index) in Questions" :key="index">
         <div class="card-content white-text" style="padding-bottom:0px">
           <span class="card-title">Pytanie {{index + 1}}</span>
           <p>{{Question.Question}}</p>
@@ -36,25 +42,25 @@
           </label>
         </div>
       </div>
-      <div>
-        <button class="btn waves-effect waves-light disabled" type="submit" name="action" style="width: 100%">Zakończ Test
-          <i class="material-icons right">send</i>
-        </button>
-      </div>
+    </div>
   </div>
 </template>
 
 <script>
   import db from './firebase/init'
-  
+
 export default {
-  name: 'Test',
+  name: 'Admin',
   data () {
     return {
-        Questions: []
+        Questions: [],
+        showQuestions: false
     }
   },
   methods: {
+      toggleQuestionsVisibility(){
+          this.showQuestions = true;
+    },
     prepareTextArea(text){
       return text.split("\\n");
     },
@@ -83,6 +89,17 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.AdminView {
+    text-align: center;
+    padding: 20px;
+}
+.title {
+    color: white;
+    margin: 0px 0px 20px 0px;
+}
+.btn {
+    margin: 10px
+}
 .Answers {
   padding: 2.5%
 }
