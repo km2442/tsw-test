@@ -1,35 +1,24 @@
 <template>
-  <div>
-    <div class="Welcome">
-      <div class="card-panel light-blue darken-4" style="margin: 2%; padding: 3%;">
-        <div class="card-content white-text">
-          <span class="card-title" style="text-align: center">
-            <h4>Witaj na przykładowym teście z Technologii Sieci Web</h4>
-          </span>
-          <hr>
-          <h5 style="text-align: center">Instrukcja</h5>
-          <div>
-            <ul class="browser-default">
-              <li>Test powinieneś wykonać w ciągu 60 minut</li>
-              <li>Test składa się z 30 pytań, każde po 1 punkt</li>
-              <li>
-                Test jest w formie pytań ABCD wielokrotnego wyboru - każde pytanie może mieć zero,
-                jedną, wiele lub wszystkie poprawne odpowiedzi
-              </li>
-              <li>Zaznacz symbolem ☑ tylko poprawne odpowiedzi</li>
-              <li>Punktacja: 18 – 19pkt 3.0, 20 – 22pkt 3.5, 23 - 25pkt 4.0, 26 - 28pkt 4.5, 29 - 30pkt 5.0</li>
-            </ul>
-          </div>
-          <hr>
-          <h5 style="text-align: center">Powodzenia!</h5>
+  <div class="ma-3">
+    <v-card class="light-blue darken-4">
+      <h3 class="headline py-3 text-xs-center">Witaj na przykładowym teście z Technologii Sieci Web</h3>
+      <v-divider dark></v-divider>
+      <div>
+        <h4 class="headline py-3 text-xs-center">Instrukcja</h4>
+        <div>
+          <ul class="browser-default px-5">
+            <li>Test powinieneś wykonać w ciągu 60 minut</li>
+            <li>Test składa się z 30 pytań, każde po 1 punkt</li>
+            <li>Test jest w formie pytań ABCD wielokrotnego wyboru - każde pytanie może mieć zero, jedną, wiele lub wszystkie poprawne odpowiedzi</li>
+            <li>Zaznacz symbolem ☑ tylko poprawne odpowiedzi</li>
+            <li>Punktacja: 18 – 19pkt 3.0, 20 – 22pkt 3.5, 23 - 25pkt 4.0, 26 - 28pkt 4.5, 29 - 30pkt 5.0</li>
+          </ul>
         </div>
+        <v-divider dark></v-divider>
+        <h4 class="headline py-3 text-xs-center">Powodzenia!</h4>
       </div>
-    </div>
-    <div class="Test">
-      <router-link style="color: white" :to="{ name: 'Test'}">
-        <button class="waves-effect waves-light btn">Rozpocznij test</button>
-      </router-link>
-    </div>
+    </v-card>
+    <v-btn block color="green darken-3 my-3" dark router :to="{ name: 'Test'}">Rozpocznij test!</v-btn>
   </div>
 </template>
 
@@ -38,21 +27,8 @@ export default {
   name: "Index",
   data() {
     return {
-      Questions: []
+
     };
   }
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.Test {
-  width: 90%;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-left: 5%;
-}
-.btn {
-  width: 100%;
-}
-</style>

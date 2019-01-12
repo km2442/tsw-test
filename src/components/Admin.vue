@@ -1,56 +1,91 @@
 <template>
-  <div>
-    <div class="AdminView">
-      <h3 class="title">Panel administracyjny</h3>
-      <a
-        class="waves-effect waves-light btn adminBtn"
-        v-if="showQuestions == false"
-        @click="toggleQuestionsVisibility()"
-      >Wyświetl wszystkie pytania</a>
-      <a
-        class="waves-effect waves-light btn adminBtn"
-        v-if="showQuestions"
-        @click="toggleQuestionsVisibility()"
-      >Ukryj pytania</a>
-      <a class="waves-effect waves-light btn">Dodaj pytanie</a>
-    </div>
-    <div
-      class="index container"
-      v-if="showQuestions"
-      style="margin-top: 10px; margin-bottom: 10px;"
-    >
-      <div class="card blue-grey darken-1" v-for="(Question, index) in Questions" :key="index">
-        <div class="card-content white-text">
-          <span class="card-title">Pytanie {{index + 1}}</span>
-          <p>{{Question.Question}}</p>
-          <div v-if="Question.Textarea != ''">
-            <br>
-            <p v-for="(row, index) in prepareTextArea(Question.Textarea)" :key="index">{{row}}</p>
-          </div>
-          <div v-if="Question.Image != ''">
-            <br>
-            <img :src="Question.Image">
-          </div>
-        </div>
-        <hr>
-        <div class="Answers">
-          <p class="AnsT">Odpowiedź A: {{Question.Ans1}}</p>
-          <hr>
-          <p class="AnsT">Odpowiedź B: {{Question.Ans2}}</p>
-          <hr>
-          <p class="AnsT">Odpowiedź C: {{Question.Ans3}}</p>
-          <hr>
-          <p class="AnsT">Odpowiedź D: {{Question.Ans4}}</p>
-        </div>
-        <div style="text-align: center; padding-bottom: 5px;">
-          <a class="waves-effect waves-light quesOpt btn">
-            <i class="material-icons left">edit</i>Edytuj pytanie
-          </a>
-          <a class="waves-effect waves-light quesOpt btn">
-            <i class="material-icons left">delete</i>Usuń pytanie
-          </a>
-        </div>
-      </div>
+  <div class="text-xs-center">
+    <h1 block dark large class="ma-3">Panel administracyjny</h1>
+    <v-container class="pa-1">
+      <v-layout row wrap justify-space-between>
+        <v-flex
+          xs-12
+          class="mx-3"
+          v-if="showQuestions == false"
+          @click="showQuestions = !showQuestions"
+        >
+          <v-btn block color="green darken-3" dark>
+            <span>Pokaż wszystkie pytania</span>
+            <v-icon dark right>edit</v-icon>
+          </v-btn>
+        </v-flex>
+        <v-flex xs-12 class="mx-3" v-if="showQuestions" @click="showQuestions = !showQuestions">
+          <v-btn block color="green darken-3" dark>
+            <span>Ukryj pytania</span>
+            <v-icon dark right>edit</v-icon>
+          </v-btn>
+        </v-flex>
+        <v-flex xs-12 class="mx-3">
+          <v-btn block color="green darken-3" dark>
+            <span>Dodaj pytanie</span>
+            <v-icon dark right>add_circle</v-icon>
+          </v-btn>
+        </v-flex>
+      </v-layout>
+    </v-container>
+    <div class="mt-0 mb-2 mx-2" v-if="showQuestions == true">
+      <v-container class="pa-1">
+        <v-layout row wrap justify-space-between>
+          <v-flex xs12 md6 v-for="(Question, index) in Questions" :key="index">
+            <v-card class="light-grey darken-3 ma-2">
+              <v-card-title class="pa-3">
+                <div>
+                  <h3 class="headline mb-0">Pytanie {{index + 1}}</h3>
+                  <div>{{Question.Question}}</div>
+                  <br>
+                  <div v-if="Question.Textarea != ''">
+                    <p
+                      class="ma-0 pa-0"
+                      v-for="(row, index) in prepareTextArea(Question.Textarea)"
+                      :key="index"
+                    >{{row}}</p>
+                  </div>
+                  <div v-if="Question.Image != ''">
+                    <img :src="Question.Image">
+                  </div>
+                </div>
+              </v-card-title>
+              <v-divider dark></v-divider>
+              <div class="pa-3">
+                <v-label>Odpowiedź A: {{Question.Ans1}}</v-label>
+                <v-divider dark></v-divider>
+                <v-label>Odpowiedź B: {{Question.Ans2}}</v-label>
+                <v-divider dark></v-divider>
+                <v-label>Odpowiedź C: {{Question.Ans3}}</v-label>
+                <v-divider dark></v-divider>
+                <v-label>Odpowiedź D: {{Question.Ans4}}</v-label>
+              </div>
+              <div>
+                <v-container class="pa-0">
+                  <v-layout row wrap justify-space-between>
+                    <v-flex xs-12 md-6 class="mx-3">
+                      <v-btn block color="green darken-3" dark>
+                        <span>Edytuj pytanie</span>
+                        <v-icon dark right>edit</v-icon>
+                      </v-btn>
+                    </v-flex>
+                    <v-flex xs-12 md-6 class="mx-3">
+                      <v-btn block color="green darken-3" dark>
+                        <span>Usuń pytanie</span>
+                        <v-icon dark right>delete</v-icon>
+                      </v-btn>
+                    </v-flex>
+                  </v-layout>
+                </v-container>
+              </div>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
+      <v-btn block disabled color="green darken-3" dark>
+        <span>Zapisz wyniki testu</span>
+        <v-icon dark right>send</v-icon>
+      </v-btn>
     </div>
   </div>
 </template>
@@ -93,39 +128,7 @@ export default {
           Question.Id = doc.id;
           this.Questions.push(Question);
         });
-      })
+      });
   }
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.AdminView {
-  text-align: center;
-  padding: 20px;
-  padding-bottom: 5px;
-}
-.title {
-  color: white;
-  margin: 0px 0px 20px 0px;
-}
-.adminBtn {
-  margin: 0px;
-}
-.card-content {
-  padding-top: 10px;
-  padding-bottom: 0px;
-}
-.Answers {
-  padding: 1%;
-}
-.AnsT {
-  color: white;
-  margin: 1%;
-}
-.quesOpt {
-  margin-top: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-</style>

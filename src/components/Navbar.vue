@@ -1,27 +1,18 @@
 <template>
-  <div class="navbar">
-    <nav>
-      <div class="nav-wrapper">
-        <span class="brand-logo">
-          <router-link :to="{name: 'Index'}">Test z TSW</router-link>
-        </span>
-      </div>
-    </nav>
-  </div>
+  <v-toolbar dark color="primary">
+    <v-toolbar-side-icon></v-toolbar-side-icon>
+    <v-toolbar-title wrap class="white--text">Technologie sieci web</v-toolbar-title>
+    <v-spacer></v-spacer>
+  </v-toolbar>
 </template>
 
 <script>
 export default {
   name: "Navbar",
   data() {
-    return {};
+    return {
+      drawer: false
+    };
   }
 };
 </script>
-
-<style scoped>
-.navbar nav {
-  padding: 0 20px;
-  background-color: green;
-}
-</style>

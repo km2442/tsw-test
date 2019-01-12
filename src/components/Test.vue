@@ -1,50 +1,49 @@
 <template>
-  <div class="index container" style="margin-top: 20px; margin-bottom: 10px;">
-    <div class="card blue-grey darken-1" v-for="(Question, index) in Questions" :key="index">
-      <div class="card-content white-text" style="padding-bottom:0px">
-        <span class="card-title">Pytanie {{index + 1}}</span>
-        <p>{{Question.Question}}</p>
-        <div class="textarea" v-if="Question.Textarea != ''">
-          <p v-for="(row, index) in prepareTextArea(Question.Textarea)" :key="index">{{row}}</p>
-        </div>
-        <div v-if="Question.Image != ''">
-          <img :src="Question.Image">
-        </div>
-      </div>
-      <hr>
-      <div class="Answers">
-        <label>
-          <input type="checkbox" class="filled-in">
-          <span class="AnsT">Odpowiedź A: {{Question.Ans1}}</span>
-        </label>
-        <hr>
-        <label>
-          <input type="checkbox" class="filled-in">
-          <span class="AnsT">Odpowiedź B: {{Question.Ans2}}</span>
-        </label>
-        <hr>
-        <label>
-          <input type="checkbox" class="filled-in">
-          <span class="AnsT">Odpowiedź C: {{Question.Ans3}}</span>
-        </label>
-        <hr>
-        <label>
-          <input type="checkbox" class="filled-in">
-          <span class="AnsT">Odpowiedź D: {{Question.Ans4}}</span>
-        </label>
-      </div>
-    </div>
-    <div>
-      <button
-        class="btn waves-effect waves-light disabled"
-        type="submit"
-        name="action"
-        style="width: 100%"
-      >
-        Zakończ Test
-        <i class="material-icons right">send</i>
-      </button>
-    </div>
+  <div class="ma-2">
+    <v-container class="pa-1">
+      <v-layout row wrap justify-space-between>
+        <v-flex xs12 md6 v-for="(Question, index) in Questions" :key="index">
+          <v-card class="light-grey darken-3 ma-2">
+            <v-card-title class="pa-3">
+              <div>
+                <h3 class="headline mb-0">Pytanie {{index + 1}}</h3>
+                <div>{{Question.Question}}</div>
+                <br>
+                <div v-if="Question.Textarea != ''">
+                  <p
+                    class="ma-0 pa-0"
+                    v-for="(row, index) in prepareTextArea(Question.Textarea)"
+                    :key="index"
+                  >{{row}}</p>
+                </div>
+                <div v-if="Question.Image != ''">
+                  <img :src="Question.Image">
+                </div>
+              </div>
+            </v-card-title>
+            <v-divider dark></v-divider>
+            <div class="pa-3">
+              <v-checkbox :label="``" color="green" class="ma-0 pa-0">
+                <span slot="label">Odpowiedź A: {{Question.Ans1}}</span>
+              </v-checkbox>
+              <v-checkbox :label="``" color="green" class="ma-0 pa-0">
+                <span slot="label">Odpowiedź B: {{Question.Ans2}}</span>
+              </v-checkbox>
+              <v-checkbox :label="``" color="green" class="ma-0 pa-0">
+                <span slot="label">Odpowiedź C: {{Question.Ans3}}</span>
+              </v-checkbox>
+              <v-checkbox :label="``" color="green" class="ma-0 pa-0">
+                <span slot="label">Odpowiedź D: {{Question.Ans4}}</span>
+              </v-checkbox>
+            </div>
+          </v-card>
+        </v-flex>
+      </v-layout>
+    </v-container>
+    <v-btn block disabled color="green darken-3 my-3" dark>
+      <span>Zapisz wyniki testu</span>
+      <v-icon dark right>send</v-icon>
+    </v-btn>
   </div>
 </template>
 
@@ -78,14 +77,14 @@ export default {
           Question.Id = doc.id;
           this.Questions.push(Question);
         });
-      })
+      });
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.Answers {
+/* .Answers {
   padding: 1%;
 }
 .card-content {
@@ -98,5 +97,5 @@ export default {
   border: 1px dashed;
   margin-top: 5px;
   padding: 3px;
-}
+} */
 </style>

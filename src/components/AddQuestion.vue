@@ -1,9 +1,6 @@
 <template>
 <div>
-    <h3 class="title">Dodaj pytanie</h3>
-    <div class="inputs">
-        
-    </div>
+
 </div>
 </template>
 
