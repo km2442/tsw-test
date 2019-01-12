@@ -2,12 +2,25 @@
   <div>
     <div class="AdminView">
       <h3 class="title">Panel administracyjny</h3>
-      <a class="waves-effect waves-light btn" @click="toggleQuestionsVisibility()">Wyświetl wszystkie pytania</a>
+      <a
+        class="waves-effect waves-light btn adminBtn"
+        v-if="showQuestions == false"
+        @click="toggleQuestionsVisibility()"
+      >Wyświetl wszystkie pytania</a>
+      <a
+        class="waves-effect waves-light btn adminBtn"
+        v-if="showQuestions"
+        @click="toggleQuestionsVisibility()"
+      >Ukryj pytania</a>
       <a class="waves-effect waves-light btn">Dodaj pytanie</a>
     </div>
-    <div v-if="showQuestions" style="margin-top: 20px; margin-bottom: 10px;">
-        <div class="card blue-grey darken-1" v-for="(Question, index) in Questions" :key="index">
-        <div class="card-content white-text" style="padding-bottom:0px">
+    <div
+      class="index container"
+      v-if="showQuestions"
+      style="margin-top: 10px; margin-bottom: 10px;"
+    >
+      <div class="card blue-grey darken-1" v-for="(Question, index) in Questions" :key="index">
+        <div class="card-content white-text">
           <span class="card-title">Pytanie {{index + 1}}</span>
           <p>{{Question.Question}}</p>
           <div v-if="Question.Textarea != ''">
@@ -16,97 +29,102 @@
           </div>
           <div v-if="Question.Image != ''">
             <br>
-            <img :src="Question.Image" />
+            <img :src="Question.Image">
           </div>
         </div>
         <hr>
         <div class="Answers">
-          <label>
-            <input type="checkbox" class="filled-in" />
-            <span class="AnsT">Odpowiedź A: {{Question.Ans1}}</span>
-          </label>
-          <hr class="customhr">
-          <label>
-            <input type="checkbox" class="filled-in" />
-            <span class="AnsT">Odpowiedź B: {{Question.Ans2}}</span>
-          </label>
-          <hr class="customhr">
-          <label>
-            <input type="checkbox" class="filled-in" />
-            <span class="AnsT">Odpowiedź C: {{Question.Ans3}}</span>
-          </label>
-          <hr class="customhr">
-          <label>
-            <input type="checkbox" class="filled-in" />
-            <span class="AnsT">Odpowiedź D: {{Question.Ans4}}</span>
-          </label>
+          <p class="AnsT">Odpowiedź A: {{Question.Ans1}}</p>
+          <hr>
+          <p class="AnsT">Odpowiedź B: {{Question.Ans2}}</p>
+          <hr>
+          <p class="AnsT">Odpowiedź C: {{Question.Ans3}}</p>
+          <hr>
+          <p class="AnsT">Odpowiedź D: {{Question.Ans4}}</p>
         </div>
+        <div style="text-align: center; padding-bottom: 5px;">
+        <a class="waves-effect waves-light quesOpt btn"><i class="material-icons left">edit</i>Edytuj pytanie</a>
+        <a class="waves-effect waves-light quesOpt btn"><i class="material-icons left">delete</i>Usuń pytanie</a>
+      </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import db from './firebase/init'
+import db from "./firebase/init";
 
 export default {
-  name: 'Admin',
-  data () {
+  name: "Admin",
+  data() {
     return {
-        Questions: [],
-        showQuestions: false
-    }
+      Questions: [],
+      showQuestions: false
+    };
   },
   methods: {
-      toggleQuestionsVisibility(){
-          this.showQuestions = true;
+    toggleQuestionsVisibility() {
+      if (this.showQuestions) {
+        this.showQuestions = false;
+      } else {
+        this.showQuestions = true;
+      }
     },
-    prepareTextArea(text){
+    prepareTextArea(text) {
       return text.split("\\n");
     },
-    imageFromString(str){
+    imageFromString(str) {
       var image = new Image();
       image.src = str;
       console.log(image);
       return image;
     }
   },
-  created(){
-    db.collection('Questions').get()
-      .then((snapshot) => {
-      snapshot.forEach((doc) => {
-        var Question = doc.data();
-        Question.Id = doc.id;
-        this.Questions.push(Question);
-    });
-  })
-    .catch((err) => {
-    console.log('Error getting documents', err);
-  });
+  created() {
+    db.collection("Questions")
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          var Question = doc.data();
+          Question.Id = doc.id;
+          this.Questions.push(Question);
+        });
+      })
+      .catch(err => {
+        console.log("Error getting documents", err);
+      });
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .AdminView {
-    text-align: center;
-    padding: 20px;
+  text-align: center;
+  padding: 20px;
+  padding-bottom: 5px;
 }
 .title {
-    color: white;
-    margin: 0px 0px 20px 0px;
+  color: white;
+  margin: 0px 0px 20px 0px;
 }
-.btn {
-    margin: 10px
+.adminBtn {
+  margin: 0px;
+}
+.card-content {
+  padding-top: 10px;
+  padding-bottom: 0px;
 }
 .Answers {
-  padding: 2.5%
+  padding: 1%;
 }
-span .AnsT {
+.AnsT {
   color: white;
+  margin: 1%;
 }
-hr.customhr {
-  border-top: 2px dashed whitesmoke;
+.quesOpt {
+  margin-top: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 </style>

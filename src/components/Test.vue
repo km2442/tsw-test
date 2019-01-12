@@ -1,90 +1,97 @@
 <template>
   <div class="index container" style="margin-top: 20px; margin-bottom: 10px;">
     <div class="card blue-grey darken-1" v-for="(Question, index) in Questions" :key="index">
-        <div class="card-content white-text" style="padding-bottom:0px">
-          <span class="card-title">Pytanie {{index + 1}}</span>
-          <p>{{Question.Question}}</p>
-          <div v-if="Question.Textarea != ''">
-            <br>
-            <p v-for="(row, index) in prepareTextArea(Question.Textarea)" :key="index">{{row}}</p>
-          </div>
-          <div v-if="Question.Image != ''">
-            <br>
-            <img :src="Question.Image" />
-          </div>
+      <div class="card-content white-text" style="padding-bottom:0px">
+        <span class="card-title">Pytanie {{index + 1}}</span>
+        <p>{{Question.Question}}</p>
+        <div v-if="Question.Textarea != ''">
+          <br>
+          <p v-for="(row, index) in prepareTextArea(Question.Textarea)" :key="index">{{row}}</p>
         </div>
-        <hr>
-        <div class="Answers">
-          <label>
-            <input type="checkbox" class="filled-in" />
-            <span class="AnsT">Odpowiedź A: {{Question.Ans1}}</span>
-          </label>
-          <hr class="customhr">
-          <label>
-            <input type="checkbox" class="filled-in" />
-            <span class="AnsT">Odpowiedź B: {{Question.Ans2}}</span>
-          </label>
-          <hr class="customhr">
-          <label>
-            <input type="checkbox" class="filled-in" />
-            <span class="AnsT">Odpowiedź C: {{Question.Ans3}}</span>
-          </label>
-          <hr class="customhr">
-          <label>
-            <input type="checkbox" class="filled-in" />
-            <span class="AnsT">Odpowiedź D: {{Question.Ans4}}</span>
-          </label>
+        <div v-if="Question.Image != ''">
+          <br>
+          <img :src="Question.Image">
         </div>
       </div>
-      <div>
-        <button class="btn waves-effect waves-light disabled" type="submit" name="action" style="width: 100%">Zakończ Test
-          <i class="material-icons right">send</i>
-        </button>
+      <hr>
+      <div class="Answers">
+        <label>
+          <input type="checkbox" class="filled-in">
+          <span class="AnsT">Odpowiedź A: {{Question.Ans1}}</span>
+        </label>
+        <hr class="customhr">
+        <label>
+          <input type="checkbox" class="filled-in">
+          <span class="AnsT">Odpowiedź B: {{Question.Ans2}}</span>
+        </label>
+        <hr class="customhr">
+        <label>
+          <input type="checkbox" class="filled-in">
+          <span class="AnsT">Odpowiedź C: {{Question.Ans3}}</span>
+        </label>
+        <hr class="customhr">
+        <label>
+          <input type="checkbox" class="filled-in">
+          <span class="AnsT">Odpowiedź D: {{Question.Ans4}}</span>
+        </label>
       </div>
+    </div>
+    <div>
+      <button
+        class="btn waves-effect waves-light disabled"
+        type="submit"
+        name="action"
+        style="width: 100%"
+      >
+        Zakończ Test
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
-  import db from './firebase/init'
-  
+import db from "./firebase/init";
+
 export default {
-  name: 'Test',
-  data () {
+  name: "Test",
+  data() {
     return {
-        Questions: []
-    }
+      Questions: []
+    };
   },
   methods: {
-    prepareTextArea(text){
+    prepareTextArea(text) {
       return text.split("\\n");
     },
-    imageFromString(str){
+    imageFromString(str) {
       var image = new Image();
       image.src = str;
       console.log(image);
       return image;
     }
   },
-  created(){
-    db.collection('Questions').get()
-      .then((snapshot) => {
-      snapshot.forEach((doc) => {
-        var Question = doc.data();
-        Question.Id = doc.id;
-        this.Questions.push(Question);
-    });
-  })
-    .catch((err) => {
-    console.log('Error getting documents', err);
-  });
+  created() {
+    db.collection("Questions")
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          var Question = doc.data();
+          Question.Id = doc.id;
+          this.Questions.push(Question);
+        });
+      })
+      .catch(err => {
+        console.log("Error getting documents", err);
+      });
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .Answers {
-  padding: 2.5%
+  padding: 2.5%;
 }
 span .AnsT {
   color: white;

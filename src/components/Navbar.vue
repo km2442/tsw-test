@@ -1,28 +1,26 @@
 <template>
-    <div class="navbar">
+  <div class="navbar">
     <nav>
-    <div class="nav-wrapper">
-      <span class="brand-logo">
-        <router-link :to="{name: 'Index'}">Test z TSW</router-link>
-      </span>
-    </div>
-  </nav>
+      <div class="nav-wrapper">
+        <span class="brand-logo">
+          <router-link :to="{name: 'Index'}">Test z TSW</router-link>
+        </span>
+      </div>
+    </nav>
   </div>
 </template>
 
 <script>
 export default {
-    name: 'Navbar',
-    data () {
-        return {
-
-        }
-    }
-}
+  name: "Navbar",
+  data() {
+    return {};
+  }
+};
 </script>
 
 <style scoped>
- .navbar nav{
+.navbar nav {
   padding: 0 20px;
   background-color: green;
 }
