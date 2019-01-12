@@ -65,7 +65,7 @@ export default {
     imageFromString(str) {
       var image = new Image();
       image.src = str;
-      console.log(image);
+      //console.log(image);
       return image;
     }
   },
@@ -79,9 +79,6 @@ export default {
           this.Questions.push(Question);
         });
       })
-      .catch(err => {
-        console.log("Error getting documents", err);
-      });
   }
 };
 </script>
