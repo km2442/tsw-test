@@ -4,12 +4,10 @@
       <div class="card-content white-text" style="padding-bottom:0px">
         <span class="card-title">Pytanie {{index + 1}}</span>
         <p>{{Question.Question}}</p>
-        <div v-if="Question.Textarea != ''">
-          <br>
+        <div class="textarea" v-if="Question.Textarea != ''">
           <p v-for="(row, index) in prepareTextArea(Question.Textarea)" :key="index">{{row}}</p>
         </div>
         <div v-if="Question.Image != ''">
-          <br>
           <img :src="Question.Image">
         </div>
       </div>
@@ -19,17 +17,17 @@
           <input type="checkbox" class="filled-in">
           <span class="AnsT">Odpowiedź A: {{Question.Ans1}}</span>
         </label>
-        <hr class="customhr">
+        <hr>
         <label>
           <input type="checkbox" class="filled-in">
           <span class="AnsT">Odpowiedź B: {{Question.Ans2}}</span>
         </label>
-        <hr class="customhr">
+        <hr>
         <label>
           <input type="checkbox" class="filled-in">
           <span class="AnsT">Odpowiedź C: {{Question.Ans3}}</span>
         </label>
-        <hr class="customhr">
+        <hr>
         <label>
           <input type="checkbox" class="filled-in">
           <span class="AnsT">Odpowiedź D: {{Question.Ans4}}</span>
@@ -91,12 +89,17 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .Answers {
-  padding: 2.5%;
+  padding: 1%;
 }
-span .AnsT {
+.card-content {
+  padding-top: 5px;
+}
+.AnsT {
   color: white;
 }
-hr.customhr {
-  border-top: 2px dashed whitesmoke;
+.textarea {
+  border: 1px dashed;
+  margin-top: 5px;
+  padding: 3px;
 }
 </style>

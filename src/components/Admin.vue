@@ -43,9 +43,13 @@
           <p class="AnsT">Odpowiedź D: {{Question.Ans4}}</p>
         </div>
         <div style="text-align: center; padding-bottom: 5px;">
-        <a class="waves-effect waves-light quesOpt btn"><i class="material-icons left">edit</i>Edytuj pytanie</a>
-        <a class="waves-effect waves-light quesOpt btn"><i class="material-icons left">delete</i>Usuń pytanie</a>
-      </div>
+          <a class="waves-effect waves-light quesOpt btn">
+            <i class="material-icons left">edit</i>Edytuj pytanie
+          </a>
+          <a class="waves-effect waves-light quesOpt btn">
+            <i class="material-icons left">delete</i>Usuń pytanie
+          </a>
+        </div>
       </div>
     </div>
   </div>
