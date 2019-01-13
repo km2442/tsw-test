@@ -5,6 +5,7 @@ import Test from '@/components/Test'
 import Admin from '@/components/Admin'
 import AddQuestion from '@/components/AddQuestion'
 import EditQuestion from '@/components/EditQuestion'
+import NotFound from '@/components/NotFound'
 
 Vue.use(Router)
 
@@ -34,6 +35,12 @@ export default new Router({
       path: '/editQuestion/:questionId',
       name: 'EditQuestion',
       component: EditQuestion
-    }
+    },
+    {
+      path: '/404',
+      name: 'NotFound',
+      component: NotFound
+    },
+    { path: '*', redirect: '/404' }
   ]
 })

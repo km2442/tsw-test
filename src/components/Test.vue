@@ -22,16 +22,19 @@
               </div>
             </v-card-title>
             <v-divider dark></v-divider>
-            <div class="pa-3">
+            <div class="px-3 pt-3 pb-0">
               <v-checkbox :label="``" color="green" class="ma-0 pa-0">
-                <span slot="label">Odpowiedź A: {{Question.Ans1}}</span>
+                <span slot="label" class="mb-0">Odpowiedź A: {{Question.Ans1}}</span>
               </v-checkbox>
+              <v-divider></v-divider>
               <v-checkbox :label="``" color="green" class="ma-0 pa-0">
                 <span slot="label">Odpowiedź B: {{Question.Ans2}}</span>
               </v-checkbox>
+              <v-divider></v-divider>
               <v-checkbox :label="``" color="green" class="ma-0 pa-0">
                 <span slot="label">Odpowiedź C: {{Question.Ans3}}</span>
               </v-checkbox>
+              <v-divider></v-divider>
               <v-checkbox :label="``" color="green" class="ma-0 pa-0">
                 <span slot="label">Odpowiedź D: {{Question.Ans4}}</span>
               </v-checkbox>
