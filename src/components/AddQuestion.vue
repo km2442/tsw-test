@@ -1,7 +1,5 @@
 <template>
-<div>
-
-</div>
+  <div></div>
 </template>
 
 <script>
@@ -21,15 +19,3 @@ export default {
   }
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.title {
-  color: white;
-  margin: 0px 0px 20px 0px;
-  text-align: center;
-}
-.inputs {
-    margin: 10px;
-}
-</style>

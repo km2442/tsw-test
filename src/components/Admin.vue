@@ -1,6 +1,6 @@
 <template>
-  <div class="text-xs-center">
-    <h1 block dark large class="ma-3">Panel administracyjny</h1>
+  <div class="mb-4">
+    <h1 block dark large class="ma-3 text-xs-center">Panel administracyjny</h1>
     <v-container class="pa-1">
       <v-layout row wrap justify-space-between>
         <v-flex
@@ -21,7 +21,7 @@
           </v-btn>
         </v-flex>
         <v-flex xs-12 class="mx-3">
-          <v-btn block color="green darken-3" dark>
+          <v-btn block disabled color="green darken-3" dark>
             <span>Dodaj pytanie</span>
             <v-icon dark right>add_circle</v-icon>
           </v-btn>
@@ -37,8 +37,7 @@
                 <div>
                   <h3 class="headline mb-0">Pytanie {{index + 1}}</h3>
                   <div>{{Question.Question}}</div>
-                  <br>
-                  <div v-if="Question.Textarea != ''">
+                  <div v-if="Question.Textarea != ''" class="pa-2" style="border: 1px dashed;">
                     <p
                       class="ma-0 pa-0"
                       v-for="(row, index) in prepareTextArea(Question.Textarea)"
@@ -64,13 +63,13 @@
                 <v-container class="pa-0">
                   <v-layout row wrap justify-space-between>
                     <v-flex xs-12 md-6 class="mx-3">
-                      <v-btn block color="green darken-3" dark>
+                      <v-btn block disabled color="green darken-3" dark>
                         <span>Edytuj pytanie</span>
                         <v-icon dark right>edit</v-icon>
                       </v-btn>
                     </v-flex>
                     <v-flex xs-12 md-6 class="mx-3">
-                      <v-btn block color="green darken-3" dark>
+                      <v-btn block disabled color="green darken-3" dark>
                         <span>Usuń pytanie</span>
                         <v-icon dark right>delete</v-icon>
                       </v-btn>
@@ -82,10 +81,6 @@
           </v-flex>
         </v-layout>
       </v-container>
-      <v-btn block disabled color="green darken-3" dark>
-        <span>Zapisz wyniki testu</span>
-        <v-icon dark right>send</v-icon>
-      </v-btn>
     </div>
   </div>
 </template>

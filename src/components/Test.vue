@@ -1,5 +1,5 @@
 <template>
-  <div class="ma-2">
+  <div class="mx-2 mt-2 mb-5">
     <v-container class="pa-1">
       <v-layout row wrap justify-space-between>
         <v-flex xs12 md6 v-for="(Question, index) in Questions" :key="index">
@@ -9,7 +9,7 @@
                 <h3 class="headline mb-0">Pytanie {{index + 1}}</h3>
                 <div>{{Question.Question}}</div>
                 <br>
-                <div v-if="Question.Textarea != ''">
+                <div v-if="Question.Textarea != ''" class="pa-2" style="border: 1px dashed;">
                   <p
                     class="ma-0 pa-0"
                     v-for="(row, index) in prepareTextArea(Question.Textarea)"
@@ -41,7 +41,7 @@
       </v-layout>
     </v-container>
     <v-btn block disabled color="green darken-3 my-3" dark>
-      <span>Zapisz wyniki testu</span>
+      <span>Zakończ test</span>
       <v-icon dark right>send</v-icon>
     </v-btn>
   </div>
@@ -81,21 +81,3 @@ export default {
   }
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-/* .Answers {
-  padding: 1%;
-}
-.card-content {
-  padding-top: 5px;
-}
-.AnsT {
-  color: white;
-}
-.textarea {
-  border: 1px dashed;
-  margin-top: 5px;
-  padding: 3px;
-} */
-</style>

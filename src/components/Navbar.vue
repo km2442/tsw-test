@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar dark color="primary">
+  <v-toolbar dark app color="primary">
     <v-toolbar-side-icon></v-toolbar-side-icon>
     <v-toolbar-title wrap class="white--text">Technologie sieci web</v-toolbar-title>
     <v-spacer></v-spacer>

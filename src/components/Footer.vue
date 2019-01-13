@@ -1,5 +1,9 @@
 <template>
-  <v-footer app dark class="pa-3" color="primary">
-    <div>Copyright © 2019 Politechnika Rzeszowska Autor: Kamil Klecha</div>
+  <v-footer dark app class="mt-3" height="auto">
+    <v-card class="flex" tile>
+      <v-card-title class="primary">
+        <strong class="subheading">Copyright &copy; 2019 Politechnika Rzeszowska Autor: Kamil Klecha</strong>
+      </v-card-title>
+    </v-card>
   </v-footer>
 </template>
