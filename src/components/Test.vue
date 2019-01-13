@@ -8,19 +8,20 @@
               <div>
                 <h3 class="headline mb-0">Pytanie {{index + 1}}</h3>
                 <div>{{Question.Question}}</div>
-                <br>
-                <div v-if="Question.Textarea != ''" class="pa-2" style="border: 1px dashed;">
-                  <p
-                    class="ma-0 pa-0"
-                    v-for="(row, index) in prepareTextArea(Question.Textarea)"
-                    :key="index"
-                  >{{row}}</p>
-                </div>
-                <div v-if="Question.Image != ''">
-                  <img :src="Question.Image">
-                </div>
               </div>
             </v-card-title>
+            <div class="ma-2">
+              <div v-if="Question.Textarea != ''" class="pa-2" style="border: 1px dashed;">
+                <p
+                  class="ma-0 pa-0"
+                  v-for="(row, index) in prepareTextArea(Question.Textarea)"
+                  :key="index"
+                >{{row}}</p>
+              </div>
+              <div v-if="Question.Image != ''">
+                <img :src="Question.Image">
+              </div>
+            </div>
             <v-divider dark></v-divider>
             <div class="px-3 pt-3 pb-0">
               <v-checkbox :label="``" color="green" class="ma-0 pa-0">

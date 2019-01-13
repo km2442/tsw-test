@@ -21,7 +21,7 @@
           </v-btn>
         </v-flex>
         <v-flex xs-12 class="mx-3">
-          <v-btn block disabled color="green darken-3" dark>
+          <v-btn block color="green darken-3" dark router :to="{name: 'AddQuestion'}">
             <span>Dodaj pytanie</span>
             <v-icon dark right>add_circle</v-icon>
           </v-btn>
@@ -37,18 +37,20 @@
                 <div>
                   <h3 class="headline mb-0">Pytanie {{index + 1}}</h3>
                   <div>{{Question.Question}}</div>
-                  <div v-if="Question.Textarea != ''" class="pa-2" style="border: 1px dashed;">
-                    <p
-                      class="ma-0 pa-0"
-                      v-for="(row, index) in prepareTextArea(Question.Textarea)"
-                      :key="index"
-                    >{{row}}</p>
-                  </div>
-                  <div v-if="Question.Image != ''">
-                    <img :src="Question.Image">
-                  </div>
                 </div>
               </v-card-title>
+              <div class="ma-2">
+                <div v-if="Question.Textarea != ''" class="pa-2" style="border: 1px dashed;">
+                  <p
+                    class="ma-0 pa-0"
+                    v-for="(row, index) in prepareTextArea(Question.Textarea)"
+                    :key="index"
+                  >{{row}}</p>
+                </div>
+                <div v-if="Question.Image != ''">
+                  <img :src="Question.Image">
+                </div>
+              </div>
               <v-divider dark></v-divider>
               <div class="pa-3">
                 <v-label>Odpowiedź A: {{Question.Ans1}}</v-label>
