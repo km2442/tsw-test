@@ -65,13 +65,13 @@
                 <v-container class="pa-0">
                   <v-layout row wrap justify-space-between>
                     <v-flex xs-12 md-6 class="mx-3">
-                      <v-btn block disabled color="green darken-3" dark>
+                      <v-btn block round disabled color="green darken-3" dark>
                         <span>Edytuj pytanie</span>
                         <v-icon dark right>edit</v-icon>
                       </v-btn>
                     </v-flex>
                     <v-flex xs-12 md-6 class="mx-3">
-                      <v-btn block disabled color="green darken-3" dark>
+                      <v-btn block round disabled color="green darken-3" dark>
                         <span>Usuń pytanie</span>
                         <v-icon dark right>delete</v-icon>
                       </v-btn>
