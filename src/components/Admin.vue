@@ -88,8 +88,8 @@
 </template>
 
 <script>
-import db from "./firebase/init";
-
+import firebase from "./firebase/init";
+var db = firebase.firestore();
 export default {
   name: "Admin",
   data() {

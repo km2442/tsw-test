@@ -12,7 +12,12 @@
           v-model="Textarea"
         ></v-text-field>
         <v-divider></v-divider>
-        <h3 block dark large class="ma-2 text-xs-center grey--text">(Opcjonalne) Dodaj obrazek - #TODO</h3>
+        <h3
+          block
+          dark
+          large
+          class="ma-2 text-xs-center grey--text"
+        >(Opcjonalne) Dodaj obrazek - #TODO</h3>
         <div>
           <v-container class="pa-0">
             <v-layout row wrap justify-space-between>
@@ -45,6 +50,7 @@
             </v-layout>
           </v-container>
           <v-text-field readonly dark label="Plik" v-model="selectedFile.name"></v-text-field>
+          <v-progress-linear color="success" v-model="uploadState"></v-progress-linear>
         </div>
         <v-divider></v-divider>
         <h2 block dark large class="mt-3 text-xs-center">Zaznacz, które odpowiedzi są prawidłowe</h2>
@@ -140,8 +146,9 @@
 </template>
 
 <script>
-import db from "./firebase/init";
-
+/* eslint-disable */
+import firebase from "./firebase/init";
+var db = firebase.firestore();
 export default {
   name: "AddQuestion",
   data() {
@@ -154,21 +161,18 @@ export default {
       GoodAns: [false, false, false, false],
       Textarea: "",
       Image: "",
-      selectedFile: ""
+      selectedFile: "",
+      uploadState: 0,
+      variables: { update_status: "temp" }
     };
   },
   methods: {
     prepareTextArea(text) {
       return text.split("\\n");
     },
-    imageFromString(str) {
-      var image = new Image();
-      image.src = str;
-      //console.log(image);
-      return image;
-    },
     addQuestion() {
-      db.collection('Questions').add({
+      db.collection("Questions")
+        .add({
           Question: this.Question,
           Ans1: this.Ans1,
           Ans2: this.Ans2,
@@ -177,11 +181,13 @@ export default {
           GoodAns: this.GoodAns,
           Textarea: this.Textarea,
           Image: this.Image
-        }).then(() => {
-          this.$router.push({ name: 'Admin' })
-        }).catch(err => {
-          console.log(err)
         })
+        .then(() => {
+          this.$router.push({ name: "Admin" });
+        });
+      // .catch(err => {
+      //   console.log(err);
+      // });
     },
     clearAddForm() {
       (this.Question = ""),
@@ -192,33 +198,33 @@ export default {
         (this.GoodAns = [false, false, false, false]),
         (this.Textarea = ""),
         (this.Image = ""),
-        (this.selectedFile = "");
+        (this.selectedFile = ""),
+        (this.uploadState = 100);
     },
     onFileSelected(event) {
       this.selectedFile = event.target.files[0];
-      //console.log(this.selectedFile);
-      
-      //  var file    = event.target.files[0]; //sames as here
-      //  var reader  = new FileReader();
-
-      //  reader.onloadend = function () {
-      //      this.Image = String(reader.result);
-      //      this.Textarea = this.Image;
-      //      console.log(typeof this.Image, this.Image);
-      //  }
-
-      //  if (file) {
-      //      reader.readAsDataURL(file); //reads the data as a URL
-      //  } else {
-      //      this.Textarea = "error";
-      //  }
     },
     uploadImage() {
-      // var reader = new FileReader();
-      // reader.onload = function() {
-      //   var dataURL = reader.result;
-      // };
-      //console.log(typeof this.Image, this.Image);
+      var storage = firebase.storage();
+      var img = String(Date.now()) + "_" + this.selectedFile.name;
+      var task = storage.ref("images/" + img).put(this.selectedFile);
+
+      task.on(
+        "state_changed",
+        function(snapshot) {
+          var precentage =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          this.uploadState = precentage; //todo
+          console.log(this.uploadState);
+        },
+        function error(e) {},
+        function() {
+          task.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+            this.Image = downloadURL;
+            console.log(this.Image);
+          });
+        }
+      );
     }
   }
 };
