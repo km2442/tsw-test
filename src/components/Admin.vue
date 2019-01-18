@@ -52,14 +52,22 @@
                 </div>
               </div>
               <v-divider dark></v-divider>
-              <div class="pa-3">
-                <v-label>Odpowiedź A: {{Question.Ans1}}</v-label>
-                <v-divider dark></v-divider>
-                <v-label>Odpowiedź B: {{Question.Ans2}}</v-label>
-                <v-divider dark></v-divider>
-                <v-label>Odpowiedź C: {{Question.Ans3}}</v-label>
-                <v-divider dark></v-divider>
-                <v-label>Odpowiedź D: {{Question.Ans4}}</v-label>
+              <div class="px-3">
+                <v-checkbox disabled :label="``" v-model="Question.GoodAns[0]" class="ma-0 pa-0">
+                  <span slot="label" class="mb-0">Odpowiedź A: {{Question.Ans1}}</span>
+                </v-checkbox>
+                <v-divider></v-divider>
+                <v-checkbox disabled :label="``" v-model="Question.GoodAns[1]" class="ma-0 pa-0">
+                  <span slot="label">Odpowiedź B: {{Question.Ans2}}</span>
+                </v-checkbox>
+                <v-divider></v-divider>
+                <v-checkbox disabled :label="``" v-model="Question.GoodAns[2]" class="ma-0 pa-0">
+                  <span slot="label">Odpowiedź C: {{Question.Ans3}}</span>
+                </v-checkbox>
+                <v-divider></v-divider>
+                <v-checkbox disabled :label="``" v-model="Question.GoodAns[3]" class="ma-0 pa-0">
+                  <span slot="label">Odpowiedź D: {{Question.Ans4}}</span>
+                </v-checkbox>
               </div>
               <div>
                 <v-container class="pa-0">
@@ -108,12 +116,6 @@ export default {
     },
     prepareTextArea(text) {
       return text.split("\\n");
-    },
-    imageFromString(str) {
-      var image = new Image();
-      image.src = str;
-      //console.log(image);
-      return image;
     }
   },
   created() {
