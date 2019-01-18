@@ -79,7 +79,7 @@
                       </v-btn>
                     </v-flex>
                     <v-flex xs-12 md-6 class="mx-3">
-                      <v-btn block round disabled color="green darken-3" dark>
+                      <v-btn block round color="green darken-3" dark @click="deleteQuestion(Question.Id)">
                         <span>Usuń pytanie</span>
                         <v-icon dark right>delete</v-icon>
                       </v-btn>
@@ -96,6 +96,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import firebase from "./firebase/init";
 var db = firebase.firestore();
 export default {
@@ -116,6 +117,17 @@ export default {
     },
     prepareTextArea(text) {
       return text.split("\\n");
+    },
+    deleteQuestion(id){
+      // delete doc from firestore
+      db.collection('Questions').doc(id).delete()
+      .then(() => {
+        this.Questions = this.Questions.filter(Question => {
+          return Question.Id != id
+        })
+      }).catch(err => {
+        console.log(err)
+      })
     }
   },
   created() {
