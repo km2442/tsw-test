@@ -12,12 +12,7 @@
           v-model="Textarea"
         ></v-text-field>
         <v-divider></v-divider>
-        <h3
-          block
-          dark
-          large
-          class="ma-2 text-xs-center grey--text"
-        >(Opcjonalne) Dodaj obrazek - #TODO</h3>
+        <h3 block dark large class="ma-2 text-xs-center grey--text">(Opcjonalne) Dodaj obrazek</h3>
         <div>
           <v-container class="pa-0">
             <v-layout row wrap justify-space-between>
@@ -25,7 +20,7 @@
                 <input
                   style="display: none"
                   type="file"
-                  accept="image/png, image/jpeg"
+                  accept="image/*"
                   @change="onFileSelected"
                   ref="fileInput"
                 >
@@ -162,8 +157,7 @@ export default {
       Textarea: "",
       Image: "",
       selectedFile: "",
-      uploadState: 0,
-      variables: { update_status: "temp" }
+      uploadState: 0
     };
   },
   methods: {
@@ -184,10 +178,10 @@ export default {
         })
         .then(() => {
           this.$router.push({ name: "Admin" });
+        })
+        .catch(err => {
+          console.log(err);
         });
-      // .catch(err => {
-      //   console.log(err);
-      // });
     },
     clearAddForm() {
       (this.Question = ""),
@@ -199,7 +193,7 @@ export default {
         (this.Textarea = ""),
         (this.Image = ""),
         (this.selectedFile = ""),
-        (this.uploadState = 100);
+        (this.uploadState = 0);
     },
     onFileSelected(event) {
       this.selectedFile = event.target.files[0];
@@ -208,20 +202,18 @@ export default {
       var storage = firebase.storage();
       var img = String(Date.now()) + "_" + this.selectedFile.name;
       var task = storage.ref("images/" + img).put(this.selectedFile);
-
+      var vm = this;
       task.on(
         "state_changed",
         function(snapshot) {
           var precentage =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          this.uploadState = precentage; //todo
-          console.log(this.uploadState);
+          vm.uploadState = precentage;
         },
         function error(e) {},
         function() {
-          task.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-            this.Image = downloadURL;
-            console.log(this.Image);
+          task.snapshot.ref.getDownloadURL().then(downloadURL => {
+            vm.Image = downloadURL;
           });
         }
       );
