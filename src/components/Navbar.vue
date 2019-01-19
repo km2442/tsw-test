@@ -50,7 +50,7 @@
 </template>
 
 <script>
-
+import VueCookies from "vue-cookies";
 export default {
   name: "Navbar",
   data() {
@@ -66,7 +66,18 @@ export default {
   },
   methods: {
     changeTheme() {
-      this.$emit('changeTheme', this.darkMode);
+      this.$emit("changeTheme", this.darkMode);
+      this.setThemeCookie();
+    },
+    setThemeCookie() {
+      VueCookies.set("Theme", this.darkMode);
+    }
+  },
+  created() {
+    VueCookies.config("30d");
+    if (VueCookies.isKey("Theme")) {
+      this.darkMode = (VueCookies.get("Theme") == 'true');
+      this.changeTheme();
     }
   }
 };

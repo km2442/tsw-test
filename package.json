@@ -12,6 +12,7 @@
     "@firebase/webchannel-wrapper": "https://mike-shared.firebaseapp.com/webchannel-proxy-issue/firebase-webchannel-wrapper-v0.2.11.tgz",
     "firebase": "https://mike-shared.firebaseapp.com/webchannel-proxy-issue/firebase-v5.7.0.tgz",
     "vue": "^2.5.22",
+    "vue-cookies": "^1.5.12",
     "vue-router": "^3.0.2",
     "vuetify": "^1.4.2"
   },
