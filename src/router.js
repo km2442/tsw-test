@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from '@/components/Index'
-import Test from '@/components/Test'
-import Admin from '@/components/Admin'
-import AddQuestion from '@/components/AddQuestion'
-import EditQuestion from '@/components/EditQuestion'
-import NotFound from '@/components/NotFound'
+const Index = () => import(/* webpackChunkName: "Index" */ './components/Index')
+const Test = () => import(/* webpackChunkName: "Test" */ './components/Test')
+const Admin = () => import(/* webpackChunkName: "Admin" */ './components/Admin')
+const AddQuestion = () => import(/* webpackChunkName: "AddQuestion" */ './components/AddQuestion')
+const EditQuestion = () => import(/* webpackChunkName: "EditQuestion" */ './components/EditQuestion')
+const NotFound = () => import(/* webpackChunkName: "NotFound" */ './components/NotFound')
 
 Vue.use(Router)
 
