@@ -1,8 +1,8 @@
 <template>
   <div class="ma-3">
-    <v-card class="light-blue darken-4">
+    <v-card class="light-blue darken-3">
       <h3 class="headline py-3 text-xs-center">Witaj na przykładowym teście z Technologii Sieci Web</h3>
-      <v-divider dark></v-divider>
+      <v-divider></v-divider>
       <div>
         <h4 class="headline py-3 text-xs-center">Instrukcja</h4>
         <div>
@@ -14,11 +14,11 @@
             <li>Punktacja: 18 – 19pkt 3.0, 20 – 22pkt 3.5, 23 - 25pkt 4.0, 26 - 28pkt 4.5, 29 - 30pkt 5.0</li>
           </ul>
         </div>
-        <v-divider dark></v-divider>
+        <v-divider></v-divider>
         <h4 class="headline py-3 text-xs-center">Powodzenia!</h4>
       </div>
     </v-card>
-    <v-btn block color="green darken-3 my-3" dark router :to="{ name: 'Test'}">Rozpocznij test!</v-btn>
+    <v-btn block color="green darken-3 my-3" router :to="{ name: 'Test'}">Rozpocznij test!</v-btn>
   </div>
 </template>
 

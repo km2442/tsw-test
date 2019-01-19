@@ -1,6 +1,6 @@
 <template>
   <div class="mb-4">
-    <h1 block dark large class="ma-3 text-xs-center">Panel administracyjny</h1>
+    <h1 block large class="ma-3 text-xs-center">Panel administracyjny</h1>
     <v-container class="pa-1">
       <v-layout row wrap justify-space-between>
         <v-flex
@@ -9,21 +9,21 @@
           v-if="showQuestions == false"
           @click="showQuestions = !showQuestions"
         >
-          <v-btn block color="green darken-3" dark>
+          <v-btn block color="green darken-3">
             <span>Pokaż wszystkie pytania</span>
-            <v-icon dark right>edit</v-icon>
+            <v-icon right>edit</v-icon>
           </v-btn>
         </v-flex>
         <v-flex xs-12 class="mx-3" v-if="showQuestions" @click="showQuestions = !showQuestions">
-          <v-btn block color="green darken-3" dark>
+          <v-btn block color="green darken-3">
             <span>Ukryj pytania</span>
-            <v-icon dark right>edit</v-icon>
+            <v-icon right>edit</v-icon>
           </v-btn>
         </v-flex>
         <v-flex xs-12 class="mx-3">
-          <v-btn block color="green darken-3" dark router :to="{name: 'AddQuestion'}">
+          <v-btn block color="green darken-3" router :to="{name: 'AddQuestion'}">
             <span>Dodaj pytanie</span>
-            <v-icon dark right>add_circle</v-icon>
+            <v-icon right>add_circle</v-icon>
           </v-btn>
         </v-flex>
       </v-layout>
@@ -51,7 +51,7 @@
                   <img :src="Question.Image">
                 </div>
               </div>
-              <v-divider dark></v-divider>
+              <v-divider></v-divider>
               <div class="px-3">
                 <v-checkbox disabled :label="``" v-model="Question.GoodAns[0]" class="ma-0 pa-0">
                   <span slot="label" class="mb-0">Odpowiedź A: {{Question.Ans1}}</span>
@@ -73,15 +73,15 @@
                 <v-container class="pa-0">
                   <v-layout row wrap justify-space-between>
                     <v-flex xs-12 md-6 class="mx-3">
-                      <v-btn block round disabled color="green darken-3" dark>
+                      <v-btn block round disabled color="green darken-3">
                         <span>Edytuj pytanie</span>
-                        <v-icon dark right>edit</v-icon>
+                        <v-icon right>edit</v-icon>
                       </v-btn>
                     </v-flex>
                     <v-flex xs-12 md-6 class="mx-3">
-                      <v-btn block round color="green darken-3" dark @click="deleteQuestion(Question.Id)">
+                      <v-btn block round color="green darken-3" @click="deleteQuestion(Question.Id)">
                         <span>Usuń pytanie</span>
-                        <v-icon dark right>delete</v-icon>
+                        <v-icon right>delete</v-icon>
                       </v-btn>
                     </v-flex>
                   </v-layout>

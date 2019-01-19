@@ -22,7 +22,7 @@
                 <img :src="Question.Image">
               </div>
             </div>
-            <v-divider dark></v-divider>
+            <v-divider></v-divider>
             <div class="px-3 pt-3 pb-0">
               <v-checkbox :label="``" color="green" class="ma-0 pa-0">
                 <span slot="label" class="mb-0">Odpowiedź A: {{Question.Ans1}}</span>
@@ -44,9 +44,9 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <v-btn block disabled color="green darken-3 my-3" dark>
+    <v-btn block disabled color="green darken-3 my-3">
       <span>Zakończ test</span>
-      <v-icon dark right>send</v-icon>
+      <v-icon right>send</v-icon>
     </v-btn>
   </div>
 </template>

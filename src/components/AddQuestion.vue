@@ -1,18 +1,17 @@
 <template>
   <div class="mb-4 mx-3">
-    <h1 block dark large class="ma-3 text-xs-center">Dodaj pytanie</h1>
+    <h1 block large class="ma-3 text-xs-center">Dodaj pytanie</h1>
     <v-card class="light-grey darken-3 pa-2">
       <div class="px-5">
-        <v-text-field clearable dark label="Pytanie" v-model="Question"></v-text-field>
+        <v-text-field clearable label="Pytanie" v-model="Question"></v-text-field>
         <v-text-field
           clearable
-          dark
           label="Pole z kodem (opcjonalne)"
           hint="Zwiń kod do jednej linii i zamień znaki końca linii na \n"
           v-model="Textarea"
         ></v-text-field>
         <v-divider></v-divider>
-        <h3 block dark large class="ma-2 text-xs-center grey--text">(Opcjonalne) Dodaj obrazek</h3>
+        <h3 block large class="ma-2 text-xs-center grey--text">(Opcjonalne) Dodaj obrazek</h3>
         <div>
           <v-container class="pa-0">
             <v-layout row wrap justify-space-between>
@@ -24,31 +23,31 @@
                   @change="onFileSelected"
                   ref="fileInput"
                 >
-                <v-btn block round dark color="green" @click="$refs.fileInput.click()">
+                <v-btn block round color="green" @click="$refs.fileInput.click()">
                   <span>Wybierz obrazek</span>
-                  <v-icon dark right>add_circle</v-icon>
+                  <v-icon right>add_circle</v-icon>
                 </v-btn>
               </v-flex>
               <v-flex xs-12 md-6 class="mx-3">
                 <v-btn
                   block
                   round
-                  dark
+                
                   color="green"
                   @click="uploadImage"
                   :disabled="selectedFile == ''"
                 >
                   <span>Wgraj plik</span>
-                  <v-icon dark right>cloud_upload</v-icon>
+                  <v-icon right>cloud_upload</v-icon>
                 </v-btn>
               </v-flex>
             </v-layout>
           </v-container>
-          <v-text-field readonly dark label="Plik" v-model="selectedFile.name"></v-text-field>
+          <v-text-field readonly label="Plik" v-model="selectedFile.name"></v-text-field>
           <v-progress-linear color="success" v-model="uploadState"></v-progress-linear>
         </div>
         <v-divider></v-divider>
-        <h2 block dark large class="mt-3 text-xs-center">Zaznacz, które odpowiedzi są prawidłowe</h2>
+        <h2 block large class="mt-3 text-xs-center">Zaznacz, które odpowiedzi są prawidłowe</h2>
         <div class="pa-0">
           <v-container class="pa-0">
             <v-flex xs12>
@@ -57,7 +56,7 @@
                   <v-checkbox color="green" v-model="GoodAns[0]"></v-checkbox>
                 </v-flex>
                 <v-flex xs11>
-                  <v-text-field clearable dark label="Odpowiedź A" v-model="Ans1"></v-text-field>
+                  <v-text-field clearable label="Odpowiedź A" v-model="Ans1"></v-text-field>
                 </v-flex>
               </v-layout>
             </v-flex>
@@ -67,7 +66,7 @@
                   <v-checkbox color="green" v-model="GoodAns[1]"></v-checkbox>
                 </v-flex>
                 <v-flex xs11>
-                  <v-text-field clearable dark label="Odpowiedź B" v-model="Ans2"></v-text-field>
+                  <v-text-field clearable label="Odpowiedź B" v-model="Ans2"></v-text-field>
                 </v-flex>
               </v-layout>
             </v-flex>
@@ -77,7 +76,7 @@
                   <v-checkbox color="green" v-model="GoodAns[2]"></v-checkbox>
                 </v-flex>
                 <v-flex xs11>
-                  <v-text-field clearable dark label="Odpowiedź C" v-model="Ans3"></v-text-field>
+                  <v-text-field clearable label="Odpowiedź C" v-model="Ans3"></v-text-field>
                 </v-flex>
               </v-layout>
             </v-flex>
@@ -87,19 +86,19 @@
                   <v-checkbox color="green" v-model="GoodAns[3]"></v-checkbox>
                 </v-flex>
                 <v-flex xs11>
-                  <v-text-field clearable dark label="Odpowiedź D" v-model="Ans4"></v-text-field>
+                  <v-text-field clearable label="Odpowiedź D" v-model="Ans4"></v-text-field>
                 </v-flex>
               </v-layout>
             </v-flex>
           </v-container>
         </div>
       </div>
-      <v-btn block dark round color="error" @click="clearAddForm()">
+      <v-btn block round color="error" @click="clearAddForm()">
         <span>Wyczyść formularz</span>
-        <v-icon dark right>delete</v-icon>
+        <v-icon right>delete</v-icon>
       </v-btn>
     </v-card>
-    <h2 block dark large class="ma-3 text-xs-center">Podgląd</h2>
+    <h2 block large class="ma-3 text-xs-center">Podgląd</h2>
     <!-- Podgląd pytania -->
     <div class="mb-4">
       <v-card class="light-grey darken-3 mb-2">
@@ -121,21 +120,21 @@
             <img :src="Image">
           </div>
         </div>
-        <v-divider dark></v-divider>
+        <v-divider></v-divider>
         <div class="pa-3">
           <v-label>Odpowiedź A: {{Ans1}}</v-label>
-          <v-divider dark></v-divider>
+          <v-divider></v-divider>
           <v-label>Odpowiedź B: {{Ans2}}</v-label>
-          <v-divider dark></v-divider>
+          <v-divider></v-divider>
           <v-label>Odpowiedź C: {{Ans3}}</v-label>
-          <v-divider dark></v-divider>
+          <v-divider></v-divider>
           <v-label>Odpowiedź D: {{Ans4}}</v-label>
         </div>
       </v-card>
     </div>
-    <v-btn block dark color="green darken-3" @click="addQuestion()">
+    <v-btn block color="green darken-3" @click="addQuestion()">
       <span>Dodaj pytanie</span>
-      <v-icon dark right>send</v-icon>
+      <v-icon right>send</v-icon>
     </v-btn>
   </div>
 </template>
