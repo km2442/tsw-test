@@ -1,22 +1,22 @@
 <template>
   <nav>
-    <v-toolbar app color="primary">
-      <v-toolbar-title wrap>Technologie sieci web</v-toolbar-title>
+    <v-toolbar app class="white--text blue-grey darken-2">
+      <v-toolbar-title wrap>Quiz</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-side-icon right v-if="!drawer" @click="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-side-icon right v-if="drawer" @click="drawer = !drawer">
+      <v-toolbar-side-icon class="white--text" right v-if="!drawer" @click="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-side-icon class="white--text" right v-if="drawer" @click="drawer = !drawer">
         <v-icon>close</v-icon>
       </v-toolbar-side-icon>
     </v-toolbar>
-    <v-navigation-drawer right v-model="drawer" app>
-      <v-toolbar flat class="primary px-3">
+    <v-navigation-drawer app right v-model="drawer">
+      <v-toolbar flat class="px-3 blue-grey darken-2">
         <v-list>
-          <v-list-tile @click="drawer = !drawer">
+          <v-list-tile class="white--text" @click="drawer = !drawer">
             <v-list-tile-content>
               <v-list-tile-title>Zamknij</v-list-tile-title>
             </v-list-tile-content>
             <v-list-tile-action>
-              <v-icon large>cancel</v-icon>
+              <v-icon class="white--text" large>cancel</v-icon>
             </v-list-tile-action>
           </v-list-tile>
         </v-list>
