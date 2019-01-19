@@ -1,11 +1,10 @@
 import firebase from 'firebase'
-import firestore from 'firebase/firestore'
 // Initialize Firebase
 var config = {
     //credentials
 };
 const firebaseApp = firebase.initializeApp(config);
-firebaseApp.firestore().settings({ timestampsInSnapshots: true })
+firebaseApp.firestore().settings({ timestampsInSnapshots: true, forceLongPolling: true })
 
 // export firestore database
-export default firebaseApp.firestore()
+export default firebaseApp;
