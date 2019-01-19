@@ -32,7 +32,6 @@
                 <v-btn
                   block
                   round
-                
                   color="green"
                   @click="uploadImage"
                   :disabled="selectedFile == ''"
@@ -93,7 +92,7 @@
           </v-container>
         </div>
       </div>
-      <v-btn block round color="error" @click="clearAddForm()">
+      <v-btn block round color="red" @click="clearAddForm()">
         <span>Wyczyść formularz</span>
         <v-icon right>delete</v-icon>
       </v-btn>
@@ -132,10 +131,22 @@
         </div>
       </v-card>
     </div>
-    <v-btn block color="green darken-3" @click="addQuestion()">
-      <span>Dodaj pytanie</span>
-      <v-icon right>send</v-icon>
-    </v-btn>
+    <v-container class="pa-0">
+      <v-layout row wrap justify-space-between>
+        <v-flex xs-12 md-6 class="mx-3">
+          <v-btn block round color="green darken-3" @click="addQuestion()">
+            <span>Dodaj pytanie</span>
+            <v-icon right>send</v-icon>
+          </v-btn>
+        </v-flex>
+        <v-flex xs-12 md-6 class="mx-3">
+          <v-btn block round color="red" @click="cancelAdd()">
+            <span>Anuluj dodawanie</span>
+            <v-icon right>cancel</v-icon>
+          </v-btn>
+        </v-flex>
+      </v-layout>
+    </v-container>
   </div>
 </template>
 
@@ -182,17 +193,20 @@ export default {
           console.log(err);
         });
     },
+    cancelAdd() {
+      this.$router.push({ name: "Admin" });
+    },
     clearAddForm() {
-      (this.Question = ""),
-        (this.Ans1 = ""),
-        (this.Ans2 = ""),
-        (this.Ans3 = ""),
-        (this.Ans4 = ""),
-        (this.GoodAns = [false, false, false, false]),
-        (this.Textarea = ""),
-        (this.Image = ""),
-        (this.selectedFile = ""),
-        (this.uploadState = 0);
+      this.Question = "";
+      this.Ans1 = "";
+      this.Ans2 = "";
+      this.Ans3 = "";
+      this.Ans4 = "";
+      this.GoodAns = [false, false, false, false];
+      this.Textarea = "";
+      this.Image = "";
+      this.selectedFile = "";
+      this.uploadState = 0;
     },
     onFileSelected(event) {
       this.selectedFile = event.target.files[0];

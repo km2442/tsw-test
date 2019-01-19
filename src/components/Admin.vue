@@ -9,19 +9,19 @@
           v-if="showQuestions == false"
           @click="showQuestions = !showQuestions"
         >
-          <v-btn block color="green darken-3">
+          <v-btn block round color="green darken-3">
             <span>Pokaż wszystkie pytania</span>
             <v-icon right>edit</v-icon>
           </v-btn>
         </v-flex>
         <v-flex xs-12 class="mx-3" v-if="showQuestions" @click="showQuestions = !showQuestions">
-          <v-btn block color="green darken-3">
+          <v-btn block round color="green darken-3">
             <span>Ukryj pytania</span>
             <v-icon right>edit</v-icon>
           </v-btn>
         </v-flex>
         <v-flex xs-12 class="mx-3">
-          <v-btn block color="green darken-3" router :to="{name: 'AddQuestion'}">
+          <v-btn block round color="green darken-3" router :to="{name: 'AddQuestion'}">
             <span>Dodaj pytanie</span>
             <v-icon right>add_circle</v-icon>
           </v-btn>
@@ -73,7 +73,7 @@
                 <v-container class="pa-0">
                   <v-layout row wrap justify-space-between>
                     <v-flex xs-12 md-6 class="mx-3">
-                      <v-btn block round disabled color="green darken-3">
+                      <v-btn block round color="green darken-3" router :to="{ name: 'EditQuestion', params: {questionId: Question.Id}}">
                         <span>Edytuj pytanie</span>
                         <v-icon right>edit</v-icon>
                       </v-btn>
