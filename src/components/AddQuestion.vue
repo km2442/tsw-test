@@ -97,7 +97,7 @@
         <v-icon right>delete</v-icon>
       </v-btn>
     </v-card>
-    <h2 block large class="ma-3 text-xs-center">Podgląd</h2>
+    <h2 block large class="ma-3 text-xs-center">Podgląd pytania</h2>
     <!-- Podgląd pytania -->
     <div class="mb-4">
       <v-card class="light-grey darken-3 mb-2">

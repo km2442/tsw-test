@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-4">
+  <div>
     <h1 block large class="ma-3 text-xs-center">Panel administracyjny</h1>
     <v-container class="pa-1">
       <v-layout row wrap justify-space-between>
@@ -28,7 +28,7 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <div class="mt-0 mb-2 mx-2" v-if="showQuestions == true">
+    <div class="mt-0 mx-2" v-if="showQuestions == true">
       <v-container class="pa-1">
         <v-layout row wrap justify-space-between>
           <v-flex xs12 md6 v-for="(Question, index) in Questions" :key="index">

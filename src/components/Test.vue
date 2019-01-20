@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-2 mt-2 mb-5">
+  <div class="mx-2 my-2 mb-3">
     <v-container class="pa-1">
       <v-layout row wrap justify-space-between>
         <v-flex xs12 md6 v-for="(Question, index) in Questions" :key="index">
@@ -44,7 +44,7 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <v-btn block disabled color="green darken-3 my-3">
+    <v-btn block round disabled color="green darken-3">
       <span>Zakończ test</span>
       <v-icon right>send</v-icon>
     </v-btn>

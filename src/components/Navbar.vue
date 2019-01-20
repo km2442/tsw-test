@@ -11,7 +11,7 @@
     </v-toolbar>
     <v-navigation-drawer app right v-model="drawer">
       <v-toolbar flat class="px-3 blue-grey darken-2" height="56px">
-        <v-list>
+        <v-list class="py-0">
           <v-list-tile class="white--text" @click="drawer = !drawer">
             <v-list-tile-content>
               <v-list-tile-title>Zamknij</v-list-tile-title>
@@ -37,6 +37,8 @@
             <v-icon large class="primary--text">{{link.icon}}</v-icon>
           </v-list-tile-action>
         </v-list-tile>
+        <v-divider class="mt-3"></v-divider>
+        <h3 class="mt-2 mb-0 text-xs-center">Ustawienia</h3>
         <v-list-tile>
           <v-list-tile-content>
             <v-list-tile-title>Ciemny motyw</v-list-tile-title>
@@ -77,7 +79,7 @@ export default {
   created() {
     VueCookies.config("30d");
     if (VueCookies.isKey("Theme")) {
-      this.darkMode = (VueCookies.get("Theme") == 'true');
+      this.darkMode = VueCookies.get("Theme") == "true";
       this.changeTheme();
     }
   }
