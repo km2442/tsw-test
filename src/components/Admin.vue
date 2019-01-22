@@ -79,7 +79,7 @@
                       </v-btn>
                     </v-flex>
                     <v-flex xs-12 md-6 class="mx-3">
-                      <v-btn block round color="green darken-3" @click="deleteQuestion(Question.Id)">
+                      <v-btn block round color="red" @click="deleteQuestion(Question.Id)">
                         <span>Usuń pytanie</span>
                         <v-icon right>delete</v-icon>
                       </v-btn>
