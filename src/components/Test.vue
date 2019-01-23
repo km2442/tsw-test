@@ -1,51 +1,67 @@
 <template>
-  <div class="mx-2 my-2 mb-3">
-    <v-container class="pa-1">
-      <v-layout row wrap justify-space-between>
-        <v-flex xs12 md6 v-for="(Question, index) in Questions" :key="index">
-          <v-card class="light-grey darken-3 ma-2">
-            <v-card-title class="pa-3">
-              <div>
-                <h3 class="headline mb-0">Pytanie {{index + 1}}</h3>
-                <div>{{Question.Question}}</div>
-              </div>
-            </v-card-title>
-            <div class="ma-2">
-              <div v-if="Question.Textarea != ''" class="pa-2" style="border: 1px dashed;">
-                <p
-                  class="ma-0 pa-0"
-                  v-for="(row, index) in prepareTextArea(Question.Textarea)"
-                  :key="index"
-                >{{row}}</p>
-              </div>
-              <div v-if="Question.Image != ''">
-                <img :src="Question.Image">
-              </div>
-            </div>
-            <v-divider></v-divider>
-            <div class="px-3 pt-3 pb-0">
-              <v-checkbox :label="``" color="green" class="ma-0 pa-0">
-                <span slot="label" class="mb-0">Odpowiedź A: {{Question.Ans1}}</span>
-              </v-checkbox>
-              <v-divider></v-divider>
-              <v-checkbox :label="``" color="green" class="ma-0 pa-0">
-                <span slot="label">Odpowiedź B: {{Question.Ans2}}</span>
-              </v-checkbox>
-              <v-divider></v-divider>
-              <v-checkbox :label="``" color="green" class="ma-0 pa-0">
-                <span slot="label">Odpowiedź C: {{Question.Ans3}}</span>
-              </v-checkbox>
-              <v-divider></v-divider>
-              <v-checkbox :label="``" color="green" class="ma-0 pa-0">
-                <span slot="label">Odpowiedź D: {{Question.Ans4}}</span>
-              </v-checkbox>
-            </div>
-          </v-card>
-        </v-flex>
-      </v-layout>
-    </v-container>
-    <v-btn block round disabled color="green darken-3">
-      <span>Zakończ test</span>
+  <div class="mx-3">
+    <v-card class="light-grey darken-3 my-3">
+      <v-card-title class="pa-3">
+        <div>
+          <h3 class="headline mb-0">Pytanie {{QuestionNumber}}/{{Questions.length}}</h3>
+          <div>{{Questions[QuestionNumber-1].Question}}</div>
+        </div>
+      </v-card-title>
+      <div class="ma-2">
+        <div
+          v-if="Questions[QuestionNumber-1].Textarea != ''"
+          class="pa-2"
+          style="border: 1px dashed;"
+        >
+          <p
+            class="ma-0 pa-0"
+            v-for="(row, index) in prepareTextArea(Questions[QuestionNumber-1].Textarea)"
+            :key="index"
+          >{{row}}</p>
+        </div>
+        <div v-if="Questions[QuestionNumber-1].Image != ''">
+          <img :src="Questions[QuestionNumber-1].Image">
+        </div>
+      </div>
+      <v-divider></v-divider>
+      <div class="px-3 pt-3 pb-0">
+        <v-checkbox :label="``" color="green" class="ma-0 pa-0">
+          <span slot="label" class="mb-0">Odpowiedź A: {{Questions[QuestionNumber-1].Ans1}}</span>
+        </v-checkbox>
+        <v-divider></v-divider>
+        <v-checkbox :label="``" color="green" class="ma-0 pa-0">
+          <span slot="label">Odpowiedź B: {{Questions[QuestionNumber-1].Ans2}}</span>
+        </v-checkbox>
+        <v-divider></v-divider>
+        <v-checkbox :label="``" color="green" class="ma-0 pa-0">
+          <span slot="label">Odpowiedź C: {{Questions[QuestionNumber-1].Ans3}}</span>
+        </v-checkbox>
+        <v-divider></v-divider>
+        <v-checkbox :label="``" color="green" class="ma-0 pa-0">
+          <span slot="label">Odpowiedź D: {{Questions[QuestionNumber-1].Ans4}}</span>
+        </v-checkbox>
+      </div>
+      <div class="px-2 pb-1">
+        <v-btn
+          block
+          round
+          :disabled="QuestionNumber < Questions.length ? false : true"
+          color="green darken-3"
+          @click="QuestionNumber++"
+        >
+          <span>Następne pytanie</span>
+          <v-icon right>fast_forward</v-icon>
+        </v-btn>
+      </div>
+    </v-card>
+    <v-btn
+      block
+      round
+      class="mb-3"
+      :disabled="QuestionNumber == Questions.length ? false : true"
+      color="green darken-3"
+    >
+      <span>Zakończ test (Not working)</span>
       <v-icon right>send</v-icon>
     </v-btn>
   </div>
@@ -58,7 +74,18 @@ export default {
   name: "Test",
   data() {
     return {
-      Questions: []
+      QuestionNumber: 1,
+      Questions: [
+        {
+          Question: "Loading data from database...",
+          Ans1: "",
+          Ans2: "",
+          Ans3: "",
+          Ans4: "",
+          Image: "",
+          Textarea: ""
+        }
+      ]
     };
   },
   methods: {
@@ -76,6 +103,7 @@ export default {
     db.collection("Questions")
       .get()
       .then(snapshot => {
+        this.Questions = [];
         snapshot.forEach(doc => {
           var Question = doc.data();
           Question.Id = doc.id;
