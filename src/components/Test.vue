@@ -1,59 +1,61 @@
 <template>
   <div class="mx-3">
-    <v-card class="light-grey darken-3 my-3">
-      <v-card-title class="pa-3">
-        <div>
-          <h3 class="headline mb-0">Pytanie {{QuestionNumber}}/{{Questions.length}}</h3>
-          <div>{{Questions[QuestionNumber-1].Question}}</div>
+    <div v-for="(Question, index) in Questions" :key="index">
+      <v-card class="light-grey darken-3 my-3" >
+        <v-card-title class="pa-3">
+          <div>
+            <h3 class="headline mb-0">Pytanie {{index+1}}/{{Questions.length}}</h3>
+            <div>{{Questions[index].Question}}</div>
+          </div>
+        </v-card-title>
+        <div class="ma-2">
+          <div
+            v-if="Questions[index].Textarea != ''"
+            class="pa-2"
+            style="border: 1px dashed;"
+          >
+            <p
+              class="ma-0 pa-0"
+              v-for="(row, index2) in prepareTextArea(Questions[index].Textarea)"
+              :key="index2"
+            >{{row}}</p>
+          </div>
+          <div v-if="Questions[index].Image != ''">
+            <img :src="Questions[index].Image">
+          </div>
         </div>
-      </v-card-title>
-      <div class="ma-2">
-        <div
-          v-if="Questions[QuestionNumber-1].Textarea != ''"
-          class="pa-2"
-          style="border: 1px dashed;"
-        >
-          <p
-            class="ma-0 pa-0"
-            v-for="(row, index) in prepareTextArea(Questions[QuestionNumber-1].Textarea)"
-            :key="index"
-          >{{row}}</p>
+        <v-divider></v-divider>
+        <div class="px-3 pt-3 pb-0">
+          <v-checkbox v-model="Answers[index].Ans1" color="green" class="ma-0 pa-0">
+            <span slot="label" class="mb-0">Odpowiedź A: {{Questions[index].Ans1}}</span>
+          </v-checkbox>
+          <v-divider></v-divider>
+          <v-checkbox v-model="Answers[index].Ans2" color="green" class="ma-0 pa-0">
+            <span slot="label">Odpowiedź B: {{Questions[index].Ans2}}</span>
+          </v-checkbox>
+          <v-divider></v-divider>
+          <v-checkbox v-model="Answers[index].Ans3" color="green" class="ma-0 pa-0">
+            <span slot="label">Odpowiedź C: {{Questions[index].Ans3}}</span>
+          </v-checkbox>
+          <v-divider></v-divider>
+          <v-checkbox v-model="Answers[index].Ans4" color="green" class="ma-0 pa-0">
+            <span slot="label">Odpowiedź D: {{Questions[index].Ans4}}</span>
+          </v-checkbox>
         </div>
-        <div v-if="Questions[QuestionNumber-1].Image != ''">
-          <img :src="Questions[QuestionNumber-1].Image">
+        <div class="px-2 pb-1">
+          <v-btn
+            block
+            round
+            :disabled="QuestionNumber < Questions.length ? false : true"
+            color="green darken-3"
+            @click="QuestionNumber++"
+          >
+            <span>Następne pytanie</span>
+            <v-icon right>fast_forward</v-icon>
+          </v-btn>
         </div>
-      </div>
-      <v-divider></v-divider>
-      <div class="px-3 pt-3 pb-0">
-        <v-checkbox v-model="Answers[QuestionNumber-1].Ans1" color="green" class="ma-0 pa-0">
-          <span slot="label" class="mb-0">Odpowiedź A: {{Questions[QuestionNumber-1].Ans1}}</span>
-        </v-checkbox>
-        <v-divider></v-divider>
-        <v-checkbox v-model="Answers[QuestionNumber-1].Ans2" color="green" class="ma-0 pa-0">
-          <span slot="label">Odpowiedź B: {{Questions[QuestionNumber-1].Ans2}}</span>
-        </v-checkbox>
-        <v-divider></v-divider>
-        <v-checkbox v-model="Answers[QuestionNumber-1].Ans3" color="green" class="ma-0 pa-0">
-          <span slot="label">Odpowiedź C: {{Questions[QuestionNumber-1].Ans3}}</span>
-        </v-checkbox>
-        <v-divider></v-divider>
-        <v-checkbox v-model="Answers[QuestionNumber-1].Ans4" color="green" class="ma-0 pa-0">
-          <span slot="label">Odpowiedź D: {{Questions[QuestionNumber-1].Ans4}}</span>
-        </v-checkbox>
-      </div>
-      <div class="px-2 pb-1">
-        <v-btn
-          block
-          round
-          :disabled="QuestionNumber < Questions.length ? false : true"
-          color="green darken-3"
-          @click="nextQuestion()"
-        >
-          <span>Następne pytanie</span>
-          <v-icon right>fast_forward</v-icon>
-        </v-btn>
-      </div>
-    </v-card>
+      </v-card>
+    </div>
     <v-btn
       block
       round
@@ -100,17 +102,10 @@ export default {
       //console.log(image);
       return image;
     },
-    nextQuestion() {
-      this.QuestionNumber++;
-      this.Answers[this.QuestionNumber-1].Ans1 = false;
-      this.Answers[this.QuestionNumber-1].Ans2 = false;
-      this.Answers[this.QuestionNumber-1].Ans3 = false;
-      this.Answers[this.QuestionNumber-1].Ans4 = false;
-    },
     chck() {
       var str = "";
       for (let i = 0; i < 6; i++) {
-        str += String(this.Answers[this.QuestionNumber-1].Ans1);
+        str += String(this.Answers[this.QuestionNumber - 1].Ans1);
         str += " ";
       }
       alert(str);
