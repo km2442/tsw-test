@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 const Index = () => import(/* webpackChunkName: "Index" */ './components/Index')
+const Instruction = () => import(/* webpackChunkName: "Instruction" */ './components/Instruction')
 const Test = () => import(/* webpackChunkName: "Test" */ './components/Test')
 const Admin = () => import(/* webpackChunkName: "Admin" */ './components/Admin')
 const AddQuestion = () => import(/* webpackChunkName: "AddQuestion" */ './components/AddQuestion')
@@ -15,6 +16,11 @@ export default new Router({
       path: '/',
       name: 'Index',
       component: Index
+    },
+    {
+      path: '/instruction',
+      name: 'Instruction',
+      component: Instruction
     },
     {
       path: '/test',
