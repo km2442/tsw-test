@@ -25,19 +25,19 @@
       </div>
       <v-divider></v-divider>
       <div class="px-3 pt-3 pb-0">
-        <v-checkbox :label="``" color="green" class="ma-0 pa-0">
+        <v-checkbox v-model="Answers[QuestionNumber-1].Ans1" color="green" class="ma-0 pa-0">
           <span slot="label" class="mb-0">Odpowiedź A: {{Questions[QuestionNumber-1].Ans1}}</span>
         </v-checkbox>
         <v-divider></v-divider>
-        <v-checkbox :label="``" color="green" class="ma-0 pa-0">
+        <v-checkbox v-model="Answers[QuestionNumber-1].Ans2" color="green" class="ma-0 pa-0">
           <span slot="label">Odpowiedź B: {{Questions[QuestionNumber-1].Ans2}}</span>
         </v-checkbox>
         <v-divider></v-divider>
-        <v-checkbox :label="``" color="green" class="ma-0 pa-0">
+        <v-checkbox v-model="Answers[QuestionNumber-1].Ans3" color="green" class="ma-0 pa-0">
           <span slot="label">Odpowiedź C: {{Questions[QuestionNumber-1].Ans3}}</span>
         </v-checkbox>
         <v-divider></v-divider>
-        <v-checkbox :label="``" color="green" class="ma-0 pa-0">
+        <v-checkbox v-model="Answers[QuestionNumber-1].Ans4" color="green" class="ma-0 pa-0">
           <span slot="label">Odpowiedź D: {{Questions[QuestionNumber-1].Ans4}}</span>
         </v-checkbox>
       </div>
@@ -47,7 +47,7 @@
           round
           :disabled="QuestionNumber < Questions.length ? false : true"
           color="green darken-3"
-          @click="QuestionNumber++"
+          @click="nextQuestion()"
         >
           <span>Następne pytanie</span>
           <v-icon right>fast_forward</v-icon>
@@ -59,6 +59,7 @@
       round
       class="mb-3"
       :disabled="QuestionNumber == Questions.length ? false : true"
+      @click="chck()"
       color="green darken-3"
     >
       <span>Zakończ test (Not working)</span>
@@ -85,7 +86,8 @@ export default {
           Image: "",
           Textarea: ""
         }
-      ]
+      ],
+      Answers: [{}]
     };
   },
   methods: {
@@ -97,9 +99,29 @@ export default {
       image.src = str;
       //console.log(image);
       return image;
+    },
+    nextQuestion() {
+      this.QuestionNumber++;
+      this.Answers[this.QuestionNumber-1].Ans1 = false;
+      this.Answers[this.QuestionNumber-1].Ans2 = false;
+      this.Answers[this.QuestionNumber-1].Ans3 = false;
+      this.Answers[this.QuestionNumber-1].Ans4 = false;
+    },
+    chck() {
+      var str = "";
+      for (let i = 0; i < 6; i++) {
+        str += String(this.Answers[this.QuestionNumber-1].Ans1);
+        str += " ";
+      }
+      alert(str);
     }
   },
   created() {
+    this.Answers = [];
+    var A = { Ans1: false, Ans2: false, Ans3: false, Ans4: false };
+    for (var i = 0; i < 30; i++) {
+      this.Answers.push(A);
+    }
     db.collection("Questions")
       .get()
       .then(snapshot => {
