@@ -1,5 +1,17 @@
 <template>
   <div class="ma-3">
+    <div class="mb-3">
+      <v-carousel>
+    <v-carousel-item
+      v-for="(img, i) in imgs"
+      :key="i"
+      :src="img.src"
+    >
+    <p class="green darken-4 headline text-xs-center main-carousel" style="position: absolute; bottom:10%; width:80%; border-radius: 25px; border: 2px solid; left: 10%;">{{img.text}}</p>
+    </v-carousel-item>
+    
+  </v-carousel>
+    </div>
     <v-card class="light-blue darken-3">
       <h3 class="headline py-3 text-xs-center">Witaj na przykładowym teście z Technologii Sieci Web</h3>
       <v-divider></v-divider>
@@ -18,7 +30,7 @@
         <h4 class="headline py-3 text-xs-center">Powodzenia!</h4>
       </div>
     </v-card>
-    <v-btn block color="green darken-3 my-3" router :to="{ name: 'Test'}">Rozpocznij test!</v-btn>
+    <v-btn block round color="green darken-3 my-3" router :to="{ name: 'Test'}">Rozpocznij test!</v-btn>
   </div>
 </template>
 
@@ -27,7 +39,11 @@ export default {
   name: "Index",
   data() {
     return {
-
+      imgs: [
+        {src: 'imgs/carousel-1.jpg', text: "Technologie sieci web 1"},
+        {src: 'imgs/carousel-2.jpg', text: "Technologie sieci web 2"},
+        {src: 'imgs/carousel-3.jpg', text: "Technologie sieci web 3"}
+      ]
     };
   }
 };
