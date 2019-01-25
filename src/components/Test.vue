@@ -1,7 +1,7 @@
 <template>
   <div class="mx-3">
-    <div v-for="(Question, index) in Questions" :key="index">
-      <v-card class="light-grey darken-3 my-3" >
+    <div v-for="(Question, index) in Questions" :key="Question.Id">
+      <v-card v-if="QuestionNumber-1 == index" class="light-grey darken-3 my-3" >
         <v-card-title class="pa-3">
           <div>
             <h3 class="headline mb-0">Pytanie {{index+1}}/{{Questions.length}}</h3>
@@ -61,13 +61,12 @@
       round
       class="mb-3"
       :disabled="QuestionNumber == Questions.length ? false : true"
-      @click="chck()"
       color="green darken-3"
     >
       <span>Zakończ test (Not working)</span>
       <v-icon right>send</v-icon>
     </v-btn>
-  </div>
+    </div>
 </template>
 
 <script>
@@ -89,7 +88,7 @@ export default {
           Textarea: ""
         }
       ],
-      Answers: [{}]
+      Answers: []
     };
   },
   methods: {
@@ -101,21 +100,15 @@ export default {
       image.src = str;
       //console.log(image);
       return image;
-    },
-    chck() {
-      var str = "";
-      for (let i = 0; i < 6; i++) {
-        str += String(this.Answers[this.QuestionNumber - 1].Ans1);
-        str += " ";
-      }
-      alert(str);
     }
   },
   created() {
-    this.Answers = [];
-    var A = { Ans1: false, Ans2: false, Ans3: false, Ans4: false };
     for (var i = 0; i < 30; i++) {
-      this.Answers.push(A);
+      this.Answers.push({});
+      this.$set(this.Answers[i], "Ans1", false);
+      this.$set(this.Answers[i], "Ans2", false);
+      this.$set(this.Answers[i], "Ans3", false);
+      this.$set(this.Answers[i], "Ans4", false);
     }
     db.collection("Questions")
       .get()
@@ -126,6 +119,8 @@ export default {
           Question.Id = doc.id;
           this.Questions.push(Question);
         });
+      }).catch(err => {
+        alert(err + " Prawdopodobnie twój antywirus zablokowal pobranie pytań :(");
       });
   }
 };
