@@ -59,10 +59,23 @@
                     </v-btn>
                   </v-flex>
                   <v-flex xs-12 md-6 class="mx-3">
-                    <v-btn block round color="red" @click="deleteQuestion(Question.Id)">
-                      <span>Usuń pytanie</span>
-                      <v-icon right>delete</v-icon>
-                    </v-btn>
+                    <v-dialog v-model="delQuestion[index].del" persistent max-width="600">
+                      <v-btn block round color="red" slot="activator">
+                        <span>Usuń pytanie</span>
+                        <v-icon right>delete</v-icon>
+                      </v-btn>
+                      <v-card>
+                        <v-card-title
+                          class="headline"
+                        >Czy na pewno chcesz usunąć pytanie {{Question.Id}}? Ta operacja jest nieodwracalna!</v-card-title>
+                        <v-card-text>Pytanie: {{Question.Question}}</v-card-text>
+                        <v-card-actions>
+                          <v-spacer></v-spacer>
+                          <v-btn color="red" flat @click="deleteQuestion(Question.Id, index)">Tak, usuń</v-btn>
+                          <v-btn color="green" flat @click="delQuestion[index].del = false">Nie usuwaj!</v-btn>
+                        </v-card-actions>
+                      </v-card>
+                    </v-dialog>
                   </v-flex>
                 </v-layout>
               </v-container>
@@ -82,14 +95,16 @@ export default {
   name: "AdminQuestions",
   data() {
     return {
-      Questions: []
+      Questions: [],
+      delQuestion: []
     };
   },
   methods: {
     prepareTextArea(text) {
       return text.split("\\n");
     },
-    deleteQuestion(id) {
+    deleteQuestion(id, index) {
+      this.delQuestion[index].del = false;
       // delete doc from firestore
       db.collection("Questions")
         .doc(id)
@@ -113,6 +128,10 @@ export default {
           Question.Id = doc.id;
           this.Questions.push(Question);
         });
+        for (var i = 0; i < this.Questions.length; i++) {
+            this.delQuestion.push({});
+          this.$set(this.delQuestion[i], "del", false);
+        }
       });
   }
 };
