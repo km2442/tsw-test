@@ -1,7 +1,7 @@
 <template>
   <div class="mx-3">
     <div v-for="(Question, index) in Questions" :key="Question.Id">
-      <v-card v-if="QuestionNumber-1 == index" class="light-grey darken-3 my-3" >
+      <v-card v-if="QuestionNumber-1 == index" class="light-grey darken-3 my-3">
         <v-card-title class="pa-3">
           <div>
             <h3 class="headline mb-0">Pytanie {{index+1}}/{{Questions.length}}</h3>
@@ -9,11 +9,7 @@
           </div>
         </v-card-title>
         <div class="ma-2">
-          <div
-            v-if="Questions[index].Textarea != ''"
-            class="pa-2"
-            style="border: 1px dashed;"
-          >
+          <div v-if="Questions[index].Textarea != ''" class="pa-2" style="border: 1px dashed;">
             <p
               class="ma-0 pa-0"
               v-for="(row, index2) in prepareTextArea(Questions[index].Textarea)"
@@ -66,7 +62,7 @@
       <span>Zakończ test (Not working)</span>
       <v-icon right>send</v-icon>
     </v-btn>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -95,13 +91,26 @@ export default {
     prepareTextArea(text) {
       return text.split("\\n");
     },
-    imageFromString(str) {
-      var image = new Image();
-      image.src = str;
-      //console.log(image);
-      return image;
+    shuffleArray(array) {
+      var ctr = array.length,
+        temp,
+        index;
+
+      // While there are elements in the array
+      while (ctr > 0) {
+        // Pick a random index
+        index = Math.floor(Math.random() * ctr);
+        // Decrease ctr by 1
+        ctr--;
+        // And swap the last element with it
+        temp = array[ctr];
+        array[ctr] = array[index];
+        array[index] = temp;
+      }
+      return array;
     }
   },
+  //make answer array reactable
   created() {
     for (var i = 0; i < 30; i++) {
       this.Answers.push({});
@@ -110,6 +119,7 @@ export default {
       this.$set(this.Answers[i], "Ans3", false);
       this.$set(this.Answers[i], "Ans4", false);
     }
+    //fetch questions from firebase
     db.collection("Questions")
       .get()
       .then(snapshot => {
@@ -119,8 +129,8 @@ export default {
           Question.Id = doc.id;
           this.Questions.push(Question);
         });
-      }).catch(err => {
-        alert(err + " Prawdopodobnie twój antywirus zablokowal pobranie pytań :(");
+        //shuffle questions
+        this.Questions = this.shuffleArray(this.Questions);
       });
   }
 };
