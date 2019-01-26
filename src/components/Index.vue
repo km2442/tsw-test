@@ -22,9 +22,9 @@
       <v-card class="light-blue darken-3">
       <h3 class="display-2 py-3 text-xs-center text-uppercase">O witrynie</h3>
       <v-divider></v-divider>
-      <div class="mx-3">
-        <p class="headline">Witryna <b>Quiz PRO</b> stanowi serwis przedmiotu "<b>Technologie Sieci WEB</b>" prowadzonego na Wydziale Elektrotechniki i Informatyki Politechniki Rzeszowskiej (WEiI PRz).</p>
-        <p class="headline">Wykładowcą przedmiotu "Technologie Sieci WEB" na WEiI PRz jest <b>Dr hab. inż. Jan PROKOP, prof. PRz</b>.</p>
+      <div class="px-4">
+        <p class="headline pt-4">Witryna <b>Quiz PRO</b> stanowi serwis przedmiotu "<b>Technologie Sieci WEB</b>" prowadzonego na Wydziale Elektrotechniki i Informatyki Politechniki Rzeszowskiej (WEiI PRz).</p>
+        <p class="headline pb-4">Wykładowcą przedmiotu "Technologie Sieci WEB" na WEiI PRz jest <b>Dr hab. inż. Jan PROKOP, prof. PRz</b>.</p>
       </div>
     </v-card>
     </div>
