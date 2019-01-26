@@ -42,9 +42,9 @@
           <v-btn
             block
             round
-            :disabled="QuestionNumber < Questions.length ? false : true"
+            v-if="QuestionNumber < Questions.length"
             color="green darken-3"
-            @click="QuestionNumber++"
+            @click="nextQuestion()"
           >
             <span>Następne pytanie</span>
             <v-icon right>fast_forward</v-icon>
@@ -56,7 +56,7 @@
       block
       round
       class="mb-3"
-      :disabled="QuestionNumber == Questions.length ? false : true"
+      v-if="QuestionNumber == Questions.length"
       color="green darken-3"
     >
       <span>Zakończ test (Not working)</span>
@@ -108,6 +108,10 @@ export default {
         array[index] = temp;
       }
       return array;
+    },
+    nextQuestion() {
+      this.QuestionNumber++;
+      window.location.href = "#";
     }
   },
   //make answer array reactable
