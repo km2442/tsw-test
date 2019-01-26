@@ -1,5 +1,8 @@
 <template>
   <div class="mt-0 mx-2">
+    <v-divider></v-divider>
+    <h2 block large class="ma-2 text-xs-center">Ilość pytań w bazie: {{Questions.length}}</h2>
+    <v-divider></v-divider>
     <v-container class="pa-1">
       <v-layout row wrap justify-space-between>
         <v-flex xs12 md6 v-for="(Question, index) in Questions" :key="index">
