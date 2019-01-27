@@ -1,6 +1,6 @@
 <template>
   <div class="mb-4 mx-3">
-    <h1 block large class="ma-3 text-xs-center">Dodaj pytanie</h1>
+    <h1 block large class="ma-3 text-xs-center">Edytuj pytanie {{$route.params.questionId}}</h1>
     <v-card class="light-grey darken-3 pa-2">
       <div class="px-5">
         <v-text-field clearable label="Pytanie" v-model="Question"></v-text-field>
@@ -97,7 +97,7 @@
         <v-icon right>delete</v-icon>
       </v-btn>
     </v-card>
-    <h2 block large class="ma-3 text-xs-center">Podgląd pytania</h2>
+    <h2 block large class="ma-3 text-xs-center">Podgląd</h2>
     <!-- Podgląd pytania -->
     <div class="mb-4">
       <v-card class="light-grey darken-3 mb-2">
@@ -134,14 +134,14 @@
     <v-container class="pa-0">
       <v-layout row wrap justify-space-between>
         <v-flex xs-12 md-6 class="mx-3">
-          <v-btn block round color="green darken-3" @click="addQuestion()">
-            <span>Dodaj pytanie</span>
+          <v-btn block round color="green darken-3" @click="editQuestion()">
+            <span>Edytuj pytanie</span>
             <v-icon right>send</v-icon>
           </v-btn>
         </v-flex>
         <v-flex xs-12 md-6 class="mx-3">
-          <v-btn block round color="red" @click="cancelAdd()">
-            <span>Anuluj dodawanie</span>
+          <v-btn block round color="red" @click="cancelEdit()">
+            <span>Anuluj edycję</span>
             <v-icon right>cancel</v-icon>
           </v-btn>
         </v-flex>
@@ -152,10 +152,10 @@
 
 <script>
 /* eslint-disable */
-import firebase from "./firebase/init";
+import firebase from "../../firebase/init";
 var db = firebase.firestore();
 export default {
-  name: "AddQuestion",
+  name: "EditQuestion",
   data() {
     return {
       Question: "",
@@ -174,9 +174,10 @@ export default {
     prepareTextArea(text) {
       return text.split("\\n");
     },
-    addQuestion() {
+    editQuestion() {
       db.collection("Questions")
-        .add({
+        .doc(this.Id)
+        .update({
           Question: this.Question,
           Ans1: this.Ans1,
           Ans2: this.Ans2,
@@ -193,7 +194,7 @@ export default {
           console.log(err);
         });
     },
-    cancelAdd() {
+    cancelEdit() {
       this.$router.push({ name: "Admin" });
     },
     clearAddForm() {
@@ -231,6 +232,20 @@ export default {
         }
       );
     }
+  },
+  created() {
+    let ref = db.collection("Questions").doc(this.$route.params.questionId);
+    ref.get().then(doc => {
+      this.Question = doc.data().Question;
+      this.Ans1 = doc.data().Ans1;
+      this.Ans2 = doc.data().Ans2;
+      this.Ans3 = doc.data().Ans3;
+      this.Ans4 = doc.data().Ans4;
+      this.GoodAns = doc.data().GoodAns;
+      this.Textarea = doc.data().Textarea;
+      this.Image = doc.data().Image;
+      this.Id = doc.id;
+    });
   }
 };
 </script>

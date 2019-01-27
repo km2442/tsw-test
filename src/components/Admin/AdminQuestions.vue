@@ -97,7 +97,7 @@
 
 <script>
 /* eslint-disable */
-import firebase from "./firebase/init";
+import firebase from "../../firebase/init";
 var db = firebase.firestore();
 export default {
   name: "AdminQuestions",

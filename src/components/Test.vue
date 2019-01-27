@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import firebase from "./firebase/init";
+import firebase from "../firebase/init";
 var db = firebase.firestore();
 export default {
   name: "Test",

@@ -3,9 +3,9 @@ import Router from 'vue-router'
 const Index = () => import(/* webpackChunkName: "Index" */ './components/Index')
 const Instruction = () => import(/* webpackChunkName: "Instruction" */ './components/Instruction')
 const Test = () => import(/* webpackChunkName: "Test" */ './components/Test')
-const Admin = () => import(/* webpackChunkName: "Admin" */ './components/Admin')
-const AddQuestion = () => import(/* webpackChunkName: "AddQuestion" */ './components/AddQuestion')
-const EditQuestion = () => import(/* webpackChunkName: "EditQuestion" */ './components/EditQuestion')
+const Admin = () => import(/* webpackChunkName: "Admin" */ './components/Admin/Admin')
+const AddQuestion = () => import(/* webpackChunkName: "AddQuestion" */ './components/Admin/AddQuestion')
+const EditQuestion = () => import(/* webpackChunkName: "EditQuestion" */ './components/Admin/EditQuestion')
 const NotFound = () => import(/* webpackChunkName: "NotFound" */ './components/NotFound')
 
 Vue.use(Router)
