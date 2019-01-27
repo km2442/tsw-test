@@ -34,7 +34,7 @@
 
 <script>
 /* eslint-disable */
-const AdminQuestions = () => import(/* webpackChunkName: "admin-questions" */ './AdminQuestions');
+const AdminQuestions = () => import(/* webpackChunkName: "AdminQuestions" */ './AdminQuestions');
 export default {
   name: "Admin",
   components: {

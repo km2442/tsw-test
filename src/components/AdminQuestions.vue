@@ -71,8 +71,16 @@
                         <v-card-text>Pytanie: {{Question.Question}}</v-card-text>
                         <v-card-actions>
                           <v-spacer></v-spacer>
-                          <v-btn color="red" flat @click="deleteQuestion(Question.Id, index)">Tak, usuń</v-btn>
-                          <v-btn color="green" flat @click="delQuestion[index].del = false">Nie usuwaj!</v-btn>
+                          <v-btn color="red" flat outline @click="deleteQuestion(Question.Id, index)">
+                            <span>Tak, usuń</span>
+                            <v-icon right>delete</v-icon>
+                          </v-btn>
+                          <v-btn
+                            color="green"
+                            flat
+                            outline
+                            @click="delQuestion[index].del = false"
+                          >Nie usuwaj!</v-btn>
                         </v-card-actions>
                       </v-card>
                     </v-dialog>
@@ -129,7 +137,7 @@ export default {
           this.Questions.push(Question);
         });
         for (var i = 0; i < this.Questions.length; i++) {
-            this.delQuestion.push({});
+          this.delQuestion.push({});
           this.$set(this.delQuestion[i], "del", false);
         }
       });
