@@ -57,9 +57,10 @@
       round
       class="mb-3"
       v-if="QuestionNumber == Questions.length"
+      @click="finishTest()"
       color="green darken-3"
     >
-      <span>Zakończ test (Not working)</span>
+      <span>Zakończ test!</span>
       <v-icon right>send</v-icon>
     </v-btn>
   </div>
@@ -109,9 +110,49 @@ export default {
       }
       return array;
     },
+    shuffleAnswers(Question) {
+      var ctr = 4,
+        temp,
+        index,
+        Ans = [Question.Ans1, Question.Ans2, Question.Ans3, Question.Ans4];
+
+      // While there are elements in the array
+      while (ctr > 0) {
+        // Pick a random index
+        index = Math.floor(Math.random() * ctr);
+        // Decrease ctr by 1
+        ctr--;
+        // And swap the last element with it
+        temp = Question.GoodAns[ctr];
+        Question.GoodAns[ctr] = Question.GoodAns[index];
+        Question.GoodAns[index] = temp;
+
+        temp = Ans[ctr];
+        Ans[ctr] = Ans[index];
+        Ans[index] = temp;
+      }
+      Question.Ans1 = Ans[0];
+      Question.Ans2 = Ans[1];
+      Question.Ans3 = Ans[2];
+      Question.Ans4 = Ans[3];
+      return Question;
+    },
     nextQuestion() {
       this.QuestionNumber++;
       window.location.href = "#";
+    },
+    finishTest() {
+      var points = 0;
+      for (let i = 0; i < this.Questions.length; i++) {
+        if (
+          this.Questions[i].GoodAns[0] == this.Answers[i].Ans1 &&
+          this.Questions[i].GoodAns[1] == this.Answers[i].Ans2 &&
+          this.Questions[i].GoodAns[2] == this.Answers[i].Ans3 &&
+          this.Questions[i].GoodAns[3] == this.Answers[i].Ans4
+        ) {
+          points++;
+        }
+      }
     }
   },
   //make answer array reactable
@@ -133,8 +174,11 @@ export default {
           Question.Id = doc.id;
           this.Questions.push(Question);
         });
-        //shuffle questions
+        //shuffle questions, and answers
         this.Questions = this.shuffleArray(this.Questions);
+        for (let i = 0; i < this.Questions.length; i++) {
+          this.Questions[i] = this.shuffleAnswers(this.Questions[i]);
+        }
       });
   }
 };
