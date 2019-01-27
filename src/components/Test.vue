@@ -153,6 +153,7 @@ export default {
           points++;
         }
       }
+      this.$router.push({ name: 'Result', params: { points: points }});
     }
   },
   //make answer array reactable

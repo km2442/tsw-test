@@ -3,6 +3,7 @@ import Router from 'vue-router'
 const Index = () => import(/* webpackChunkName: "Index" */ './components/Index')
 const Instruction = () => import(/* webpackChunkName: "Instruction" */ './components/Instruction')
 const Test = () => import(/* webpackChunkName: "Test" */ './components/Test')
+const Result = () => import(/* webpackChunkName: "Result" */ './components/Result')
 const Admin = () => import(/* webpackChunkName: "Admin" */ './components/Admin/Admin')
 const AddQuestion = () => import(/* webpackChunkName: "AddQuestion" */ './components/Admin/AddQuestion')
 const EditQuestion = () => import(/* webpackChunkName: "EditQuestion" */ './components/Admin/EditQuestion')
@@ -26,6 +27,19 @@ export default new Router({
       path: '/test',
       name: 'Test',
       component: Test
+    },
+    {
+      path: '/result',
+      name: 'Result',
+      component: Result,
+      props: true,
+      beforeEnter: (to, from, next) => {
+        if(to.params.points){
+          next()
+        } else {
+          next({ name: 'NotFound' })
+        }
+      }
     },
     {
       path: '/admin',
