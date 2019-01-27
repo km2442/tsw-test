@@ -1,10 +1,10 @@
 <template>
-  <div class="red ma-3 text-xs-center">
+  <div class="red ma-3 px-3 text-xs-center">
     <h1 class="display-4">404</h1>
     <br>
     <h1 class="display-3">Strona nie istnieje!</h1>
-    <v-btn large round class="amber" @click="goBack()">Powrót na poprzednią stronę</v-btn>
-    <v-btn large round class="amber" router :to="{name: 'Index'}">Powrót na stronę główną</v-btn>
+    <v-btn large block round class="amber" @click="goBack()">Powrót na poprzednią stronę</v-btn>
+    <v-btn large block round class="amber mt-3" router :to="{name: 'Index'}">Powrót na stronę główną</v-btn>
     <br>
   </div>
 </template>
