@@ -63,8 +63,7 @@ export default {
       links: [
         { icon: "dashboard", text: "Strona główna", route: "/" },
         { icon: "ballot", text: "Instrukcja do testu", route: "/instruction" },
-        { icon: "format_list_bulleted", text: "Test", route: "/test" },
-        { icon: "account_box", text: "Panel administracyjny", route: "/admin" }
+        { icon: "format_list_bulleted", text: "Test", route: "/test" }
       ]
     };
   },
