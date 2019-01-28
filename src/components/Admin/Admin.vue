@@ -6,7 +6,7 @@
         <v-flex
           xs-12
           class="mx-3"
-          v-if="showQuestions == false"
+          v-if="showQuestions === false"
           @click="showQuestions = !showQuestions"
         >
           <v-btn block round color="green darken-3">

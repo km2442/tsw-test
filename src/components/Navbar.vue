@@ -79,7 +79,7 @@ export default {
   created() {
     VueCookies.config("30d");
     if (VueCookies.isKey("Theme")) {
-      this.darkMode = VueCookies.get("Theme") == "true";
+      this.darkMode = VueCookies.get("Theme") === "true";
       this.changeTheme();
     }
   }

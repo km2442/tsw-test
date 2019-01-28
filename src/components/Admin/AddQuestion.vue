@@ -34,7 +34,7 @@
                   round
                   color="green"
                   @click="uploadImage"
-                  :disabled="selectedFile == ''"
+                  :disabled="selectedFile === ''"
                 >
                   <span>Wgraj plik</span>
                   <v-icon right>cloud_upload</v-icon>
@@ -153,7 +153,7 @@
 <script>
 /* eslint-disable */
 import firebase from "../../firebase/init"
-var db = firebase.firestore();
+let db = firebase.firestore();
 export default {
   name: "AddQuestion",
   data() {
@@ -212,14 +212,14 @@ export default {
       this.selectedFile = event.target.files[0];
     },
     uploadImage() {
-      var storage = firebase.storage();
-      var img = String(Date.now()) + "_" + this.selectedFile.name;
-      var task = storage.ref("images/" + img).put(this.selectedFile);
-      var vm = this;
+      let storage = firebase.storage();
+      let img = String(Date.now()) + "_" + this.selectedFile.name;
+      let task = storage.ref("images/" + img).put(this.selectedFile);
+      let vm = this;
       task.on(
         "state_changed",
         function(snapshot) {
-          var precentage =
+          let precentage =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           vm.uploadState = precentage;
         },

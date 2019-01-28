@@ -1,7 +1,7 @@
 <template>
   <div class="mx-3">
     <div v-for="(Question, index) in Questions" :key="Question.Id">
-      <v-card v-if="QuestionNumber-1 == index" class="light-grey darken-3 my-3">
+      <v-card v-if="QuestionNumber-1 === index" class="light-grey darken-3 my-3">
         <v-card-title class="pa-3">
           <div>
             <h3 class="headline mb-0">Pytanie {{index+1}}/{{Questions.length}}</h3>
@@ -56,19 +56,27 @@
       block
       round
       class="mb-3"
-      v-if="QuestionNumber == Questions.length"
+      v-if="QuestionNumber === Questions.length"
       @click="finishTest()"
       color="green darken-3"
     >
       <span>Zakończ test!</span>
       <v-icon right>send</v-icon>
     </v-btn>
+    <div v-if="getQuestionsError">
+      <h2
+        block
+        large
+        class="ma-2 text-xs-center"
+        color="red"
+      >Wystąpił bład w pobieraniu pytań z bazy danych! Spróbuj odświeżyć stronę.</h2>
+    </div>
   </div>
 </template>
 
 <script>
 import firebase from "../firebase/init";
-var db = firebase.firestore();
+let db = firebase.firestore();
 export default {
   name: "Test",
   data() {
@@ -85,7 +93,8 @@ export default {
           Textarea: ""
         }
       ],
-      Answers: []
+      Answers: [],
+      getQuestionsError: false
     };
   },
   methods: {
@@ -93,7 +102,7 @@ export default {
       return text.split("\\n");
     },
     shuffleArray(array) {
-      var ctr = array.length,
+      let ctr = array.length,
         temp,
         index;
 
@@ -111,7 +120,7 @@ export default {
       return array;
     },
     shuffleAnswers(Question) {
-      var ctr = 4,
+      let ctr = 4,
         temp,
         index,
         Ans = [Question.Ans1, Question.Ans2, Question.Ans3, Question.Ans4];
@@ -142,45 +151,55 @@ export default {
       window.location.href = "#";
     },
     finishTest() {
-      var points = 0;
+      let points = 0;
       for (let i = 0; i < this.Questions.length; i++) {
         if (
-          this.Questions[i].GoodAns[0] == this.Answers[i].Ans1 &&
-          this.Questions[i].GoodAns[1] == this.Answers[i].Ans2 &&
-          this.Questions[i].GoodAns[2] == this.Answers[i].Ans3 &&
-          this.Questions[i].GoodAns[3] == this.Answers[i].Ans4
+          this.Questions[i].GoodAns[0] === this.Answers[i].Ans1 &&
+          this.Questions[i].GoodAns[1] === this.Answers[i].Ans2 &&
+          this.Questions[i].GoodAns[2] === this.Answers[i].Ans3 &&
+          this.Questions[i].GoodAns[3] === this.Answers[i].Ans4
         ) {
           points++;
         }
       }
-      this.$router.push({ name: 'Result', params: { points: points }});
+      this.$router.push({ name: "Result", params: { points: points } });
+    },
+    async fetchDataFromFirestore() {
+      const firestoreData = await db.collection("Questions").get();
+      const foundQuestions = firestoreData.docs;
+
+      if (!foundQuestions) {
+        this.getQuestionsError = true;
+        throw console.error("Cant fetch data from database!");
+      }
+      const unshuffledQuestions = foundQuestions.map(question => ({
+        Id: question.id,
+        Question: question.data().Question,
+        Ans1: question.data().Ans1,
+        Ans2: question.data().Ans2,
+        Ans3: question.data().Ans3,
+        Ans4: question.data().Ans4,
+        GoodAns: question.data().GoodAns,
+        Textarea: question.data().Textarea,
+        Image: question.data().Image
+      }));
+      const shuffledQuestions = this.shuffleArray(unshuffledQuestions);
+      this.Questions = shuffledQuestions.map(question =>
+        this.shuffleAnswers(question)
+      );
     }
   },
-  //make answer array reactable
-  created() {
-    for (var i = 0; i < 30; i++) {
+
+  async created() {
+    //make answer array reactable
+    for (let i = 0; i < 30; i++) {
       this.Answers.push({});
       this.$set(this.Answers[i], "Ans1", false);
       this.$set(this.Answers[i], "Ans2", false);
       this.$set(this.Answers[i], "Ans3", false);
       this.$set(this.Answers[i], "Ans4", false);
     }
-    //fetch questions from firebase
-    db.collection("Questions")
-      .get()
-      .then(snapshot => {
-        this.Questions = [];
-        snapshot.forEach(doc => {
-          var Question = doc.data();
-          Question.Id = doc.id;
-          this.Questions.push(Question);
-        });
-        //shuffle questions, and answers
-        this.Questions = this.shuffleArray(this.Questions);
-        for (let i = 0; i < this.Questions.length; i++) {
-          this.Questions[i] = this.shuffleAnswers(this.Questions[i]);
-        }
-      });
+    this.fetchDataFromFirestore();
   }
 };
 </script>

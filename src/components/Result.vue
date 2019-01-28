@@ -65,7 +65,7 @@ export default {
     }
   },
   mounted() {
-      var res = this.getMark(this.points);
+      let res = this.getMark(this.points);
       this.mark = res.mark;
       this.color = res.color + " headline text-xs-center";
   }

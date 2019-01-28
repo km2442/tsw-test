@@ -1,7 +1,14 @@
 <template>
   <div class="mt-0 mx-2">
     <v-divider></v-divider>
-    <h2 block large class="ma-2 text-xs-center">Ilość pytań w bazie: {{Questions.length}}</h2>
+    <h2
+      v-if="getQuestionsError"
+      block
+      large
+      class="ma-2 text-xs-center"
+      color="red"
+    >Wystąpił bład w pobieraniu pytań z bazy danych! Spróbuj odświeżyć stronę.</h2>
+    <h2 v-else block large class="ma-2 text-xs-center">Ilość pytań w bazie: {{Questions.length}}</h2>
     <v-divider></v-divider>
     <v-container class="pa-1">
       <v-layout row wrap justify-space-between>
@@ -71,7 +78,12 @@
                         <v-card-text>Pytanie: {{Question.Question}}</v-card-text>
                         <v-card-actions>
                           <v-spacer></v-spacer>
-                          <v-btn color="red" flat outline @click="deleteQuestion(Question.Id, index)">
+                          <v-btn
+                            color="red"
+                            flat
+                            outline
+                            @click="deleteQuestion(Question.Id, index)"
+                          >
                             <span>Tak, usuń</span>
                             <v-icon right>delete</v-icon>
                           </v-btn>
@@ -98,13 +110,14 @@
 <script>
 /* eslint-disable */
 import firebase from "../../firebase/init";
-var db = firebase.firestore();
+let db = firebase.firestore();
 export default {
   name: "AdminQuestions",
   data() {
     return {
       Questions: [],
-      delQuestion: []
+      delQuestion: [],
+      getQuestionsError: false
     };
   },
   methods: {
@@ -125,22 +138,34 @@ export default {
         .catch(err => {
           console.log(err);
         });
+    },
+    async fetchDataFromFirestore() {
+      const firestoreData = await db.collection("Questions").get();
+      const foundQuestions = firestoreData.docs;
+
+      if (!foundQuestions) {
+        this.getQuestionsError = true;
+        throw console.error("Cant fetch data from database!");
+      }
+      this.Questions = foundQuestions.map(question => ({
+        Id: question.id,
+        Question: question.data().Question,
+        Ans1: question.data().Ans1,
+        Ans2: question.data().Ans2,
+        Ans3: question.data().Ans3,
+        Ans4: question.data().Ans4,
+        GoodAns: question.data().GoodAns,
+        Textarea: question.data().Textarea,
+        Image: question.data().Image
+      }));
+      for (let i = 0; i < this.Questions.length; i++) {
+        this.delQuestion.push({});
+        this.$set(this.delQuestion[i], "del", false);
+      }
     }
   },
   created() {
-    db.collection("Questions")
-      .get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
-          var Question = doc.data();
-          Question.Id = doc.id;
-          this.Questions.push(Question);
-        });
-        for (var i = 0; i < this.Questions.length; i++) {
-          this.delQuestion.push({});
-          this.$set(this.delQuestion[i], "del", false);
-        }
-      });
+    this.fetchDataFromFirestore();
   }
 };
 </script>

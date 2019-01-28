@@ -1,6 +1,6 @@
 import firebase from 'firebase'
 // Initialize Firebase
-var config = {
+let config = {
     //credentials
 };
 const firebaseApp = firebase.initializeApp(config);
