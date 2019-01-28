@@ -108,7 +108,7 @@
 </template>
 
 <script>
-/* eslint-disable */
+/* eslint-disable no-console */
 import firebase from "../../firebase/init";
 let db = firebase.firestore();
 export default {

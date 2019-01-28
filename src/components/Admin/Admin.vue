@@ -33,7 +33,7 @@
 </template>
 
 <script>
-/* eslint-disable */
+/* eslint-disable no-console */
 const AdminQuestions = () => import(/* webpackChunkName: "AdminQuestions" */ './AdminQuestions');
 export default {
   name: "Admin",

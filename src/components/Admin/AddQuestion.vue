@@ -151,7 +151,7 @@
 </template>
 
 <script>
-/* eslint-disable */
+/* eslint-disable no-console */
 import firebase from "../../firebase/init"
 let db = firebase.firestore();
 export default {
@@ -223,7 +223,9 @@ export default {
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           vm.uploadState = precentage;
         },
-        function error(e) {},
+        function error(e) {
+          throw console.error(e);
+        },
         function() {
           task.snapshot.ref.getDownloadURL().then(downloadURL => {
             vm.Image = downloadURL;
