@@ -1,12 +1,12 @@
 <template>
   <div class="ma-3">
     <v-card class="light-blue darken-3">
-      <h3 class="headline py-3 text-xs-center">Witaj na przykładowym teście z Technologii Sieci Web</h3>
+      <h3 class="display-1 py-3 text-xs-center">Witaj na przykładowym teście z Technologii Sieci Web</h3>
       <v-divider></v-divider>
       <div>
-        <h4 class="headline py-3 text-xs-center">Instrukcja</h4>
+        <h4 class="display-1 py-3 text-xs-center">Instrukcja</h4>
         <div>
-          <ul class="browser-default px-5">
+          <ul class="browser-default headline px-5">
             <li>Ns test przeznaczone jest 60 minut</li>
             <li>Test składa się z 30 pytań, za każde możesz otrzymać 1 punkt</li>
             <li>Test jest w formie pytań ABCD wielokrotnego wyboru - każde pytanie może mieć zero, jedną, wiele lub wszystkie poprawne odpowiedzi</li>

@@ -35,19 +35,19 @@
             <v-divider></v-divider>
             <div class="px-3">
               <v-checkbox disabled :label="``" v-model="Question.GoodAns[0]" class="ma-0 pa-0">
-                <span slot="label" class="mb-0">Odpowiedź A: {{Question.Ans1}}</span>
+                <span slot="label" class="mb-0 white--text">Odpowiedź A: {{Question.Ans1}}</span>
               </v-checkbox>
               <v-divider></v-divider>
               <v-checkbox disabled :label="``" v-model="Question.GoodAns[1]" class="ma-0 pa-0">
-                <span slot="label">Odpowiedź B: {{Question.Ans2}}</span>
+                <span slot="label" class="white--text">Odpowiedź B: {{Question.Ans2}}</span>
               </v-checkbox>
               <v-divider></v-divider>
               <v-checkbox disabled :label="``" v-model="Question.GoodAns[2]" class="ma-0 pa-0">
-                <span slot="label">Odpowiedź C: {{Question.Ans3}}</span>
+                <span slot="label" class="white--text">Odpowiedź C: {{Question.Ans3}}</span>
               </v-checkbox>
               <v-divider></v-divider>
               <v-checkbox disabled :label="``" v-model="Question.GoodAns[3]" class="ma-0 pa-0">
-                <span slot="label">Odpowiedź D: {{Question.Ans4}}</span>
+                <span slot="label" class="white--text">Odpowiedź D: {{Question.Ans4}}</span>
               </v-checkbox>
             </div>
             <div>
