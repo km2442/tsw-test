@@ -44,6 +44,10 @@
           </v-container>
           <v-text-field readonly label="Plik" v-model="selectedFile.name"></v-text-field>
           <v-progress-linear color="success" v-model="uploadState"></v-progress-linear>
+          <v-btn block round color="red" v-if="Image" @click="Image = ''">
+            <span>Usuń obrazek</span>
+            <v-icon right>delete</v-icon>
+          </v-btn>
         </div>
         <v-divider></v-divider>
         <h2 block large class="mt-3 text-xs-center">Zaznacz, które odpowiedzi są prawidłowe</h2>
