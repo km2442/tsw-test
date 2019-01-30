@@ -59,7 +59,7 @@ export default {
         if (points < 18) {return {mark: "2.0", color: "red"}}
         else if(points < 20) {return {mark: "3.0", color: "orange"}}
         else if(points < 23) {return {mark: "3.5", color: "amber"}}
-        else if(points < 26) {return {mark: "4.0", color: "yellow"}}
+        else if(points < 26) {return {mark: "4.0", color: "yellow darken-2"}}
         else if(points < 29) {return {mark: "4.5", color: "light-green"}}
         else{return {mark: "5.0", color: "green"}}
     }
