@@ -1,5 +1,6 @@
 <template>
   <div class="mx-3">
+    <h1 block large class="ma-3 text-xs-center">QUIZ z Technologii Sieci Web</h1>
     <div v-for="(Question, index) in Questions" :key="Question.Id">
       <v-card v-if="QuestionNumber-1 === index" class="light-grey darken-3 my-3">
         <v-card-title class="pa-3">
@@ -8,36 +9,50 @@
             <div>{{Questions[index].Question}}</div>
           </div>
         </v-card-title>
-        <div class="ma-2">
-          <div v-if="Questions[index].Textarea != ''" class="pa-2" style="border: 1px dashed;">
-            <p
-              class="ma-0 pa-0"
-              v-for="(row, index2) in prepareTextArea(Questions[index].Textarea)"
-              :key="index2"
-            >{{row}}</p>
-          </div>
-          <div v-if="Questions[index].Image != ''">
-            <img :src="Questions[index].Image">
-          </div>
-        </div>
         <v-divider></v-divider>
-        <div class="px-3 pt-3 pb-0">
-          <v-checkbox v-model="Answers[index].Ans1" color="green" class="ma-0 pa-0">
-            <span slot="label" class="mb-0 white--text">Odpowiedź A: {{Questions[index].Ans1}}</span>
-          </v-checkbox>
-          <v-divider></v-divider>
-          <v-checkbox v-model="Answers[index].Ans2" color="green" class="ma-0 pa-0">
-            <span slot="label" class="white--text">Odpowiedź B: {{Questions[index].Ans2}}</span>
-          </v-checkbox>
-          <v-divider></v-divider>
-          <v-checkbox v-model="Answers[index].Ans3" color="green" class="ma-0 pa-0">
-            <span slot="label" class="white--text">Odpowiedź C: {{Questions[index].Ans3}}</span>
-          </v-checkbox>
-          <v-divider></v-divider>
-          <v-checkbox v-model="Answers[index].Ans4" color="green" class="ma-0 pa-0">
-            <span slot="label" class="white--text">Odpowiedź D: {{Questions[index].Ans4}}</span>
-          </v-checkbox>
-        </div>
+        <v-container class="pa-1">
+          <v-layout row wrap justify-space-around>
+            <v-flex xs12 md6 v-if="Questions[index].Textarea">
+              <div class="pa-2" style="border: 1px dashed;">
+                <p
+                  class="ma-0 pa-0"
+                  v-for="(row, index2) in prepareTextArea(Questions[index].Textarea)"
+                  :key="index2"
+                >{{row}}</p>
+              </div>
+            </v-flex>
+            <v-flex xs12 md6 v-if="Questions[index].Image">
+              <div>
+                <img :src="Questions[index].Image">
+              </div>
+            </v-flex>
+            <v-flex
+              xs12
+              :md6="Boolean(Questions[index].Image) || Boolean(Questions[index].Textarea)"
+            >
+              <div class="px-3 pt-3 pb-0">
+                <v-checkbox v-model="Answers[index].Ans1" color="green" class="ma-0 pa-0">
+                  <span slot="label" class="mb-0">Odpowiedź A: {{Questions[index].Ans1}}</span>
+                </v-checkbox>
+                <v-divider></v-divider>
+                <v-checkbox v-model="Answers[index].Ans2" color="green" class="ma-0 pa-0">
+                  <span slot="label">Odpowiedź B: {{Questions[index].Ans2}}</span>
+                </v-checkbox>
+                <v-divider></v-divider>
+                <v-checkbox v-model="Answers[index].Ans3" color="green" class="ma-0 pa-0">
+                  <span slot="label">Odpowiedź C: {{Questions[index].Ans3}}</span>
+                </v-checkbox>
+                <v-divider></v-divider>
+                <v-checkbox v-model="Answers[index].Ans4" color="green" class="ma-0 pa-0">
+                  <span slot="label">Odpowiedź D: {{Questions[index].Ans4}}</span>
+                </v-checkbox>
+              </div>
+            </v-flex>
+          </v-layout>
+        </v-container>
+        <v-divider></v-divider>
+        <div class="ma-2"></div>
+
         <div class="px-2 pb-1">
           <v-btn
             block
