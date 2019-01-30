@@ -11,8 +11,8 @@
     <h2 v-else block large class="ma-2 text-xs-center">Ilość pytań w bazie: {{Questions.length}}</h2>
     <v-divider></v-divider>
     <v-container class="pa-1">
-      <v-layout row wrap justify-space-between>
-        <v-flex xs12 md6 v-for="(Question, index) in Questions" :key="index">
+      <v-layout row wrap justify-space-around>
+        <v-flex xs12 md6 lg4 v-for="(Question, index) in Questions" :key="index">
           <v-card class="light-grey darken-3 ma-2">
             <v-card-title class="pa-3">
               <div>
@@ -35,19 +35,19 @@
             <v-divider></v-divider>
             <div class="px-3">
               <v-checkbox disabled :label="``" v-model="Question.GoodAns[0]" class="ma-0 pa-0">
-                <span slot="label" class="mb-0 white--text">Odpowiedź A: {{Question.Ans1}}</span>
+                <span slot="label" class="mb-0">Odpowiedź A: {{Question.Ans1}}</span>
               </v-checkbox>
               <v-divider></v-divider>
               <v-checkbox disabled :label="``" v-model="Question.GoodAns[1]" class="ma-0 pa-0">
-                <span slot="label" class="white--text">Odpowiedź B: {{Question.Ans2}}</span>
+                <span slot="label">Odpowiedź B: {{Question.Ans2}}</span>
               </v-checkbox>
               <v-divider></v-divider>
               <v-checkbox disabled :label="``" v-model="Question.GoodAns[2]" class="ma-0 pa-0">
-                <span slot="label" class="white--text">Odpowiedź C: {{Question.Ans3}}</span>
+                <span slot="label">Odpowiedź C: {{Question.Ans3}}</span>
               </v-checkbox>
               <v-divider></v-divider>
               <v-checkbox disabled :label="``" v-model="Question.GoodAns[3]" class="ma-0 pa-0">
-                <span slot="label" class="white--text">Odpowiedź D: {{Question.Ans4}}</span>
+                <span slot="label">Odpowiedź D: {{Question.Ans4}}</span>
               </v-checkbox>
             </div>
             <div>
@@ -66,7 +66,7 @@
                     </v-btn>
                   </v-flex>
                   <v-flex xs-12 md-6 class="mx-3">
-                    <v-dialog v-model="delQuestion[index].del" persistent max-width="600">
+                    <v-dialog full-width v-model="delQuestion[index].del" persistent max-width="600">
                       <v-btn block round color="red" slot="activator">
                         <span>Usuń pytanie</span>
                         <v-icon right>delete</v-icon>
