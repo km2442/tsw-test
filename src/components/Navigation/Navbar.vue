@@ -9,7 +9,7 @@
         <v-icon>close</v-icon>
       </v-toolbar-side-icon>
     </v-toolbar>
-    <v-navigation-drawer app right v-model="drawer">
+    <v-navigation-drawer app right disable-resize-watcher v-model="drawer">
       <v-toolbar flat class="px-3 blue-grey darken-2" height="56px">
         <v-list class="py-0">
           <v-list-tile class="white--text" @click="drawer = !drawer">
