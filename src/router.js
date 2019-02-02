@@ -5,6 +5,7 @@ const Instruction = () => import(/* webpackChunkName: "Instruction" */ './compon
 const Test = () => import(/* webpackChunkName: "Test" */ './components/Test')
 const Result = () => import(/* webpackChunkName: "Result" */ './components/Result')
 const Admin = () => import(/* webpackChunkName: "Admin" */ './components/Admin/Admin')
+const AdminLogin = () => import(/* webpackChunkName: "AdminLogin" */ './components/Admin/AdminLogin')
 const AddQuestion = () => import(/* webpackChunkName: "AddQuestion" */ './components/Admin/AddQuestion')
 const EditQuestion = () => import(/* webpackChunkName: "EditQuestion" */ './components/Admin/EditQuestion')
 const NotFound = () => import(/* webpackChunkName: "NotFound" */ './components/NotFound')
@@ -40,6 +41,11 @@ export default new Router({
           next({ name: 'NotFound' })
         }
       }
+    },
+    {
+      path: '/login',
+      name: 'AdminLogin',
+      component: AdminLogin
     },
     {
       path: '/admin',
