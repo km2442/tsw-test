@@ -10,7 +10,7 @@
     >Wystąpił bład w pobieraniu pytań z bazy danych! Spróbuj odświeżyć stronę.</h2>
     <h2 v-else block large class="ma-2 text-xs-center">Ilość pytań w bazie: {{Questions.length}}</h2>
     <v-divider></v-divider>
-    <v-container class="pa-1">
+    <v-container class="py-1 px-0">
       <v-layout row wrap justify-space-around>
         <v-flex xs12 md6 lg4 v-for="(Question, index) in Questions" :key="index">
           <v-card class="light-grey darken-3 ma-2">
