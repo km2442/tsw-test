@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div>{{ $store.getters.counter }}</div>
     <div class="mb-3">
       <v-carousel>
         <v-carousel-item v-for="(img, i) in imgs" :key="i" :src="img.src">
