@@ -2,10 +2,22 @@
   <div>
     <div class="mx-3">
       <h1 block large class="ma-3 text-xs-center">Witaj {{$store.getters.user.user.email}}</h1>
-      <v-btn block round color="amber darken-2" @click="signOutUser()">
-        <span>Wyloguj</span>
-        <v-icon right>logout</v-icon>
-      </v-btn>
+      <v-container class="pa-1">
+        <v-layout row wrap justify-space-between>
+          <v-flex xs-12 md-6 class="mx-3">
+            <v-btn block round color="green darken-3" router :to="{name: 'ChangeAdminPassword'}">
+              <span>Zmień hasło</span>
+              <v-icon right>edit</v-icon>
+            </v-btn>
+          </v-flex>
+          <v-flex xs-12 md-6 class="mx-3">
+            <v-btn block round color="amber darken-2" @click="signOutUser()">
+              <span>Wyloguj</span>
+              <v-icon right>logout</v-icon>
+            </v-btn>
+          </v-flex>
+        </v-layout>
+      </v-container>
     </div>
     <v-divider></v-divider>
     <h1 block large class="ma-3 text-xs-center">Panel administracyjny</h1>

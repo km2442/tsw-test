@@ -6,6 +6,7 @@ const Instruction = () => import(/* webpackChunkName: "Instruction" */ './compon
 const Test = () => import(/* webpackChunkName: "Test" */ './components/Test')
 const Result = () => import(/* webpackChunkName: "Result" */ './components/Result')
 const Admin = () => import(/* webpackChunkName: "Admin" */ './components/Admin/Admin')
+const ChangeAdminPassword = () => import(/* webpackChunkName: "ChangeAdminPassword" */ './components/Admin/ChangeAdminPassword')
 const AdminLogin = () => import(/* webpackChunkName: "AdminLogin" */ './components/Admin/AdminLogin')
 const AddQuestion = () => import(/* webpackChunkName: "AddQuestion" */ './components/Admin/AddQuestion')
 const EditQuestion = () => import(/* webpackChunkName: "EditQuestion" */ './components/Admin/EditQuestion')
@@ -52,6 +53,18 @@ export default new Router({
       path: '/admin',
       name: 'Admin',
       component: Admin,
+      beforeEnter: (to, from, next) => {
+        if(store.getters.user !== null && store.getters.user !== undefined) {
+          next();
+        } else {
+          next({name: 'AdminLogin'});
+        }
+      }
+    },
+    {
+      path: '/changepasswd',
+      name: 'ChangeAdminPassword',
+      component: ChangeAdminPassword,
       beforeEnter: (to, from, next) => {
         if(store.getters.user !== null && store.getters.user !== undefined) {
           next();
