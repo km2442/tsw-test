@@ -22,6 +22,7 @@
           </v-list-tile>
         </v-list>
       </v-toolbar>
+      <!-- Menu -->
       <v-list class="pa-3">
         <v-list-tile
           v-for="link in links"
@@ -37,6 +38,28 @@
             <v-icon large class="primary--text">{{link.icon}}</v-icon>
           </v-list-tile-action>
         </v-list-tile>
+        <!-- Admin Menu -->
+        <div v-if="$store.getters.user !== null && $store.getters.user !== undefined">
+          <v-divider></v-divider>
+          <h3 class="mt-2 mb-0 text-xs-center">{{$store.getters.user.user.email}}</h3>
+          <v-list-tile router :to="{name: 'Admin'}" @click="drawer = !drawer">
+          <v-list-tile-content>
+            <v-list-tile-title>Panel administracyjny</v-list-tile-title>
+          </v-list-tile-content>
+          <v-list-tile-action>
+            <v-icon large class="primary--text">account_box</v-icon>
+          </v-list-tile-action>
+        </v-list-tile>
+        <v-list-tile @click="signOutUser()">
+          <v-list-tile-content>
+            <v-list-tile-title>Wyloguj</v-list-tile-title>
+          </v-list-tile-content>
+          <v-list-tile-action>
+            <v-icon large class="primary--text">logout</v-icon>
+          </v-list-tile-action>
+        </v-list-tile>
+        </div>
+        <!-- Settings -->
         <v-divider class="mt-3"></v-divider>
         <h3 class="mt-2 mb-0 text-xs-center">Ustawienia</h3>
         <v-list-tile>
@@ -54,6 +77,7 @@
 
 <script>
 import VueCookies from "vue-cookies";
+import firebase from 'firebase'
 export default {
   name: "Navbar",
   data() {
@@ -74,6 +98,16 @@ export default {
     },
     setThemeCookie() {
       VueCookies.set("Theme", this.darkMode);
+    },
+    signOutUser() {
+      this.drawer = !this.drawer
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.push({ name: "Index" });
+          this.$store.commit("changeUser", undefined);
+        });
     }
   },
   created() {
