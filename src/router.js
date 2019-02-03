@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import { store } from './store/store'
 const Index = () => import(/* webpackChunkName: "Index" */ './components/Index')
 const Instruction = () => import(/* webpackChunkName: "Instruction" */ './components/Instruction')
 const Test = () => import(/* webpackChunkName: "Test" */ './components/Test')
@@ -43,24 +44,45 @@ export default new Router({
       }
     },
     {
-      path: '/login',
+      path: '/adminlogin',
       name: 'AdminLogin',
       component: AdminLogin
     },
     {
       path: '/admin',
       name: 'Admin',
-      component: Admin
+      component: Admin,
+      beforeEnter: (to, from, next) => {
+        if(store.getters.user !== null && store.getters.user !== undefined) {
+          next();
+        } else {
+          next({name: 'AdminLogin'});
+        }
+      }
     },
     {
       path: '/addQuestion',
       name: 'AddQuestion',
-      component: AddQuestion
+      component: AddQuestion,
+      beforeEnter: (to, from, next) => {
+        if(store.getters.user !== null && store.getters.user !== undefined) {
+          next();
+        } else {
+          next({name: 'AdminLogin'});
+        }
+      }
     },
     {
       path: '/editQuestion/:questionId',
       name: 'EditQuestion',
-      component: EditQuestion
+      component: EditQuestion,
+      beforeEnter: (to, from, next) => {
+        if(store.getters.user !== null && store.getters.user !== undefined) {
+          next();
+        } else {
+          next({name: 'AdminLogin'});
+        }
+      }
     },
     {
       path: '/404',

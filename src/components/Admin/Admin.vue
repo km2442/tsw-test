@@ -1,5 +1,13 @@
 <template>
   <div>
+    <div class="mx-3">
+      <h1 block large class="ma-3 text-xs-center">Witaj {{$store.getters.user.user.email}}</h1>
+      <v-btn block round color="amber darken-2" @click="signOutUser()">
+        <span>Wyloguj</span>
+        <v-icon right>logout</v-icon>
+      </v-btn>
+    </div>
+    <v-divider></v-divider>
     <h1 block large class="ma-3 text-xs-center">Panel administracyjny</h1>
     <v-container class="pa-1">
       <v-layout row wrap justify-space-between>
@@ -34,7 +42,9 @@
 
 <script>
 /* eslint-disable no-console */
-const AdminQuestions = () => import(/* webpackChunkName: "AdminQuestions" */ './AdminQuestions');
+import firebase from "firebase";
+const AdminQuestions = () =>
+  import(/* webpackChunkName: "AdminQuestions" */ "./AdminQuestions");
 export default {
   name: "Admin",
   components: {
@@ -53,6 +63,15 @@ export default {
         this.showQuestions = true;
       }
     },
+    signOutUser() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.push({ name: "Index" });
+          this.$store.commit("changeUser", undefined);
+        });
+    }
   }
 };
 </script>

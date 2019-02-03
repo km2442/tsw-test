@@ -5,14 +5,14 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    counter: 100
+    user: null
   },
   mutations: {
-    change(state, counter) {
-      state.counter = counter
+    changeUser(state, user) {
+      state.user = user
     }
   },
   getters: {
-    counter: state => state.counter
+    user: state => state.user
   }
 })
