@@ -10,7 +10,7 @@
           </div>
         </v-card-title>
         <v-divider></v-divider>
-        <v-container class="pa-1">
+        <v-container class="pa-0">
           <v-layout row wrap justify-space-around>
             <v-flex xs12 md6 v-if="Questions[index].Textarea">
               <div class="pa-2" style="border: 1px dashed;">
@@ -28,22 +28,22 @@
             </v-flex>
             <v-flex
               xs12
-              :md6="Boolean(Questions[index].Image) || Boolean(Questions[index].Textarea)"
+              :md6="(Questions[index].Image.length > 0 || Questions[index].Textarea.length > 0)"
             >
               <div class="px-3 pt-3 pb-0">
-                <v-checkbox v-model="Answers[index].Ans1" color="green" class="ma-0 pa-0">
+                <v-checkbox v-model="Answers[index].Ans1" color="green" class="ma-0 pa-0 dont-break-out"  style="word-wrap: break-word;">
                   <span slot="label" class="mb-0">Odpowiedź A: {{Questions[index].Ans1}}</span>
                 </v-checkbox>
                 <v-divider></v-divider>
-                <v-checkbox v-model="Answers[index].Ans2" color="green" class="ma-0 pa-0">
+                <v-checkbox v-model="Answers[index].Ans2" color="green" class="ma-0 pa-0 dont-break-out" style="word-wrap: break-word;">
                   <span slot="label">Odpowiedź B: {{Questions[index].Ans2}}</span>
                 </v-checkbox>
                 <v-divider></v-divider>
-                <v-checkbox v-model="Answers[index].Ans3" color="green" class="ma-0 pa-0">
+                <v-checkbox v-model="Answers[index].Ans3" color="green" class="ma-0 pa-0 dont-break-out">
                   <span slot="label">Odpowiedź C: {{Questions[index].Ans3}}</span>
                 </v-checkbox>
                 <v-divider></v-divider>
-                <v-checkbox v-model="Answers[index].Ans4" color="green" class="ma-0 pa-0">
+                <v-checkbox v-model="Answers[index].Ans4" color="green" class="ma-0 pa-0 dont-break-out">
                   <span slot="label">Odpowiedź D: {{Questions[index].Ans4}}</span>
                 </v-checkbox>
               </div>
@@ -219,3 +219,11 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.dont-break-out {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+</style>
