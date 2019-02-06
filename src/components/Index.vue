@@ -10,7 +10,7 @@
         </v-carousel-item>
       </v-carousel>
     </div>
-    <div>
+    <div class="hidden-sm-and-down">
       <v-parallax src="imgs/paralax.jpg">
         <v-layout align-center column justify-center>
           <h1 class="display-2 font-weight-thin mb-3 black">Quiz</h1>

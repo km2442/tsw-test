@@ -1,7 +1,7 @@
 <template>
   <v-app :dark="darkMode">
+    <Navbar @changeTheme="setTheme($event)"></Navbar>
     <v-content>
-      <Navbar @changeTheme="setTheme($event)"></Navbar>
       <router-view/>
     </v-content>
     <Footer/>
