@@ -6,10 +6,8 @@ import { store } from './store/store'
 
 Vue.config.productionTip = false
 
-var vm = new Vue({
+new Vue({
   router,
   store,
   render: h => h(App)
 }).$mount('#app')
-
-global.vm = vm;

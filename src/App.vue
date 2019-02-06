@@ -3,8 +3,8 @@
     <v-content>
       <Navbar @changeTheme="setTheme($event)"></Navbar>
       <router-view/>
-      <Footer/>
     </v-content>
+    <Footer/>
   </v-app>
 </template>
 

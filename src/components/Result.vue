@@ -9,7 +9,7 @@
           <b>{{points}} punkt(ów)</b> z testu.
         </p>
         <p :class="color">
-            Gdyby to był egzamin, otrzymał byś ocenę 
+            Gdyby to był egzamin, otrzymał(a) byś ocenę 
             <span>{{mark}}</span>
         </p> 
       </div>
