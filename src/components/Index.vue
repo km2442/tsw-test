@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="mb-3">
-      <v-carousel>
+      <v-carousel :cycle="!$vuetify.breakpoint.smAndDown">
         <v-carousel-item v-for="(img, i) in imgs" :key="i" :src="img.src">
           <p
             class="light-blue darken-3 headline text-xs-center main-carousel"
