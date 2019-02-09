@@ -3,9 +3,10 @@
     <h1 block large class="ma-3 text-xs-center">Edytuj pytanie {{$route.params.questionId}}</h1>
     <v-card class="light-grey darken-3 pa-2">
       <div class="px-5">
-        <v-text-field clearable label="Pytanie" v-model="Question"></v-text-field>
+        <v-text-field clearable color="green" label="Pytanie" v-model="Question"></v-text-field>
         <v-text-field
           clearable
+          color="green"
           label="Pole z kodem (opcjonalne)"
           hint="Zwiń kod do jednej linii i zamień znaki końca linii na \n"
           v-model="Textarea"
@@ -42,7 +43,7 @@
               </v-flex>
             </v-layout>
           </v-container>
-          <v-text-field readonly label="Plik" v-model="selectedFile.name"></v-text-field>
+          <v-text-field readonly color="green" label="Plik" v-model="selectedFile.name"></v-text-field>
           <v-progress-linear color="success" v-model="uploadState"></v-progress-linear>
           <v-btn block round color="red" v-if="Image" @click="Image = ''">
             <span>Usuń obrazek</span>
@@ -59,7 +60,7 @@
                   <v-checkbox color="green" v-model="GoodAns[0]"></v-checkbox>
                 </v-flex>
                 <v-flex xs11>
-                  <v-text-field clearable label="Odpowiedź A" v-model="Ans1"></v-text-field>
+                  <v-text-field clearable color="green" label="Odpowiedź A" v-model="Ans1"></v-text-field>
                 </v-flex>
               </v-layout>
             </v-flex>
@@ -69,7 +70,7 @@
                   <v-checkbox color="green" v-model="GoodAns[1]"></v-checkbox>
                 </v-flex>
                 <v-flex xs11>
-                  <v-text-field clearable label="Odpowiedź B" v-model="Ans2"></v-text-field>
+                  <v-text-field clearable color="green" label="Odpowiedź B" v-model="Ans2"></v-text-field>
                 </v-flex>
               </v-layout>
             </v-flex>
@@ -79,7 +80,7 @@
                   <v-checkbox color="green" v-model="GoodAns[2]"></v-checkbox>
                 </v-flex>
                 <v-flex xs11>
-                  <v-text-field clearable label="Odpowiedź C" v-model="Ans3"></v-text-field>
+                  <v-text-field clearable color="green" label="Odpowiedź C" v-model="Ans3"></v-text-field>
                 </v-flex>
               </v-layout>
             </v-flex>
@@ -89,7 +90,7 @@
                   <v-checkbox color="green" v-model="GoodAns[3]"></v-checkbox>
                 </v-flex>
                 <v-flex xs11>
-                  <v-text-field clearable label="Odpowiedź D" v-model="Ans4"></v-text-field>
+                  <v-text-field clearable color="green" label="Odpowiedź D" v-model="Ans4"></v-text-field>
                 </v-flex>
               </v-layout>
             </v-flex>
