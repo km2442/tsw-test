@@ -168,7 +168,7 @@ export default {
     },
     finishTest() {
       let points = 0;
-      for (let i = 0; i < this.Questions.length; i++) {
+      for (let i = 0; i < 30; i++) {
         if (
           this.Questions[i].GoodAns[0] === this.Answers[i].Ans1 &&
           this.Questions[i].GoodAns[1] === this.Answers[i].Ans2 &&
