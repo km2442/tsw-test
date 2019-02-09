@@ -44,7 +44,7 @@
             </v-layout>
           </v-container>
           <v-text-field readonly color="green" label="Plik" v-model="selectedFile.name"></v-text-field>
-          <v-progress-linear color="success" v-model="uploadState"></v-progress-linear>
+          <v-progress-linear v-if="selectedFile" color="success" v-model="uploadState"></v-progress-linear>
           <v-btn block round color="red" v-if="Image" @click="Image = ''">
             <span>Usuń obrazek</span>
             <v-icon right>delete</v-icon>
