@@ -5,14 +5,14 @@
       <v-card v-if="QuestionNumber-1 === index" class="light-grey darken-3 my-3">
         <v-card-title class="pa-3">
           <div>
-            <h3 class="headline mb-0">Pytanie {{index+1}}/{{Questions.length}}</h3>
+            <h3 class="headline mb-0">Pytanie {{index+1}}/30</h3>
             <div>{{Questions[index].Question}}</div>
           </div>
         </v-card-title>
         <v-divider></v-divider>
         <v-container class="pa-0">
           <v-layout row wrap justify-space-around>
-            <v-flex xs12 md6 v-if="Questions[index].Textarea">
+            <v-flex xs12 md6 v-if="Questions[index].Textarea">`
               <div class="pa-2" style="border: 1px dashed;">
                 <p
                   class="ma-0 pa-0"
@@ -57,7 +57,7 @@
           <v-btn
             block
             round
-            v-if="QuestionNumber < Questions.length"
+            v-if="QuestionNumber < 30"
             color="green darken-3"
             @click="nextQuestion()"
           >
@@ -71,7 +71,7 @@
       block
       round
       class="mb-3"
-      v-if="QuestionNumber === Questions.length"
+      v-if="QuestionNumber === 30"
       @click="finishTest()"
       color="green darken-3"
     >
