@@ -5,6 +5,19 @@
       <router-view/>
     </v-content>
     <Footer/>
+    <!-- Wyskakujący komunikat -->
+    <v-snackbar
+      v-model="snackbar"
+      :color="$store.getters.snackbarColor"
+      multi-line
+      :timeout="$store.getters.snackbarTimeout"
+    >
+      {{$store.getters.snackbarMsg}}
+      <v-btn flat outline @click="snackbar = false">
+        <span>Zamknij</span>
+        <v-icon right>close</v-icon>
+      </v-btn>
+    </v-snackbar>
   </v-app>
 </template>
 
@@ -26,6 +39,16 @@ export default {
   methods: {
     setTheme(e) {
       this.darkMode = e;
+    }
+  },
+  computed: {
+    snackbar: {
+      get() {
+        return this.$store.getters.snackbarState;
+      },
+      set(value) {
+        this.$store.commit("setSnackbarState", value);
+      }
     }
   }
 };

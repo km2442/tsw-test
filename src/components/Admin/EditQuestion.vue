@@ -193,9 +193,19 @@ export default {
           Image: this.Image
         })
         .then(() => {
+          this.$store.dispatch("modifySnackbar", {
+            state: true,
+            msg: "Pytanie zostało zaktualizowane",
+            color: "success"
+          });
           this.$router.push({ name: "Admin" });
         })
         .catch(err => {
+          this.$store.dispatch("modifySnackbar", {
+            state: true,
+            msg: "Wystąpił błąd przy edycji pytania",
+            color: "error"
+          });
           console.log(err);
         });
     },

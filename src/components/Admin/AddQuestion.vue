@@ -157,7 +157,7 @@
 
 <script>
 /* eslint-disable no-console */
-import firebase from "../../firebase/init"
+import firebase from "../../firebase/init";
 let db = firebase.firestore();
 export default {
   name: "AddQuestion",
@@ -192,9 +192,19 @@ export default {
           Image: this.Image
         })
         .then(() => {
+          this.$store.dispatch("modifySnackbar", {
+            state: true,
+            msg: "Dodano pytanie",
+            color: "success"
+          });
           this.$router.push({ name: "Admin" });
         })
         .catch(err => {
+          this.$store.dispatch("modifySnackbar", {
+            state: true,
+            msg: "Wystąpił błąd przy dodawaniu pytania",
+            color: "error"
+          });
           console.log(err);
         });
     },
