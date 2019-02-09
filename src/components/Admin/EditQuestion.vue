@@ -2,101 +2,133 @@
   <div class="mb-4 mx-3">
     <h1 block large class="ma-3 text-xs-center">Edytuj pytanie {{$route.params.questionId}}</h1>
     <v-card class="light-grey darken-3 pa-2">
-      <div class="px-5">
-        <v-text-field clearable color="green" label="Pytanie" v-model="Question"></v-text-field>
-        <v-text-field
-          clearable
-          color="green"
-          label="Pole z kodem (opcjonalne)"
-          hint="Zwiń kod do jednej linii i zamień znaki końca linii na \n"
-          v-model="Textarea"
-        ></v-text-field>
-        <v-divider></v-divider>
-        <h3 block large class="ma-2 text-xs-center grey--text">(Opcjonalne) Dodaj obrazek</h3>
-        <div>
-          <v-container class="pa-0">
-            <v-layout row wrap justify-space-between>
-              <v-flex xs-12 md-6 class="mx-3">
-                <input
-                  style="display: none"
-                  type="file"
-                  accept="image/*"
-                  @change="onFileSelected"
-                  ref="fileInput"
-                >
-                <v-btn block round color="green" @click="$refs.fileInput.click()">
-                  <span>Wybierz obrazek</span>
-                  <v-icon right>add_circle</v-icon>
-                </v-btn>
+      <v-form v-model="formState">
+        <div class="px-5">
+          <v-text-field
+            clearable
+            :rules="[rules.required]"
+            color="green"
+            label="Pytanie"
+            v-model="Question"
+          ></v-text-field>
+          <v-text-field
+            clearable
+            color="green"
+            label="Pole z kodem (opcjonalne)"
+            hint="Zwiń kod do jednej linii i zamień znaki końca linii na \n"
+            v-model="Textarea"
+          ></v-text-field>
+          <v-divider></v-divider>
+          <h3 block large class="ma-2 text-xs-center grey--text">(Opcjonalne) Dodaj obrazek</h3>
+          <div>
+            <v-container class="pa-0">
+              <v-layout row wrap justify-space-between>
+                <v-flex xs-12 md-6 class="mx-3">
+                  <input
+                    style="display: none"
+                    type="file"
+                    accept="image/*"
+                    @change="onFileSelected"
+                    ref="fileInput"
+                  >
+                  <v-btn block round color="green" @click="$refs.fileInput.click()">
+                    <span>Wybierz obrazek</span>
+                    <v-icon right>add_circle</v-icon>
+                  </v-btn>
+                </v-flex>
+                <v-flex xs-12 md-6 class="mx-3">
+                  <v-btn
+                    block
+                    round
+                    color="green"
+                    @click="uploadImage"
+                    :disabled="selectedFile === ''"
+                  >
+                    <span>Wgraj plik</span>
+                    <v-icon right>cloud_upload</v-icon>
+                  </v-btn>
+                </v-flex>
+              </v-layout>
+            </v-container>
+            <v-text-field readonly color="green" label="Plik" v-model="selectedFile.name"></v-text-field>
+            <v-progress-linear v-if="selectedFile" color="success" v-model="uploadState"></v-progress-linear>
+            <v-btn block round color="red" v-if="Image" @click="Image = ''">
+              <span>Usuń obrazek</span>
+              <v-icon right>delete</v-icon>
+            </v-btn>
+          </div>
+          <v-divider></v-divider>
+          <h2 block large class="mt-3 text-xs-center">Zaznacz, które odpowiedzi są prawidłowe</h2>
+          <div class="pa-0">
+            <v-container class="pa-0">
+              <v-flex xs12>
+                <v-layout>
+                  <v-flex class="mr-3" xs1>
+                    <v-checkbox color="green" v-model="GoodAns[0]"></v-checkbox>
+                  </v-flex>
+                  <v-flex xs11>
+                    <v-text-field
+                      clearable
+                      :rules="[rules.required]"
+                      color="green"
+                      label="Odpowiedź A"
+                      v-model="Ans1"
+                    ></v-text-field>
+                  </v-flex>
+                </v-layout>
               </v-flex>
-              <v-flex xs-12 md-6 class="mx-3">
-                <v-btn
-                  block
-                  round
-                  color="green"
-                  @click="uploadImage"
-                  :disabled="selectedFile === ''"
-                >
-                  <span>Wgraj plik</span>
-                  <v-icon right>cloud_upload</v-icon>
-                </v-btn>
+              <v-flex xs12>
+                <v-layout>
+                  <v-flex class="mr-3" xs1>
+                    <v-checkbox color="green" v-model="GoodAns[1]"></v-checkbox>
+                  </v-flex>
+                  <v-flex xs11>
+                    <v-text-field
+                      clearable
+                      :rules="[rules.required]"
+                      color="green"
+                      label="Odpowiedź B"
+                      v-model="Ans2"
+                    ></v-text-field>
+                  </v-flex>
+                </v-layout>
               </v-flex>
-            </v-layout>
-          </v-container>
-          <v-text-field readonly color="green" label="Plik" v-model="selectedFile.name"></v-text-field>
-          <v-progress-linear v-if="selectedFile" color="success" v-model="uploadState"></v-progress-linear>
-          <v-btn block round color="red" v-if="Image" @click="Image = ''">
-            <span>Usuń obrazek</span>
-            <v-icon right>delete</v-icon>
-          </v-btn>
+              <v-flex xs12>
+                <v-layout>
+                  <v-flex class="mr-3" xs1>
+                    <v-checkbox color="green" v-model="GoodAns[2]"></v-checkbox>
+                  </v-flex>
+                  <v-flex xs11>
+                    <v-text-field
+                      clearable
+                      :rules="[rules.required]"
+                      color="green"
+                      label="Odpowiedź C"
+                      v-model="Ans3"
+                    ></v-text-field>
+                  </v-flex>
+                </v-layout>
+              </v-flex>
+              <v-flex xs12>
+                <v-layout>
+                  <v-flex class="mr-3" xs1>
+                    <v-checkbox color="green" v-model="GoodAns[3]"></v-checkbox>
+                  </v-flex>
+                  <v-flex xs11>
+                    <v-text-field
+                      clearable
+                      :rules="[rules.required]"
+                      color="green"
+                      label="Odpowiedź D"
+                      v-model="Ans4"
+                    ></v-text-field>
+                  </v-flex>
+                </v-layout>
+              </v-flex>
+            </v-container>
+          </div>
         </div>
-        <v-divider></v-divider>
-        <h2 block large class="mt-3 text-xs-center">Zaznacz, które odpowiedzi są prawidłowe</h2>
-        <div class="pa-0">
-          <v-container class="pa-0">
-            <v-flex xs12>
-              <v-layout>
-                <v-flex class="mr-3" xs1>
-                  <v-checkbox color="green" v-model="GoodAns[0]"></v-checkbox>
-                </v-flex>
-                <v-flex xs11>
-                  <v-text-field clearable color="green" label="Odpowiedź A" v-model="Ans1"></v-text-field>
-                </v-flex>
-              </v-layout>
-            </v-flex>
-            <v-flex xs12>
-              <v-layout>
-                <v-flex class="mr-3" xs1>
-                  <v-checkbox color="green" v-model="GoodAns[1]"></v-checkbox>
-                </v-flex>
-                <v-flex xs11>
-                  <v-text-field clearable color="green" label="Odpowiedź B" v-model="Ans2"></v-text-field>
-                </v-flex>
-              </v-layout>
-            </v-flex>
-            <v-flex xs12>
-              <v-layout>
-                <v-flex class="mr-3" xs1>
-                  <v-checkbox color="green" v-model="GoodAns[2]"></v-checkbox>
-                </v-flex>
-                <v-flex xs11>
-                  <v-text-field clearable color="green" label="Odpowiedź C" v-model="Ans3"></v-text-field>
-                </v-flex>
-              </v-layout>
-            </v-flex>
-            <v-flex xs12>
-              <v-layout>
-                <v-flex class="mr-3" xs1>
-                  <v-checkbox color="green" v-model="GoodAns[3]"></v-checkbox>
-                </v-flex>
-                <v-flex xs11>
-                  <v-text-field clearable color="green" label="Odpowiedź D" v-model="Ans4"></v-text-field>
-                </v-flex>
-              </v-layout>
-            </v-flex>
-          </v-container>
-        </div>
-      </div>
+      </v-form>
       <v-btn block round color="red" @click="clearAddForm()">
         <span>Wyczyść formularz</span>
         <v-icon right>delete</v-icon>
@@ -139,7 +171,13 @@
     <v-container class="pa-0">
       <v-layout row wrap justify-space-between>
         <v-flex xs-12 md-6 class="mx-3">
-          <v-btn block round color="green darken-3" @click="editQuestion()">
+          <v-btn
+            block
+            :disabled="!formState || !Question || !Ans1 || !Ans2 || !Ans3 || !Ans4"
+            round
+            color="green darken-3"
+            @click="editQuestion()"
+          >
             <span>Edytuj pytanie</span>
             <v-icon right>send</v-icon>
           </v-btn>
@@ -172,7 +210,11 @@ export default {
       Textarea: "",
       Image: "",
       selectedFile: "",
-      uploadState: 0
+      uploadState: 0,
+      formState: false,
+      rules: {
+        required: value => !!value || "Pole wymagane"
+      }
     };
   },
   methods: {
