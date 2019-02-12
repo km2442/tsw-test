@@ -12,7 +12,7 @@
         <v-divider></v-divider>
         <v-container class="pa-0">
           <v-layout row wrap justify-space-around>
-            <v-flex xs12 md6 v-if="Questions[index].Textarea">`
+            <v-flex xs12 md6 v-if="Questions[index].Textarea">
               <div class="pa-2" style="border: 1px dashed;">
                 <p
                   class="ma-0 pa-0"
@@ -31,11 +31,11 @@
               :md6="(Questions[index].Image.length > 0 || Questions[index].Textarea.length > 0)"
             >
               <div class="px-3 pt-3 pb-0">
-                <v-checkbox v-model="Answers[index].Ans1" color="green" class="ma-0 pa-0 dont-break-out"  style="word-wrap: break-word;">
+                <v-checkbox v-model="Answers[index].Ans1" color="green" class="ma-0 pa-0 dont-break-out">
                   <span slot="label" class="mb-0">Odpowiedź A: {{Questions[index].Ans1}}</span>
                 </v-checkbox>
                 <v-divider></v-divider>
-                <v-checkbox v-model="Answers[index].Ans2" color="green" class="ma-0 pa-0 dont-break-out" style="word-wrap: break-word;">
+                <v-checkbox v-model="Answers[index].Ans2" color="green" class="ma-0 pa-0 dont-break-out">
                   <span slot="label">Odpowiedź B: {{Questions[index].Ans2}}</span>
                 </v-checkbox>
                 <v-divider></v-divider>

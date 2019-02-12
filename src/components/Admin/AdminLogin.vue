@@ -75,7 +75,7 @@ export default {
           .auth()
           .signInWithEmailAndPassword(this.email, this.password)
           .then(user => {
-            this.$store.commit('changeUser', user)
+            this.$store.commit('changeUser', user);
             this.$router.push({ name: "Admin" });
           })
           .catch(err => {
