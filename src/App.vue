@@ -1,6 +1,6 @@
 <template>
-  <v-app :dark="darkMode">
-    <Navbar @changeTheme="setTheme($event)"></Navbar>
+  <v-app :dark="$store.getters.darkMode">
+    <Navbar></Navbar>
     <v-content>
       <router-view/>
     </v-content>
@@ -30,16 +30,6 @@ export default {
   components: {
     Navbar,
     Footer
-  },
-  data() {
-    return {
-      darkMode: false
-    };
-  },
-  methods: {
-    setTheme(e) {
-      this.darkMode = e;
-    }
   },
   computed: {
     snackbar: {
