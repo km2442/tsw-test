@@ -23,9 +23,12 @@
         <h3 class="display-2 py-3 text-xs-center text-uppercase">O witrynie</h3>
         <v-divider></v-divider>
         <div class="px-4">
-          <p class="headline pb-4">Witryna <b>Quiz PRO</b> stanowi serwis przedmiotu "<b>Technologie Sieci WEB</b>" prowadzonego na Wydziale Elektrotechniki i Informatyki Politechniki Rzeszowskiej (WEiI PRz).<br>
-          Wykładowcą przedmiotu "Technologie Sieci WEB" na WEiI PRz jest <b>Dr hab. inż. Jan PROKOP, prof. PRz</b>.<br>
-          Zawartość serwisu przeznaczona jest głównie dla studentów kierunku Informatyka WEiI PRz uczestniczących w zajęciach, a także dla wszystkich pasjonatów Technologii Sieci Web.
+          <p class="headline pb-4">Witryna
+            <b>Quiz PRO</b> stanowi serwis przedmiotu "
+            <b>Technologie Sieci WEB</b>" prowadzonego na Wydziale Elektrotechniki i Informatyki Politechniki Rzeszowskiej (WEiI PRz).
+            <br>Wykładowcą przedmiotu "Technologie Sieci WEB" na WEiI PRz jest
+            <b>Dr hab. inż. Jan PROKOP, prof. PRz</b>.
+            <br>Zawartość serwisu przeznaczona jest głównie dla studentów kierunku Informatyka WEiI PRz uczestniczących w zajęciach, a także dla wszystkich pasjonatów Technologii Sieci Web.
           </p>
         </div>
       </v-card>
@@ -48,9 +51,18 @@ export default {
   data() {
     return {
       imgs: [
-        { src: "imgs/carousel-1.jpg", text: "Technologie sieci web 1" },
-        { src: "imgs/carousel-2.jpg", text: "Technologie sieci web 2" },
-        { src: "imgs/carousel-3.jpg", text: "Technologie sieci web 3" }
+        {
+          src: require("../assets/imgs/carousel-1.jpg"),
+          text: "Technologie sieci web 1"
+        },
+        {
+          src: require("../assets/imgs/carousel-2.jpg"),
+          text: "Technologie sieci web 2"
+        },
+        {
+          src: require("../assets/imgs/carousel-3.jpg"),
+          text: "Technologie sieci web 3"
+        }
       ]
     };
   }
