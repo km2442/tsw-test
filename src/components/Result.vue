@@ -9,9 +9,9 @@
           <b>{{points}} punkt(ów)</b> z testu.
         </p>
         <p :class="color">
-            Gdyby to był egzamin, otrzymał(a) byś ocenę 
-            <span>{{mark}}</span>
-        </p> 
+          Gdyby to był egzamin, otrzymał(a) byś ocenę
+          <span>{{mark}}</span>
+        </p>
       </div>
       <v-divider></v-divider>
       <div>
@@ -41,33 +41,46 @@
         </v-container>
       </div>
     </v-card>
+    <ResultQuestions :Questions="Questions" :Answers="Answers"/>
   </div>
 </template>
 
 <script>
+const ResultQuestions = () =>
+  import(/* webpackChunkName: "ResultQuestions" */ "./ResultQuestions");
 export default {
   name: "Result",
-  props: ["points"],
+  props: ["points", "Questions", "Answers"],
+  components: {
+    ResultQuestions
+  },
   data() {
-      return {
-          mark: null,
-          color: null
-      }
+    return {
+      mark: null,
+      color: null
+    };
   },
   methods: {
     getMark(points) {
-        if (points < 18) {return {mark: "2.0", color: "red"}}
-        else if(points < 20) {return {mark: "3.0", color: "orange"}}
-        else if(points < 23) {return {mark: "3.5", color: "amber"}}
-        else if(points < 26) {return {mark: "4.0", color: "yellow darken-2"}}
-        else if(points < 29) {return {mark: "4.5", color: "light-green"}}
-        else{return {mark: "5.0", color: "green"}}
+      if (points < 18) {
+        return { mark: "2.0", color: "red" };
+      } else if (points < 20) {
+        return { mark: "3.0", color: "orange" };
+      } else if (points < 23) {
+        return { mark: "3.5", color: "amber" };
+      } else if (points < 26) {
+        return { mark: "4.0", color: "yellow darken-2" };
+      } else if (points < 29) {
+        return { mark: "4.5", color: "light-green" };
+      } else {
+        return { mark: "5.0", color: "green" };
+      }
     }
   },
   mounted() {
-      let res = this.getMark(this.points);
-      this.mark = res.mark;
-      this.color = res.color + " headline text-xs-center";
+    let res = this.getMark(this.points);
+    this.mark = res.mark;
+    this.color = res.color + " headline text-xs-center";
   }
 };
 </script>

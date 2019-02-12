@@ -47,19 +47,39 @@
             </div>
             <v-divider></v-divider>
             <div class="px-3">
-              <v-checkbox disabled :label="``" v-model="Question.GoodAns[0]" class="ma-0 pa-0 dont-break-out">
+              <v-checkbox
+                disabled
+                :label="``"
+                v-model="Question.GoodAns[0]"
+                class="ma-0 pa-0 dont-break-out"
+              >
                 <span slot="label" class="mb-0">Odpowiedź A: {{Question.Ans1}}</span>
               </v-checkbox>
               <v-divider></v-divider>
-              <v-checkbox disabled :label="``" v-model="Question.GoodAns[1]" class="ma-0 pa-0 dont-break-out">
+              <v-checkbox
+                disabled
+                :label="``"
+                v-model="Question.GoodAns[1]"
+                class="ma-0 pa-0 dont-break-out"
+              >
                 <span slot="label">Odpowiedź B: {{Question.Ans2}}</span>
               </v-checkbox>
               <v-divider></v-divider>
-              <v-checkbox disabled :label="``" v-model="Question.GoodAns[2]" class="ma-0 pa-0 dont-break-out">
+              <v-checkbox
+                disabled
+                :label="``"
+                v-model="Question.GoodAns[2]"
+                class="ma-0 pa-0 dont-break-out"
+              >
                 <span slot="label">Odpowiedź C: {{Question.Ans3}}</span>
               </v-checkbox>
               <v-divider></v-divider>
-              <v-checkbox disabled :label="``" v-model="Question.GoodAns[3]" class="ma-0 pa-0 dont-break-out">
+              <v-checkbox
+                disabled
+                :label="``"
+                v-model="Question.GoodAns[3]"
+                class="ma-0 pa-0 dont-break-out"
+              >
                 <span slot="label">Odpowiedź D: {{Question.Ans4}}</span>
               </v-checkbox>
             </div>

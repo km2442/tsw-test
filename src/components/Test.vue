@@ -31,19 +31,35 @@
               :md6="(Questions[index].Image.length > 0 || Questions[index].Textarea.length > 0)"
             >
               <div class="px-3 pt-3 pb-0">
-                <v-checkbox v-model="Answers[index].Ans1" color="green" class="ma-0 pa-0 dont-break-out">
-                  <span slot="label" class="mb-0">Odpowiedź A: {{Questions[index].Ans1}}</span>
+                <v-checkbox
+                  v-model="Answers[index].Ans1"
+                  color="green"
+                  class="ma-0 pa-0 dont-break-out"
+                >
+                  <span slot="label">Odpowiedź A: {{Questions[index].Ans1}}</span>
                 </v-checkbox>
                 <v-divider></v-divider>
-                <v-checkbox v-model="Answers[index].Ans2" color="green" class="ma-0 pa-0 dont-break-out">
+                <v-checkbox
+                  v-model="Answers[index].Ans2"
+                  color="green"
+                  class="ma-0 pa-0 dont-break-out"
+                >
                   <span slot="label">Odpowiedź B: {{Questions[index].Ans2}}</span>
                 </v-checkbox>
                 <v-divider></v-divider>
-                <v-checkbox v-model="Answers[index].Ans3" color="green" class="ma-0 pa-0 dont-break-out">
+                <v-checkbox
+                  v-model="Answers[index].Ans3"
+                  color="green"
+                  class="ma-0 pa-0 dont-break-out"
+                >
                   <span slot="label">Odpowiedź C: {{Questions[index].Ans3}}</span>
                 </v-checkbox>
                 <v-divider></v-divider>
-                <v-checkbox v-model="Answers[index].Ans4" color="green" class="ma-0 pa-0 dont-break-out">
+                <v-checkbox
+                  v-model="Answers[index].Ans4"
+                  color="green"
+                  class="ma-0 pa-0 dont-break-out"
+                >
                   <span slot="label">Odpowiedź D: {{Questions[index].Ans4}}</span>
                 </v-checkbox>
               </div>
@@ -178,7 +194,14 @@ export default {
           points++;
         }
       }
-      this.$router.push({ name: "Result", params: { points: points } });
+      this.$router.push({
+        name: "Result",
+        params: {
+          points: points,
+          Questions: this.Questions,
+          Answers: this.Answers
+        }
+      });
     },
     async fetchDataFromFirestore() {
       const firestoreData = await db.collection("Questions").get();
