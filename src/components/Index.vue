@@ -11,7 +11,7 @@
       </v-carousel>
     </div>
     <div class="hidden-sm-and-down">
-      <v-parallax src="imgs/paralax.jpg">
+      <v-parallax :src="require('../assets/imgs/paralax.jpg')">
         <v-layout align-center column justify-center>
           <h1 class="display-2 font-weight-thin mb-3 black">Quiz</h1>
           <h4 class="subheading black">Z Technologii Sieci WEB</h4>
