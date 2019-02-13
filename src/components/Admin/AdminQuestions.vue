@@ -10,17 +10,31 @@
     >Wystąpił bład w pobieraniu pytań z bazy danych! Spróbuj odświeżyć stronę.</h2>
     <h2 v-else block large class="ma-2 text-xs-center">Ilość pytań w bazie: {{Questions.length}}</h2>
     <v-divider></v-divider>
-    <div class="ma-2">
-      <v-text-field
-        solo-inverted
-        flat
-        clearable
-        hide-details
-        v-model="search"
-        color="green"
-        label="Wyszykaj pytania"
-        prepend-inner-icon="search"
-      ></v-text-field>
+    <div class="ma-0">
+      <v-container fluid class="pa-1">
+        <v-layout row wrap justify-space-around>
+          <v-flex xs12 sm9 md10 class="pt-1 pb-0 px-2">
+            <v-text-field
+              solo-inverted
+              flat
+              clearable
+              hide-details
+              v-model="search"
+              color="green"
+              label="Wyszykaj pytania"
+              prepend-inner-icon="search"
+            ></v-text-field>
+          </v-flex>
+          <v-flex xs12 sm3 md2 class="pt-1 pb-0 px-2">
+            <v-select
+              color="green"
+              v-model="maxOnPage"
+              :items="questionNumberOptions"
+              label="Ile pytań wyświetlić naraz?"
+            ></v-select>
+          </v-flex>
+        </v-layout>
+      </v-container>
     </div>
     <v-divider></v-divider>
     <v-container fluid class="py-1 px-0">
@@ -178,6 +192,7 @@ export default {
       delQuestion: [],
       search: "",
       getQuestionsError: false,
+      questionNumberOptions: [6, 10, 15, 30, 60, 120],
       maxOnPage: 30,
       page: 1
     };
