@@ -2,7 +2,7 @@
   <div>
     <h1 block large class="ma-1 text-xs-center">Podgląd poprawności odpowiedzi</h1>
     <v-divider></v-divider>
-    <v-container class="py-1 px-0">
+    <v-container fluid class="py-1 px-0">
       <v-layout row wrap justify-space-around>
         <v-flex xs12 sm6 lg4 v-for="(Question, index) in Questions" :key="Question.Id">
           <div v-if="index < 30">
@@ -14,14 +14,14 @@
                 </div>
               </v-card-title>
               <v-divider></v-divider>
-              <div v-if="Question.Textarea" class="pa-2" style="border: 1px dashed;">
+              <div v-if="Question.Textarea" style="border: 1px dashed;" class="pa-1">
                 <p
                   class="ma-0 pa-0"
                   v-for="(row, index2) in prepareTextArea(Question.Textarea)"
                   :key="index2"
                 >{{row}}</p>
               </div>
-              <div v-if="Question.Image">
+              <div v-if="Question.Image" class="pa-1">
                 <img :src="Question.Image">
               </div>
               <div class="pa-2">

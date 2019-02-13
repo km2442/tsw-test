@@ -10,9 +10,9 @@
           </div>
         </v-card-title>
         <v-divider></v-divider>
-        <v-container class="pa-0">
+        <v-container fluid class="pa-0">
           <v-layout row wrap justify-space-around>
-            <v-flex xs12 md6 v-if="Questions[index].Textarea">
+            <v-flex xs12 md6 v-if="Questions[index].Textarea" class="pa-1">
               <div class="pa-2" style="border: 1px dashed;">
                 <p
                   class="ma-0 pa-0"
@@ -21,7 +21,7 @@
                 >{{row}}</p>
               </div>
             </v-flex>
-            <v-flex xs12 md6 v-if="Questions[index].Image">
+            <v-flex xs12 md6 v-if="Questions[index].Image" class="pa-1">
               <div>
                 <img :src="Questions[index].Image">
               </div>
@@ -89,7 +89,7 @@
       @long-press-start="onLongPressStart"
       @long-press-stop="onLongPressStop"
       color="amber darken-2"
-      >
+    >
       <span>Zakończ test (Przytrzymaj)</span>
       <v-icon right>send</v-icon>
     </v-btn>

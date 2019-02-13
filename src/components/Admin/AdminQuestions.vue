@@ -23,7 +23,7 @@
       ></v-text-field>
     </div>
     <v-divider></v-divider>
-    <v-container class="py-1 px-0">
+    <v-container fluid class="py-1 px-0">
       <v-layout row wrap justify-space-around>
         <v-flex xs12 md6 lg4 v-for="(Question, index) in filteredQuestions" :key="index">
           <v-card class="light-grey darken-3 ma-2">
@@ -34,14 +34,14 @@
               </div>
             </v-card-title>
             <div class="ma-2">
-              <div v-if="Question.Textarea != ''" class="pa-2" style="border: 1px dashed;">
+              <div v-if="Question.Textarea" style="border: 1px dashed;" class="pa-1">
                 <p
                   class="ma-0 pa-0"
                   v-for="(row, index) in prepareTextArea(Question.Textarea)"
                   :key="index"
                 >{{row}}</p>
               </div>
-              <div v-if="Question.Image != ''">
+              <div v-if="Question.Image" class="pa-1">
                 <img :src="Question.Image">
               </div>
             </div>
@@ -87,7 +87,7 @@
             <div>
               <v-container class="pa-0">
                 <v-layout row wrap justify-space-between>
-                  <v-flex xs-12 md-6 class="mx-3">
+                  <v-flex xs-12 md-6 class="mx-2">
                     <v-btn
                       block
                       round
@@ -99,7 +99,7 @@
                       <v-icon right>edit</v-icon>
                     </v-btn>
                   </v-flex>
-                  <v-flex xs-12 md-6 class="mx-3">
+                  <v-flex xs-12 md-6 class="mx-2">
                     <v-dialog
                       full-width
                       v-model="delQuestion[index].del"
