@@ -23,7 +23,8 @@
         <h3 class="display-2 py-3 text-xs-center text-uppercase">O witrynie</h3>
         <v-divider></v-divider>
         <div class="px-4">
-          <p class="headline pb-4">Witryna
+          <p class="headline pb-4">
+            Witryna
             <b>Quiz PRO</b> stanowi serwis przedmiotu "
             <b>Technologie Sieci WEB</b>" prowadzonego na Wydziale Elektrotechniki i Informatyki Politechniki Rzeszowskiej (WEiI PRz).
             <br>Wykładowcą przedmiotu "Technologie Sieci WEB" na WEiI PRz jest
@@ -52,16 +53,36 @@ export default {
     return {
       imgs: [
         {
-          src: require("../assets/imgs/carousel-1.jpg"),
-          text: "Technologie sieci web 1"
+          src: require("../assets/imgs/web-min.jpg"),
+          text: "Technologie Sieci Web"
         },
         {
-          src: require("../assets/imgs/carousel-2.jpg"),
-          text: "Technologie sieci web 2"
+          src: require("../assets/imgs/htmlcss-min.jpg"),
+          text: "HTML i CSS"
         },
         {
-          src: require("../assets/imgs/carousel-3.jpg"),
-          text: "Technologie sieci web 3"
+          src: require("../assets/imgs/js-min.jpeg"),
+          text: "Język Javascript"
+        },
+        {
+          src: require("../assets/imgs/php-min.png"),
+          text: "Język PHP"
+        },
+        {
+          src: require("../assets/imgs/responsive-min.jpg"),
+          text: "Responsywność"
+        },
+        {
+          src: require("../assets/imgs/mobile-min.jpg"),
+          text: "Strony przystosowane dla urządzeń mobilnych"
+        },
+        {
+          src: require("../assets/imgs/semantic-min.jpg"),
+          text: "Semantyczna Sieć Web"
+        },
+        {
+          src: require("../assets/imgs/easy-min.jpg"),
+          text: "Technologie przyjazne dla użytkownika"
         }
       ]
     };
