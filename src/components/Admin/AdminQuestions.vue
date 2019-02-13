@@ -25,7 +25,14 @@
     <v-divider></v-divider>
     <v-container fluid class="py-1 px-0">
       <v-layout row wrap justify-space-around>
-        <v-flex xs12 md6 lg4 v-for="(Question, index) in filteredQuestions" :key="index">
+        <v-flex
+          xs12
+          md6
+          lg4
+          v-for="(Question, index) in filteredQuestions"
+          :key="index"
+          v-show="index >= (page-1)*maxOnPage && index < page*maxOnPage"
+        >
           <v-card class="light-grey darken-3 ma-2">
             <v-card-title class="pt-2 pb-0 px-3">
               <div>
@@ -143,6 +150,19 @@
         </v-flex>
       </v-layout>
     </v-container>
+    <div class="text-xs-center">
+      <v-pagination
+        color="green darken-2"
+        v-model="page"
+        :length="Math.ceil(Questions.length/maxOnPage)"
+      ></v-pagination>
+    </div>
+    <div class="text-xs-center">
+      <v-btn round href="#app" v-smooth-scroll="{ duration: 1000 }" color="green darken-2">
+        <span>Wróć na górę</span>
+        <v-icon large right>keyboard_capslock</v-icon>
+      </v-btn>
+    </div>
   </div>
 </template>
 
@@ -157,7 +177,9 @@ export default {
       Questions: [],
       delQuestion: [],
       search: "",
-      getQuestionsError: false
+      getQuestionsError: false,
+      maxOnPage: 30,
+      page: 1
     };
   },
   methods: {
@@ -227,11 +249,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.dont-break-out {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  word-break: break-word;
-}
-</style>

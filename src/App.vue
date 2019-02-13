@@ -1,5 +1,5 @@
 <template>
-  <v-app :dark="$store.getters.darkMode">
+  <v-app id="app" :dark="$store.getters.darkMode">
     <Navbar></Navbar>
     <v-content>
       <router-view/>
