@@ -24,7 +24,7 @@
               <div v-if="Question.Image" class="pa-1">
                 <img :src="Question.Image">
               </div>
-              <div class="pa-2">
+              <div class="pa-2 font-weight-bold">
                 <v-checkbox
                   v-model="Answers[index].Ans1"
                   disabled
@@ -62,6 +62,12 @@
         </v-flex>
       </v-layout>
     </v-container>
+    <div class="text-xs-center">
+      <v-btn round href="#app" v-smooth-scroll="{ duration: 1000 }" color="green darken-2">
+        <span>Wróć na górę</span>
+        <v-icon large right>keyboard_capslock</v-icon>
+      </v-btn>
+    </div>
   </div>
 </template>
 
