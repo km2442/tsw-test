@@ -85,10 +85,12 @@
       round
       class="mb-3"
       v-if="QuestionNumber === 30"
-      @click="finishTest()"
+      v-long-press="750"
+      @long-press-start="onLongPressStart"
+      @long-press-stop="onLongPressStop"
       color="amber darken-2"
-    >
-      <span>Zakończ test!</span>
+      >
+      <span>Zakończ test (Przytrzymaj)</span>
       <v-icon right>send</v-icon>
     </v-btn>
     <div v-if="getQuestionsError">
@@ -105,9 +107,13 @@
 <script>
 /* eslint-disable no-console */
 import firebase from "../firebase/init";
+import LongPress from "vue-directive-long-press";
 let db = firebase.firestore();
 export default {
   name: "Test",
+  directives: {
+    "long-press": LongPress
+  },
   data() {
     return {
       QuestionNumber: 1,
@@ -119,7 +125,8 @@ export default {
           Ans3: "",
           Ans4: "",
           Image: "",
-          Textarea: ""
+          Textarea: "",
+          EndCounter: null
         }
       ],
       Answers: [],
@@ -223,9 +230,18 @@ export default {
       this.Questions = shuffledQuestions.map(question =>
         this.shuffleAnswers(question)
       );
+    },
+    onLongPressStart() {
+      let vm = this;
+      this.EndCounter = setInterval(() => {
+        clearInterval(this.EndCounter);
+        vm.finishTest();
+      });
+    },
+    onLongPressStop() {
+      clearInterval(this.EndCounter);
     }
   },
-
   async created() {
     //make answer array reactable
     for (let i = 0; i < 30; i++) {
