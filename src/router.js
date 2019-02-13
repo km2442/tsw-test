@@ -37,7 +37,7 @@ export default new Router({
       component: Result,
       props: true,
       beforeEnter: (to, from, next) => {
-        if(to.params.points){
+        if(to.params.points >= 0){
           next()
         } else {
           next({ name: 'NotFound' })
