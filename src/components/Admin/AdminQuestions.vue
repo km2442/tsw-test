@@ -27,7 +27,7 @@
       <v-layout row wrap justify-space-around>
         <v-flex xs12 md6 lg4 v-for="(Question, index) in filteredQuestions" :key="index">
           <v-card class="light-grey darken-3 ma-2">
-            <v-card-title class="pa-3">
+            <v-card-title class="pt-2 pb-0 px-3">
               <div>
                 <h3 class="headline mb-0">Pytanie {{index + 1}}</h3>
                 <div>{{Question.Question}}</div>
@@ -83,6 +83,7 @@
                 <span slot="label">Odpowiedź D: {{Question.Ans4}}</span>
               </v-checkbox>
             </div>
+            <v-divider></v-divider>
             <div>
               <v-container class="pa-0">
                 <v-layout row wrap justify-space-between>

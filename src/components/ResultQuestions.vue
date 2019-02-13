@@ -7,7 +7,7 @@
         <v-flex xs12 sm6 lg4 v-for="(Question, index) in Questions" :key="Question.Id">
           <div v-if="index < 30">
             <v-card class="light-grey darken-3 ma-2">
-              <v-card-title class="pa-3">
+              <v-card-title class="pt-2 pb-0 px-3">
                 <div>
                   <h3 class="headline mb-0">Pytanie {{index+1}}/30</h3>
                   <div>{{Question.Question}}</div>
@@ -24,33 +24,37 @@
               <div v-if="Question.Image">
                 <img :src="Question.Image">
               </div>
-              <div class="px-3 pt-3 pb-0">
-                <v-checkbox v-model="Answers[index].Ans1" disabled class="ma-0 pa-0 dont-break-out">
-                  <span
-                    slot="label"
-                    :class="Question.GoodAns[0] ? 'green darken-1' : 'red darken-2'"
-                  >Odpowiedź A: {{Question.Ans1}}</span>
+              <div class="pa-2">
+                <v-checkbox
+                  v-model="Answers[index].Ans1"
+                  disabled
+                  :class="Question.GoodAns[0] ? 'ma-0 pa-0 dont-break-out green darken-1' : 'ma-0 pa-0 dont-break-out red darken-2'"
+                >
+                  <span slot="label">Odpowiedź A: {{Question.Ans1}}</span>
                 </v-checkbox>
                 <v-divider></v-divider>
-                <v-checkbox v-model="Answers[index].Ans2" disabled class="ma-0 pa-0 dont-break-out">
-                  <span
-                    slot="label"
-                    :class="Question.GoodAns[1] ? 'green darken-1' : 'red darken-2'"
-                  >Odpowiedź B: {{Question.Ans2}}</span>
+                <v-checkbox
+                  v-model="Answers[index].Ans2"
+                  disabled
+                  :class="Question.GoodAns[1] ? 'ma-0 pa-0 dont-break-out green darken-1' : 'ma-0 pa-0 dont-break-out red darken-2'"
+                >
+                  <span slot="label">Odpowiedź B: {{Question.Ans2}}</span>
                 </v-checkbox>
                 <v-divider></v-divider>
-                <v-checkbox v-model="Answers[index].Ans3" disabled class="ma-0 pa-0 dont-break-out">
-                  <span
-                    slot="label"
-                    :class="Question.GoodAns[2] ? 'green darken-1' : 'red darken-2'"
-                  >Odpowiedź C: {{Question.Ans3}}</span>
+                <v-checkbox
+                  v-model="Answers[index].Ans3"
+                  disabled
+                  :class="Question.GoodAns[2] ? 'ma-0 pa-0 dont-break-out green darken-1' : 'ma-0 pa-0 dont-break-out red darken-2'"
+                >
+                  <span slot="label">Odpowiedź C: {{Question.Ans3}}</span>
                 </v-checkbox>
                 <v-divider></v-divider>
-                <v-checkbox v-model="Answers[index].Ans4" disabled class="ma-0 pa-0 dont-break-out">
-                  <span
-                    slot="label"
-                    :class="Question.GoodAns[3] ? 'green darken-1' : 'red darken-2'"
-                  >Odpowiedź D: {{Question.Ans4}}</span>
+                <v-checkbox
+                  v-model="Answers[index].Ans4"
+                  disabled
+                  :class="Question.GoodAns[3] ? 'ma-0 pa-0 dont-break-out green darken-1' : 'ma-0 pa-0 dont-break-out red darken-2'"
+                >
+                  <span slot="label">Odpowiedź D: {{Question.Ans4}}</span>
                 </v-checkbox>
               </div>
             </v-card>
@@ -72,11 +76,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.dont-break-out {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  word-break: break-word;
-}
-</style>

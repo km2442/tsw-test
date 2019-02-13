@@ -3,7 +3,7 @@
     <h1 block large class="ma-3 text-xs-center">QUIZ z Technologii Sieci Web</h1>
     <div v-for="(Question, index) in Questions" :key="Question.Id">
       <v-card v-if="QuestionNumber-1 === index" class="light-grey darken-3 my-3">
-        <v-card-title class="pa-3">
+        <v-card-title class="pt-2 pb-0 px-3">
           <div>
             <h3 class="headline mb-0">Pytanie {{index+1}}/30</h3>
             <div>{{Questions[index].Question}}</div>
@@ -30,7 +30,7 @@
               xs12
               :md6="(Questions[index].Image.length > 0 || Questions[index].Textarea.length > 0)"
             >
-              <div class="px-3 pt-3 pb-0">
+              <div class="pa-2">
                 <v-checkbox
                   v-model="Answers[index].Ans1"
                   color="green"
@@ -38,7 +38,7 @@
                 >
                   <span slot="label">Odpowiedź A: {{Questions[index].Ans1}}</span>
                 </v-checkbox>
-                <v-divider></v-divider>
+                <v-divider class="my-2"></v-divider>
                 <v-checkbox
                   v-model="Answers[index].Ans2"
                   color="green"
@@ -46,7 +46,7 @@
                 >
                   <span slot="label">Odpowiedź B: {{Questions[index].Ans2}}</span>
                 </v-checkbox>
-                <v-divider></v-divider>
+                <v-divider class="my-2"></v-divider>
                 <v-checkbox
                   v-model="Answers[index].Ans3"
                   color="green"
@@ -54,7 +54,7 @@
                 >
                   <span slot="label">Odpowiedź C: {{Questions[index].Ans3}}</span>
                 </v-checkbox>
-                <v-divider></v-divider>
+                <v-divider class="my-2"></v-divider>
                 <v-checkbox
                   v-model="Answers[index].Ans4"
                   color="green"
@@ -66,30 +66,27 @@
             </v-flex>
           </v-layout>
         </v-container>
-        <v-divider></v-divider>
-        <div class="ma-2"></div>
-
-        <div class="px-2 pb-1">
-          <v-btn
-            block
-            round
-            v-if="QuestionNumber < 30"
-            color="green darken-3"
-            @click="nextQuestion()"
-          >
-            <span>Następne pytanie</span>
-            <v-icon right>fast_forward</v-icon>
-          </v-btn>
-        </div>
       </v-card>
     </div>
+
+    <v-btn
+      block
+      round
+      color="green darken-3"
+      class="mb-3"
+      v-if="QuestionNumber < 30"
+      @click="nextQuestion()"
+    >
+      <span>Następne pytanie</span>
+      <v-icon right>fast_forward</v-icon>
+    </v-btn>
     <v-btn
       block
       round
       class="mb-3"
       v-if="QuestionNumber === 30"
       @click="finishTest()"
-      color="green darken-3"
+      color="amber darken-2"
     >
       <span>Zakończ test!</span>
       <v-icon right>send</v-icon>
@@ -243,10 +240,16 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .dont-break-out {
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
+}
+.v-input--selection-controls:not(.v-input--hide-details) .v-input__slot {
+  margin-bottom: 0px;
+}
+.v-messages {
+  min-height: 0px;
 }
 </style>
