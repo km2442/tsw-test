@@ -67,6 +67,7 @@
 </template>
 
 <script>
+import firebase from "firebase";
 import VueCookies from "vue-cookies";
 export default {
   name: "NavigationDrawer",
@@ -78,6 +79,18 @@ export default {
         { icon: "format_list_bulleted", text: "Test", route: "/test" }
       ]
     };
+  },
+  methods: {
+    signOutUser() {
+      this.drawer = !this.drawer;
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.push({ name: "Index" });
+          this.$store.commit("changeUser", undefined);
+        });
+    }
   },
   computed: {
     drawer: {

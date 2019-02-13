@@ -33,18 +33,6 @@ export default {
   components: {
     NavDrawer
   },
-  methods: {
-    signOutUser() {
-      this.drawer = !this.drawer;
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          this.$router.push({ name: "Index" });
-          this.$store.commit("changeUser", undefined);
-        });
-    }
-  },
   created() {
     VueCookies.config("30d");
     if (VueCookies.isKey("Theme")) {
