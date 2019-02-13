@@ -264,3 +264,17 @@ export default {
   }
 };
 </script>
+
+<style>
+.dont-break-out {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+.v-input--selection-controls:not(.v-input--hide-details) .v-input__slot {
+  margin-bottom: 0px;
+}
+.v-messages {
+  min-height: 0px;
+}
+</style>
