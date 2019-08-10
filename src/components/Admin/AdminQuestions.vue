@@ -165,6 +165,7 @@
       </v-layout>
     </v-container>
     <div class="text-center">
+      <v-btn rounded block @click="$vuetify.goTo('#app')" color="green darken-2" class="my-3">
         <span>Wróć na górę</span>
         <v-icon large right>mdi-arrow-collapse-up</v-icon>
       </v-btn>
@@ -176,7 +177,6 @@
         :length="Math.ceil(Questions.length/maxOnPage)"
       ></v-pagination>
     </div>
-      <v-btn rounded href="#app" v-smooth-scroll="{ duration: 1000 }" color="green darken-2">
   </div>
 </template>
 
