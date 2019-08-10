@@ -41,7 +41,7 @@
         </v-container>
       </div>
     </v-card>
-    <ResultQuestions :Questions="Questions" :Answers="Answers"/>
+    <ResultQuestions :Questions="Questions" :Answers="Answers" />
   </div>
 </template>
 

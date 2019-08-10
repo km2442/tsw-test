@@ -63,7 +63,7 @@
                 >{{row}}</p>
               </div>
               <div v-if="Question.Image" class="pa-1">
-                <img :src="Question.Image">
+                <img :src="Question.Image" />
               </div>
             </div>
             <v-divider></v-divider>

@@ -1,11 +1,6 @@
 <template>
   <nav>
-    <v-app-bar
-      dark
-      elevate-on-scroll
-      color="blue-grey darken-2"
-      scroll-target="#content"
-    >
+    <v-app-bar dark elevate-on-scroll color="blue-grey darken-2" scroll-target="#content">
       <v-img
         src="logo.png"
         max-height="90%"

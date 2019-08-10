@@ -37,7 +37,7 @@ export default new Router({
       component: Result,
       props: true,
       beforeEnter: (to, from, next) => {
-        if(to.params.points >= 0){
+        if (to.params.points >= 0) {
           next()
         } else {
           next({ name: 'NotFound' })
@@ -54,10 +54,10 @@ export default new Router({
       name: 'Admin',
       component: Admin,
       beforeEnter: (to, from, next) => {
-        if(store.getters.user !== null && store.getters.user !== undefined) {
+        if (store.getters.user !== null && store.getters.user !== undefined) {
           next();
         } else {
-          next({name: 'AdminLogin'});
+          next({ name: 'AdminLogin' });
         }
       }
     },
@@ -66,10 +66,10 @@ export default new Router({
       name: 'ChangeAdminPassword',
       component: ChangeAdminPassword,
       beforeEnter: (to, from, next) => {
-        if(store.getters.user !== null && store.getters.user !== undefined) {
+        if (store.getters.user !== null && store.getters.user !== undefined) {
           next();
         } else {
-          next({name: 'AdminLogin'});
+          next({ name: 'AdminLogin' });
         }
       }
     },
@@ -78,10 +78,10 @@ export default new Router({
       name: 'AddQuestion',
       component: AddQuestion,
       beforeEnter: (to, from, next) => {
-        if(store.getters.user !== null && store.getters.user !== undefined) {
+        if (store.getters.user !== null && store.getters.user !== undefined) {
           next();
         } else {
-          next({name: 'AdminLogin'});
+          next({ name: 'AdminLogin' });
         }
       }
     },
@@ -90,10 +90,10 @@ export default new Router({
       name: 'EditQuestion',
       component: EditQuestion,
       beforeEnter: (to, from, next) => {
-        if(store.getters.user !== null && store.getters.user !== undefined) {
+        if (store.getters.user !== null && store.getters.user !== undefined) {
           next();
         } else {
-          next({name: 'AdminLogin'});
+          next({ name: 'AdminLogin' });
         }
       }
     },

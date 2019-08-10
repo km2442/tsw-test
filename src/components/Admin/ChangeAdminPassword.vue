@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     changePassword() {
-        this.feedback = null;
+      this.feedback = null;
       firebase
         .auth()
         .currentUser.reauthenticateAndRetrieveDataWithCredential(

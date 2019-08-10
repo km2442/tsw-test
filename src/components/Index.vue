@@ -27,9 +27,9 @@
             Witryna
             <b>Quiz PRO</b> stanowi serwis przedmiotu "
             <b>Technologie Sieci WEB</b>" prowadzonego na Wydziale Elektrotechniki i Informatyki Politechniki Rzeszowskiej (WEiI PRz).
-            <br>Wykładowcą przedmiotu "Technologie Sieci WEB" na WEiI PRz jest
+            <br />Wykładowcą przedmiotu "Technologie Sieci WEB" na WEiI PRz jest
             <b>Dr hab. inż. Jan PROKOP, prof. PRz</b>.
-            <br>Zawartość serwisu przeznaczona jest głównie dla studentów kierunku Informatyka WEiI PRz uczestniczących w zajęciach, a także dla wszystkich pasjonatów Technologii Sieci Web.
+            <br />Zawartość serwisu przeznaczona jest głównie dla studentów kierunku Informatyka WEiI PRz uczestniczących w zajęciach, a także dla wszystkich pasjonatów Technologii Sieci Web.
           </p>
         </div>
       </v-card>

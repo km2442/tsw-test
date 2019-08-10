@@ -23,7 +23,7 @@
             </v-flex>
             <v-flex xs12 md6 v-if="Questions[index].Image" class="pa-1">
               <div>
-                <img :src="Questions[index].Image">
+                <img :src="Questions[index].Image" />
               </div>
             </v-flex>
             <v-flex

@@ -2,9 +2,9 @@
   <v-app id="app">
     <Navbar></Navbar>
     <v-content id="content">
-      <router-view/>
+      <router-view />
     </v-content>
-    <Footer/>
+    <Footer />
     <!-- Wyskakujący komunikat -->
     <v-snackbar
       v-model="snackbar"

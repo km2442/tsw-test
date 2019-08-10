@@ -30,7 +30,7 @@
                     accept="image/*"
                     @change="onFileSelected"
                     ref="fileInput"
-                  >
+                  />
                   <v-btn block rounded color="green" @click="$refs.fileInput.click()">
                     <span>Wybierz obrazek</span>
                     <v-icon right>add_circle</v-icon>
@@ -153,7 +153,7 @@
             >{{row}}</p>
           </div>
           <div v-if="Image != ''">
-            <img :src="Image">
+            <img :src="Image" />
           </div>
         </div>
         <v-divider></v-divider>

@@ -22,7 +22,7 @@
                 >{{row}}</p>
               </div>
               <div v-if="Question.Image" class="pa-1">
-                <img :src="Question.Image">
+                <img :src="Question.Image" />
               </div>
               <div class="pa-2 font-weight-bold">
                 <v-checkbox

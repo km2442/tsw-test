@@ -75,8 +75,16 @@ export default {
     return {
       links: [
         { icon: "mdi-view-dashboard", text: "Strona główna", route: "/" },
-        { icon: "mdi-ballot", text: "Instrukcja do testu", route: "/instruction" },
-        { icon: "mdi-format-list-bulleted-square", text: "Test", route: "/test" }
+        {
+          icon: "mdi-ballot",
+          text: "Instrukcja do testu",
+          route: "/instruction"
+        },
+        {
+          icon: "mdi-format-list-bulleted-square",
+          text: "Test",
+          route: "/test"
+        }
       ]
     };
   },

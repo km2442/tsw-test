@@ -33,7 +33,11 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn :disabled="!inputValidated || !email.length > 3 || !password.length > 7" color="green darken-3" @click="login()">
+                <v-btn
+                  :disabled="!inputValidated || !email.length > 3 || !password.length > 7"
+                  color="green darken-3"
+                  @click="login()"
+                >
                   <span>Zaloguj</span>
                   <v-icon right>mdi-key</v-icon>
                 </v-btn>
@@ -58,12 +62,12 @@ export default {
       password: "",
       feedback: null,
       rules: {
-        required: value => !!value || 'Pole wymagane',
-        counter: value => value.length >= 8 || 'Minimum 8 znaków',
+        required: value => !!value || "Pole wymagane",
+        counter: value => value.length >= 8 || "Minimum 8 znaków",
         email: value => {
-            const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            return pattern.test(value) || 'Niepoprawny e-mail'
-          }
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          return pattern.test(value) || "Niepoprawny e-mail";
+        }
       }
     };
   },
@@ -75,7 +79,7 @@ export default {
           .auth()
           .signInWithEmailAndPassword(this.email, this.password)
           .then(user => {
-            this.$store.commit('changeUser', user);
+            this.$store.commit("changeUser", user);
             this.$router.push({ name: "Admin" });
           })
           .catch(err => {
