@@ -1,16 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import { store } from './store/store'
-const Index = () => import(/* webpackChunkName: "Index" */ './components/Index')
-const Instruction = () => import(/* webpackChunkName: "Instruction" */ './components/Instruction')
-const Test = () => import(/* webpackChunkName: "Test" */ './components/Test')
-const Result = () => import(/* webpackChunkName: "Result" */ './components/Result')
-const Admin = () => import(/* webpackChunkName: "Admin" */ './components/Admin/Admin')
-const ChangeAdminPassword = () => import(/* webpackChunkName: "ChangeAdminPassword" */ './components/Admin/ChangeAdminPassword')
-const AdminLogin = () => import(/* webpackChunkName: "AdminLogin" */ './components/Admin/AdminLogin')
-const AddQuestion = () => import(/* webpackChunkName: "AddQuestion" */ './components/Admin/AddQuestion')
-const EditQuestion = () => import(/* webpackChunkName: "EditQuestion" */ './components/Admin/EditQuestion')
-const NotFound = () => import(/* webpackChunkName: "NotFound" */ './components/NotFound')
+const Index = resolve => require.ensure(['./components/Index'], () => resolve(require(/* webpackChunkName: "Index" */ './components/Index')));
+const Instruction = resolve => require.ensure(['./components/Instruction'], () => resolve(require(/* webpackChunkName: "Instruction" */ './components/Instruction')));
+const Test = resolve => require.ensure(['./components/Test'], () => resolve(require(/* webpackChunkName: "Test" */ './components/Test')));
+const Result = resolve => require.ensure(['./components/Result'], () => resolve(require(/* webpackChunkName: "Result" */ './components/Result')));
+const Admin = resolve => require.ensure(['./components/Admin/Admin'], () => resolve(require(/* webpackChunkName: "Admin" */ './components/Admin/Admin')));
+const ChangeAdminPassword = resolve => require.ensure(['./components/Admin/ChangeAdminPassword'], () => resolve(require(/* webpackChunkName: "ChangeAdminPassword" */ './components/Admin/ChangeAdminPassword')));
+const AdminLogin = resolve => require.ensure(['./components/Admin/AdminLogin'], () => resolve(require(/* webpackChunkName: "AdminLogin" */ './components/Admin/AdminLogin')));
+const AddQuestion = resolve => require.ensure(['./components/Admin/AddQuestion'], () => resolve(require(/* webpackChunkName: "AddQuestion" */ './components/Admin/AddQuestion')));
+const EditQuestion = resolve => require.ensure(['./components/Admin/EditQuestion'], () => resolve(require(/* webpackChunkName: "EditQuestion" */ './components/Admin/EditQuestion')));
+const NotFound = resolve => require.ensure(['./components/NotFound'], () => resolve(require(/* webpackChunkName: "NotFound" */ './components/NotFound')));
 
 Vue.use(Router)
 
