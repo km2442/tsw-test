@@ -48,7 +48,7 @@
             <v-btn
               block
               :disabled="!inputValidated || !oldPasswd.length > 7 || !newPasswd.length > 7 || !repeatPasswd.length > 7"
-              round
+              rounded
               color="green darken-3"
             >
               <span>Zmień hasło</span>
@@ -56,7 +56,7 @@
             </v-btn>
           </v-flex>
           <v-flex xs-12 md-6 class="mx-2">
-            <v-btn block round color="red" router :to="{name: 'Admin'}">
+            <v-btn block rounded color="red" router :to="{name: 'Admin'}">
               <span>Anuluj zmianę hasła</span>
               <v-icon right>cancel</v-icon>
             </v-btn>

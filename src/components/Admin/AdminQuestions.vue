@@ -111,7 +111,7 @@
                   <v-flex xs-12 md-6 class="mx-2">
                     <v-btn
                       block
-                      round
+                      rounded
                       color="green darken-3"
                       router
                       :to="{ name: 'EditQuestion', params: {questionId: Question.Id}}"
@@ -127,7 +127,7 @@
                       persistent
                       max-width="600"
                     >
-                      <v-btn block round color="red" slot="activator">
+                      <v-btn block rounded color="red" slot="activator">
                         <span>Usuń pytanie</span>
                         <v-icon right>delete</v-icon>
                       </v-btn>
@@ -172,7 +172,7 @@
       ></v-pagination>
     </div>
     <div class="text-xs-center">
-      <v-btn round href="#app" v-smooth-scroll="{ duration: 1000 }" color="green darken-2">
+      <v-btn rounded href="#app" v-smooth-scroll="{ duration: 1000 }" color="green darken-2">
         <span>Wróć na górę</span>
         <v-icon large right>keyboard_capslock</v-icon>
       </v-btn>

@@ -21,7 +21,7 @@
               <v-btn
                 large
                 block
-                round
+                rounded
                 class="green"
                 router
                 :to="{name: 'Index'}"
@@ -31,7 +31,7 @@
               <v-btn
                 large
                 block
-                round
+                rounded
                 class="green"
                 router
                 :to="{name: 'Test'}"

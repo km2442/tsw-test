@@ -71,7 +71,7 @@
 
     <v-btn
       block
-      round
+      rounded
       color="green darken-3"
       class="mb-3"
       v-if="QuestionNumber < 30"
@@ -82,7 +82,7 @@
     </v-btn>
     <v-btn
       block
-      round
+      rounded
       class="mb-3"
       v-if="QuestionNumber === 30"
       v-long-press="750"

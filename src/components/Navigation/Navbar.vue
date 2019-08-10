@@ -25,7 +25,6 @@
 
 <script>
 import VueCookies from "vue-cookies";
-import firebase from "firebase";
 const NavDrawer = () =>
   import(/* webpackChunkName: "NavigationDrawer" */ "./NavigationDrawer");
 export default {

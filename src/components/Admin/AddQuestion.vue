@@ -31,7 +31,7 @@
                     @change="onFileSelected"
                     ref="fileInput"
                   >
-                  <v-btn block round color="green" @click="$refs.fileInput.click()">
+                  <v-btn block rounded color="green" @click="$refs.fileInput.click()">
                     <span>Wybierz obrazek</span>
                     <v-icon right>add_circle</v-icon>
                   </v-btn>
@@ -39,7 +39,7 @@
                 <v-flex xs-12 md-6 class="mx-3">
                   <v-btn
                     block
-                    round
+                    rounded
                     color="green"
                     @click="uploadImage"
                     :disabled="selectedFile === ''"
@@ -52,7 +52,7 @@
             </v-container>
             <v-text-field readonly color="green" label="Plik" v-model="selectedFile.name"></v-text-field>
             <v-progress-linear v-if="selectedFile" color="success" v-model="uploadState"></v-progress-linear>
-            <v-btn block round color="red" v-if="Image" @click="Image = ''">
+            <v-btn block rounded color="red" v-if="Image" @click="Image = ''">
               <span>Usuń obrazek</span>
               <v-icon right>delete</v-icon>
             </v-btn>
@@ -129,7 +129,7 @@
           </div>
         </div>
       </v-form>
-      <v-btn block round color="red" @click="clearAddForm()">
+      <v-btn block rounded color="red" @click="clearAddForm()">
         <span>Wyczyść formularz</span>
         <v-icon right>delete</v-icon>
       </v-btn>
@@ -174,7 +174,7 @@
           <v-btn
             block
             :disabled="!formState || !Question || !Ans1 || !Ans2 || !Ans3 || !Ans4"
-            round
+            rounded
             color="green darken-3"
             @click="addQuestion()"
           >
@@ -183,7 +183,7 @@
           </v-btn>
         </v-flex>
         <v-flex xs-12 md-6 class="mx-3">
-          <v-btn block round color="red" @click="cancelAdd()">
+          <v-btn block rounded color="red" @click="cancelAdd()">
             <span>Anuluj dodawanie</span>
             <v-icon right>cancel</v-icon>
           </v-btn>

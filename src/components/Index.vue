@@ -37,7 +37,7 @@
     <div class="ma-3">
       <v-btn
         block
-        round
+        rounded
         color="green darken-3"
         router
         :to="{ name: 'Instruction'}"

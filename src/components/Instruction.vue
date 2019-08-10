@@ -18,7 +18,7 @@
         <h4 class="headline py-3 text-xs-center">Powodzenia!</h4>
       </div>
     </v-card>
-    <v-btn block round color="green darken-3 my-3" router :to="{ name: 'Test'}">Rozpocznij test!</v-btn>
+    <v-btn block rounded color="green darken-3 my-3" router :to="{ name: 'Test'}">Rozpocznij test!</v-btn>
   </div>
 </template>
 
