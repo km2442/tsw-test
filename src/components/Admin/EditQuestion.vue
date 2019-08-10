@@ -1,6 +1,6 @@
 <template>
   <div class="mb-4 mx-3">
-    <h1 block large class="ma-3 text-xs-center">Edytuj pytanie {{$route.params.questionId}}</h1>
+    <h1 block large class="ma-3 text-center">Edytuj pytanie {{$route.params.questionId}}</h1>
     <v-card class="light-grey darken-3 pa-2">
       <v-form v-model="formState">
         <div class="px-5">
@@ -19,7 +19,7 @@
             v-model="Textarea"
           ></v-text-field>
           <v-divider></v-divider>
-          <h3 block large class="ma-2 text-xs-center grey--text">(Opcjonalne) Dodaj obrazek</h3>
+          <h3 block large class="ma-2 text-center grey--text">(Opcjonalne) Dodaj obrazek</h3>
           <div>
             <v-container class="pa-0">
               <v-layout row wrap justify-space-between>
@@ -58,7 +58,7 @@
             </v-btn>
           </div>
           <v-divider></v-divider>
-          <h2 block large class="mt-3 text-xs-center">Zaznacz, które odpowiedzi są prawidłowe</h2>
+          <h2 block large class="mt-3 text-center">Zaznacz, które odpowiedzi są prawidłowe</h2>
           <div class="pa-0">
             <v-container class="pa-0">
               <v-flex xs12>
@@ -134,7 +134,7 @@
         <v-icon right>delete</v-icon>
       </v-btn>
     </v-card>
-    <h2 block large class="ma-3 text-xs-center">Podgląd</h2>
+    <h2 block large class="ma-3 text-center">Podgląd</h2>
     <!-- Podgląd pytania -->
     <div class="mb-4">
       <v-card class="light-grey darken-3 mb-2">

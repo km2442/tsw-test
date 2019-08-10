@@ -1,6 +1,11 @@
 <template>
   <nav>
-    <v-toolbar app class="white--text blue-grey darken-2" height="56px">
+    <v-app-bar
+      dark
+      elevate-on-scroll
+      color="blue-grey darken-2"
+      scroll-target="#content"
+    >
       <v-img
         src="logo.png"
         max-height="90%"
@@ -14,12 +19,12 @@
         style="cursor: pointer;"
       >Quiz</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-side-icon class="white--text" right v-if="!drawer" @click="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-side-icon class="white--text" right v-if="drawer" @click="drawer = !drawer">
-        <v-icon>close</v-icon>
-      </v-toolbar-side-icon>
-    </v-toolbar>
-    <NavDrawer/>
+      <v-app-bar-nav-icon large v-if="!drawer" @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon large v-else @click="drawer = !drawer">
+        <v-icon>mdi-close</v-icon>
+      </v-app-bar-nav-icon>
+    </v-app-bar>
+    <NavDrawer />
   </nav>
 </template>
 

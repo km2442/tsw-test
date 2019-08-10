@@ -1,6 +1,6 @@
 <template>
   <div class="mx-3">
-    <h1 block large class="ma-3 text-xs-center">QUIZ z Technologii Sieci Web</h1>
+    <h1 block large class="ma-3 text-center">QUIZ z Technologii Sieci Web</h1>
     <div v-for="(Question, index) in Questions" :key="Question.Id">
       <v-card v-if="QuestionNumber-1 === index" class="light-grey darken-3 my-3">
         <v-card-title class="pt-2 pb-0 px-3">
@@ -97,7 +97,7 @@
       <h2
         block
         large
-        class="ma-2 text-xs-center"
+        class="ma-2 text-center"
         color="red"
       >Wystąpił bład w pobieraniu pytań z bazy danych! Spróbuj odświeżyć stronę.</h2>
     </div>

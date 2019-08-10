@@ -4,7 +4,7 @@
       <v-carousel :cycle="!$vuetify.breakpoint.smAndDown">
         <v-carousel-item v-for="(img, i) in imgs" :key="i" :src="img.src">
           <p
-            class="light-blue darken-3 headline text-xs-center main-carousel"
+            class="light-blue darken-3 headline text-center main-carousel"
             style="position: absolute; bottom:10%; width:80%; border-radius: 25px; border: 2px solid; left: 10%;"
           >{{img.text}}</p>
         </v-carousel-item>
@@ -20,7 +20,7 @@
     </div>
     <div class="ma-3">
       <v-card class="light-blue darken-3">
-        <h3 class="display-2 py-3 text-xs-center text-uppercase">O witrynie</h3>
+        <h3 class="display-2 py-3 text-center text-uppercase">O witrynie</h3>
         <v-divider></v-divider>
         <div class="px-4">
           <p class="headline pb-4">

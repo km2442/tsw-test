@@ -1,7 +1,7 @@
 <template>
   <v-app id="app" :dark="$store.getters.darkMode">
     <Navbar></Navbar>
-    <v-content>
+    <v-content id="content">
       <router-view/>
     </v-content>
     <Footer/>
@@ -13,7 +13,7 @@
       :timeout="$store.getters.snackbarTimeout"
     >
       {{$store.getters.snackbarMsg}}
-      <v-btn flat outline @click="snackbar = false">
+      <v-btn flat outlined @click="snackbar = false">
         <span>Zamknij</span>
         <v-icon right>close</v-icon>
       </v-btn>

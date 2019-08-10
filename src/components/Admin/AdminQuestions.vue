@@ -5,10 +5,10 @@
       v-if="getQuestionsError"
       block
       large
-      class="ma-2 text-xs-center"
+      class="ma-2 text-center"
       color="red"
     >Wystąpił bład w pobieraniu pytań z bazy danych! Spróbuj odświeżyć stronę.</h2>
-    <h2 v-else block large class="ma-2 text-xs-center">Ilość pytań w bazie: {{Questions.length}}</h2>
+    <h2 v-else block large class="ma-2 text-center">Ilość pytań w bazie: {{Questions.length}}</h2>
     <v-divider></v-divider>
     <div class="ma-0">
       <v-container fluid class="pa-1">
@@ -141,7 +141,7 @@
                           <v-btn
                             color="red"
                             flat
-                            outline
+                            outlined
                             @click="deleteQuestion(Question.Id, index)"
                           >
                             <span>Tak, usuń</span>
@@ -150,7 +150,7 @@
                           <v-btn
                             color="green"
                             flat
-                            outline
+                            outlined
                             @click="delQuestion[index].del = false"
                           >Nie usuwaj!</v-btn>
                         </v-card-actions>
@@ -164,14 +164,14 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <div class="text-xs-center">
+    <div class="text-center">
       <v-pagination
         color="green darken-2"
         v-model="page"
         :length="Math.ceil(Questions.length/maxOnPage)"
       ></v-pagination>
     </div>
-    <div class="text-xs-center">
+    <div class="text-center">
       <v-btn rounded href="#app" v-smooth-scroll="{ duration: 1000 }" color="green darken-2">
         <span>Wróć na górę</span>
         <v-icon large right>keyboard_capslock</v-icon>

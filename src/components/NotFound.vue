@@ -1,5 +1,5 @@
 <template>
-  <div class="red pa-3 text-xs-center" style="height: 100%">
+  <div class="red pa-3 text-center" style="height: 100%">
     <h1 class="display-4 font-weight-black">404</h1>
     <h1 class="display-3 font-weight-bold">Strona nie istnieje!</h1>
     <v-container class="pa-1">

@@ -37,7 +37,7 @@
           </v-form>
         </v-card-text>
         <div v-if="feedback" class="mx-3">
-          <p class="error text-xs-center">{{ feedback }}</p>
+          <p class="error text-center">{{ feedback }}</p>
         </div>
       </v-card>
     </div>

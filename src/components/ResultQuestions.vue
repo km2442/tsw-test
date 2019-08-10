@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 block large class="ma-1 text-xs-center">Podgląd poprawności odpowiedzi</h1>
+    <h1 block large class="ma-1 text-center">Podgląd poprawności odpowiedzi</h1>
     <v-divider></v-divider>
     <v-container fluid class="py-1 px-0">
       <v-layout row wrap justify-space-around>
@@ -62,7 +62,7 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <div class="text-xs-center">
+    <div class="text-center">
       <v-btn rounded href="#app" v-smooth-scroll="{ duration: 1000 }" color="green darken-2">
         <span>Wróć na górę</span>
         <v-icon large right>keyboard_capslock</v-icon>
