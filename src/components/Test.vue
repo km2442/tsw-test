@@ -12,7 +12,7 @@
         <v-divider></v-divider>
         <v-container fluid class="pa-0">
           <v-layout row wrap justify-space-around>
-            <v-flex xs12 md6 v-if="Questions[index].Textarea" class="pa-1">
+            <v-flex xs12 md6 v-if="Questions[index].Textarea" class="py-1 px-5">
               <div class="pa-2" style="border: 1px dashed;">
                 <p
                   class="ma-0 pa-0"
@@ -30,7 +30,7 @@
               xs12
               :md6="(Questions[index].Image.length > 0 || Questions[index].Textarea.length > 0)"
             >
-              <div class="pa-2">
+              <div class="py-2 px-5">
                 <v-checkbox
                   v-model="Answers[index].Ans1"
                   color="green"
@@ -72,6 +72,7 @@
     <v-btn
       block
       rounded
+      dark
       color="green darken-3"
       class="mb-3"
       v-if="QuestionNumber < 30"
@@ -83,8 +84,9 @@
     <v-btn
       block
       rounded
+      dark
       class="mb-3"
-      v-if="QuestionNumber === 30"
+      v-else
       v-long-press="750"
       @long-press-start="onLongPressStart"
       @long-press-stop="onLongPressStop"

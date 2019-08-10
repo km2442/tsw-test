@@ -103,10 +103,10 @@ export default {
     },
     darkMode: {
       get() {
-        return this.$store.getters.darkMode;
+        return this.$vuetify.theme.dark;
       },
       set(value) {
-        this.$store.commit("setDarkTheme", value);
+        this.$vuetify.theme.dark = value;
         VueCookies.set("Theme", value);
       }
     }

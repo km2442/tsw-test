@@ -6,7 +6,6 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
   state: {
     navDrawer: false,
-    darkMode: false,
     user: null,
     snackbarState: false,
     snackbarMsg: null,
@@ -28,9 +27,6 @@ export const store = new Vuex.Store({
     setNavDrawerState(state, nav) {
       state.navDrawer = nav;
     },
-    setDarkTheme(state, theme) {
-      state.darkMode = theme;
-    }
   },
   actions: {
     modifySnackbar(context, snack) {
@@ -39,7 +35,6 @@ export const store = new Vuex.Store({
   },
   getters: {
     navDrawer: state => state.navDrawer,
-    darkMode: state => state.darkMode,
     user: state => state.user,
     snackbarState: state => state.snackbarState,
     snackbarMsg: state => state.snackbarMsg,

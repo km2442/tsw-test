@@ -12,7 +12,7 @@
                 <v-form v-model="inputValidated" @submit.prevent="login()">
                   <v-text-field
                     v-model="email"
-                    prepend-icon="person"
+                    prepend-icon="mdi-account"
                     label="Email"
                     :rules="[rules.required, rules.email]"
                     color="green"
@@ -20,7 +20,7 @@
                   ></v-text-field>
                   <v-text-field
                     v-model="password"
-                    prepend-icon="lock"
+                    prepend-icon="mdi-lock"
                     label="Hasło"
                     :rules="[rules.required, rules.counter]"
                     color="green"

@@ -34,7 +34,7 @@
             <v-icon right>mdi-pencil</v-icon>
           </v-btn>
         </v-flex>
-        <v-flex xs-12 class="mx-3" v-if="showQuestions" @click="showQuestions = !showQuestions">
+        <v-flex xs-12 class="mx-3" v-else @click="showQuestions = !showQuestions">
           <v-btn block rounded color="green darken-3">
             <span>Ukryj pytania</span>
             <v-icon right>mdi-pencil</v-icon>

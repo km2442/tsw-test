@@ -22,7 +22,7 @@
               v-model="search"
               color="green"
               label="Wyszykaj pytania"
-              prepend-inner-icon="search"
+              prepend-inner-icon="mdi-file-document-box-search"
             ></v-text-field>
           </v-flex>
           <v-flex xs12 sm3 md2 class="pt-1 pb-0 px-2">
@@ -105,7 +105,7 @@
               </v-checkbox>
             </div>
             <v-divider></v-divider>
-            <div>
+            <div class="px-3 py-1">
               <v-container class="pa-0">
                 <v-layout row wrap justify-space-between>
                   <v-flex xs-12 md-6 class="mx-2">
@@ -165,18 +165,18 @@
       </v-layout>
     </v-container>
     <div class="text-center">
+        <span>Wróć na górę</span>
+        <v-icon large right>mdi-arrow-collapse-up</v-icon>
+      </v-btn>
+    </div>
+    <div class="text-center">
       <v-pagination
         color="green darken-2"
         v-model="page"
         :length="Math.ceil(Questions.length/maxOnPage)"
       ></v-pagination>
     </div>
-    <div class="text-center">
       <v-btn rounded href="#app" v-smooth-scroll="{ duration: 1000 }" color="green darken-2">
-        <span>Wróć na górę</span>
-        <v-icon large right>mdi-arrow-collapse-up</v-icon>
-      </v-btn>
-    </div>
   </div>
 </template>
 

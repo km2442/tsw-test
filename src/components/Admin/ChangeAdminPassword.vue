@@ -11,7 +11,7 @@
           <v-form v-model="inputValidated" @submit.prevent="changePassword()">
             <v-text-field
               v-model="oldPasswd"
-              prepend-icon="lock"
+              prepend-icon="mdi-lock"
               label="Stare hasło"
               :rules="[rules.required, rules.counter]"
               color="green"
@@ -20,7 +20,7 @@
             <v-divider></v-divider>
             <v-text-field
               v-model="newPasswd"
-              prepend-icon="lock"
+              prepend-icon="mdi-lock"
               label="Nowe hasło"
               :rules="[rules.required, rules.counter]"
               color="green"
@@ -28,7 +28,7 @@
             ></v-text-field>
             <v-text-field
               v-model="repeatPasswd"
-              prepend-icon="lock"
+              prepend-icon="mdi-lock"
               label="Powtórz nowe hasło"
               :rules="[rules.required, rules.counter, rules.samePasswd]"
               color="green"
