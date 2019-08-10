@@ -52,13 +52,13 @@
               color="green darken-3"
             >
               <span>Zmień hasło</span>
-              <v-icon right>edit</v-icon>
+              <v-icon right>mdi-pencil</v-icon>
             </v-btn>
           </v-flex>
           <v-flex xs-12 md-6 class="mx-2">
             <v-btn block rounded color="red" router :to="{name: 'Admin'}">
               <span>Anuluj zmianę hasła</span>
-              <v-icon right>cancel</v-icon>
+              <v-icon right>mdi-cancel</v-icon>
             </v-btn>
           </v-flex>
         </v-layout>

@@ -35,7 +35,7 @@
                 <v-spacer></v-spacer>
                 <v-btn :disabled="!inputValidated || !email.length > 3 || !password.length > 7" color="green darken-3" @click="login()">
                   <span>Zaloguj</span>
-                  <v-icon right>vpn_key</v-icon>
+                  <v-icon right>mdi-key</v-icon>
                 </v-btn>
               </v-card-actions>
             </v-card>

@@ -65,7 +65,7 @@
     <div class="text-center">
       <v-btn rounded href="#app" v-smooth-scroll="{ duration: 1000 }" color="green darken-2">
         <span>Wróć na górę</span>
-        <v-icon large right>keyboard_capslock</v-icon>
+        <v-icon large right>mdi-arrow-collapse-up</v-icon>
       </v-btn>
     </div>
   </div>

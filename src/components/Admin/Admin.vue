@@ -7,13 +7,13 @@
           <v-flex xs-12 md-6 class="mx-3">
             <v-btn block rounded color="green darken-3" router :to="{name: 'ChangeAdminPassword'}">
               <span>Zmień hasło</span>
-              <v-icon right>edit</v-icon>
+              <v-icon right>mdi-pencil</v-icon>
             </v-btn>
           </v-flex>
           <v-flex xs-12 md-6 class="mx-3">
             <v-btn block rounded color="amber darken-2" @click="signOutUser()">
               <span>Wyloguj</span>
-              <v-icon right>logout</v-icon>
+              <v-icon right>mdi-logout</v-icon>
             </v-btn>
           </v-flex>
         </v-layout>
@@ -31,19 +31,19 @@
         >
           <v-btn block rounded color="green darken-3">
             <span>Pokaż wszystkie pytania</span>
-            <v-icon right>edit</v-icon>
+            <v-icon right>mdi-pencil</v-icon>
           </v-btn>
         </v-flex>
         <v-flex xs-12 class="mx-3" v-if="showQuestions" @click="showQuestions = !showQuestions">
           <v-btn block rounded color="green darken-3">
             <span>Ukryj pytania</span>
-            <v-icon right>edit</v-icon>
+            <v-icon right>mdi-pencil</v-icon>
           </v-btn>
         </v-flex>
         <v-flex xs-12 class="mx-3">
           <v-btn block rounded color="green darken-3" router :to="{name: 'AddQuestion'}">
             <span>Dodaj pytanie</span>
-            <v-icon right>add_circle</v-icon>
+            <v-icon right>mdi-plus-circle</v-icon>
           </v-btn>
         </v-flex>
       </v-layout>

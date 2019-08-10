@@ -117,7 +117,7 @@
                       :to="{ name: 'EditQuestion', params: {questionId: Question.Id}}"
                     >
                       <span>Edytuj pytanie</span>
-                      <v-icon right>edit</v-icon>
+                      <v-icon right>mdi-pencil</v-icon>
                     </v-btn>
                   </v-flex>
                   <v-flex xs-12 md-6 class="mx-2">
@@ -129,7 +129,7 @@
                     >
                       <v-btn block rounded color="red" slot="activator">
                         <span>Usuń pytanie</span>
-                        <v-icon right>delete</v-icon>
+                        <v-icon right>mdi-delete</v-icon>
                       </v-btn>
                       <v-card>
                         <v-card-title
@@ -145,7 +145,7 @@
                             @click="deleteQuestion(Question.Id, index)"
                           >
                             <span>Tak, usuń</span>
-                            <v-icon right>delete</v-icon>
+                            <v-icon right>mdi-delete</v-icon>
                           </v-btn>
                           <v-btn
                             color="green"
@@ -174,7 +174,7 @@
     <div class="text-center">
       <v-btn rounded href="#app" v-smooth-scroll="{ duration: 1000 }" color="green darken-2">
         <span>Wróć na górę</span>
-        <v-icon large right>keyboard_capslock</v-icon>
+        <v-icon large right>mdi-arrow-collapse-up</v-icon>
       </v-btn>
     </div>
   </div>

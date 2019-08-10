@@ -78,7 +78,7 @@
       @click="nextQuestion()"
     >
       <span>Następne pytanie</span>
-      <v-icon right>fast_forward</v-icon>
+      <v-icon right large>mdi-step-forward</v-icon>
     </v-btn>
     <v-btn
       block
@@ -91,7 +91,7 @@
       color="amber darken-2"
     >
       <span>Zakończ test (Przytrzymaj)</span>
-      <v-icon right>send</v-icon>
+      <v-icon right large>mdi-send</v-icon>
     </v-btn>
     <div v-if="getQuestionsError">
       <h2

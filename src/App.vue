@@ -15,7 +15,7 @@
       {{$store.getters.snackbarMsg}}
       <v-btn flat outlined @click="snackbar = false">
         <span>Zamknij</span>
-        <v-icon right>close</v-icon>
+        <v-icon right>mdi-close</v-icon>
       </v-btn>
     </v-snackbar>
   </v-app>

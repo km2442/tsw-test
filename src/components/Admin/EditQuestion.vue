@@ -54,7 +54,7 @@
             <v-progress-linear v-if="selectedFile" color="success" v-model="uploadState"></v-progress-linear>
             <v-btn block rounded color="red" v-if="Image" @click="Image = ''">
               <span>Usuń obrazek</span>
-              <v-icon right>delete</v-icon>
+              <v-icon right>mdi-delete</v-icon>
             </v-btn>
           </div>
           <v-divider></v-divider>
@@ -131,7 +131,7 @@
       </v-form>
       <v-btn block rounded color="red" @click="clearAddForm()">
         <span>Wyczyść formularz</span>
-        <v-icon right>delete</v-icon>
+        <v-icon right>mdi-delete</v-icon>
       </v-btn>
     </v-card>
     <h2 block large class="ma-3 text-center">Podgląd</h2>
@@ -179,13 +179,13 @@
             @click="editQuestion()"
           >
             <span>Edytuj pytanie</span>
-            <v-icon right>send</v-icon>
+            <v-icon right>mdi-send</v-icon>
           </v-btn>
         </v-flex>
         <v-flex xs-12 md-6 class="mx-3">
           <v-btn block rounded color="red" @click="cancelEdit()">
             <span>Anuluj edycję</span>
-            <v-icon right>cancel</v-icon>
+            <v-icon right>mdi-cancel</v-icon>
           </v-btn>
         </v-flex>
       </v-layout>
