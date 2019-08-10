@@ -112,7 +112,6 @@ import firebase from "../firebase/init";
 import LongPress from "vue-directive-long-press";
 let db = firebase.firestore();
 export default {
-  name: "Test",
   directives: {
     "long-press": LongPress
   },

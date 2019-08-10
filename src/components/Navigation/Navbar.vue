@@ -28,7 +28,6 @@ import VueCookies from "vue-cookies";
 const NavDrawer = () =>
   import(/* webpackChunkName: "NavigationDrawer" */ "./NavigationDrawer");
 export default {
-  name: "Navbar",
   components: {
     NavDrawer
   },

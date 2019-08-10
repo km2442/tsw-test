@@ -49,7 +49,6 @@
 const ResultQuestions = () =>
   import(/* webpackChunkName: "ResultQuestions" */ "./ResultQuestions");
 export default {
-  name: "Result",
   props: ["points", "Questions", "Answers"],
   components: {
     ResultQuestions

@@ -73,7 +73,6 @@
 
 <script>
 export default {
-  name: "ResultQuestions",
   props: ["Questions", "Answers"],
   methods: {
     prepareTextArea(text) {

@@ -70,7 +70,6 @@
 import firebase from "firebase";
 import VueCookies from "vue-cookies";
 export default {
-  name: "NavigationDrawer",
   data() {
     return {
       links: [

@@ -185,7 +185,6 @@
 import firebase from "../../firebase/init";
 let db = firebase.firestore();
 export default {
-  name: "AdminQuestions",
   data() {
     return {
       Questions: [],

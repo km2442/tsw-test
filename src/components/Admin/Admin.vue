@@ -58,7 +58,6 @@ import firebase from "firebase";
 const AdminQuestions = () =>
   import(/* webpackChunkName: "AdminQuestions" */ "./AdminQuestions");
 export default {
-  name: "Admin",
   components: {
     AdminQuestions
   },

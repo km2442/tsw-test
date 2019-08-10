@@ -198,7 +198,6 @@
 import firebase from "../../firebase/init";
 let db = firebase.firestore();
 export default {
-  name: "EditQuestion",
   data() {
     return {
       Question: "",
