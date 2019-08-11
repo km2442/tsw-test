@@ -52,35 +52,35 @@ export default {
     return {
       imgs: [
         {
-          src: require("../assets/imgs/web-min.jpg"),
+          src: require("../assets/imgs/carousel-1.jpg"),
           text: "Technologie Sieci Web"
         },
         {
-          src: require("../assets/imgs/htmlcss-min.jpg"),
+          src: require("../assets/imgs/carousel-2.jpg"),
           text: "HTML i CSS"
         },
         {
-          src: require("../assets/imgs/js-min.jpeg"),
+          src: require("../assets/imgs/carousel-3.jpeg"),
           text: "Język Javascript"
         },
         {
-          src: require("../assets/imgs/php-min.png"),
+          src: require("../assets/imgs/carousel-4.png"),
           text: "Język PHP"
         },
         {
-          src: require("../assets/imgs/responsive-min.jpg"),
+          src: require("../assets/imgs/carousel-5.jpg"),
           text: "Responsywność"
         },
         {
-          src: require("../assets/imgs/mobile-min.jpg"),
+          src: require("../assets/imgs/carousel-6.jpg"),
           text: "Strony przystosowane dla urządzeń mobilnych"
         },
         {
-          src: require("../assets/imgs/semantic-min.jpg"),
+          src: require("../assets/imgs/carousel-7.jpg"),
           text: "Semantyczna Sieć Web"
         },
         {
-          src: require("../assets/imgs/easy-min.jpg"),
+          src: require("../assets/imgs/carousel-8.jpg"),
           text: "Technologie przyjazne dla użytkownika"
         }
       ]
