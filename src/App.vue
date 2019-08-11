@@ -37,7 +37,7 @@ export default {
         return this.$store.getters.snackbarState;
       },
       set(value) {
-        this.$store.commit("setSnackbarState", value);
+        this.$store.dispatch("setSnackbarState", value);
       }
     }
   }

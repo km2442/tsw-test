@@ -95,7 +95,7 @@ export default {
         .signOut()
         .then(() => {
           this.$router.push({ name: "Index" });
-          this.$store.commit("changeUser", undefined);
+          this.$store.dispatch("changeUser", undefined);
         });
     }
   },
@@ -105,7 +105,7 @@ export default {
         return this.$store.getters.navDrawer;
       },
       set(value) {
-        this.$store.commit("setNavDrawerState", value);
+        this.$store.dispatch("setNavDrawerState", value);
       }
     },
     darkMode: {

@@ -43,7 +43,7 @@ export default {
         return this.$store.getters.navDrawer;
       },
       set(value) {
-        this.$store.commit("setNavDrawerState", value);
+        this.$store.dispatch("setNavDrawerState", value);
       }
     },
     darkMode: {

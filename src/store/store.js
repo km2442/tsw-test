@@ -1,44 +1,36 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import snackbar from "./modules/snackbar"
+
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
     navDrawer: false,
-    user: null,
-    snackbarState: false,
-    snackbarMsg: null,
-    snackbarColor: null,
-    snackbarTimeout: 7500
+    user: null
   },
   mutations: {
     changeUser(state, user) {
       state.user = user
-    },
-    modifySnackbar(state, snack) {
-      state.snackbarState = snack.state;
-      state.snackbarMsg = snack.msg;
-      state.snackbarColor = snack.color;
-    },
-    setSnackbarState(state, payload) {
-      state.snackbarState = payload;
     },
     setNavDrawerState(state, nav) {
       state.navDrawer = nav;
     },
   },
   actions: {
-    modifySnackbar(context, snack) {
-      context.commit("modifySnackbar", snack)
-    }
+    changeUser({ commit }, user) {
+      commit("changeUser", user);
+    },
+    setNavDrawerState({ commit }, nav) {
+      commit("setNavDrawerState", nav);
+    },
   },
   getters: {
     navDrawer: state => state.navDrawer,
-    user: state => state.user,
-    snackbarState: state => state.snackbarState,
-    snackbarMsg: state => state.snackbarMsg,
-    snackbarColor: state => state.snackbarColor,
-    snackbarTimeout: state => state.snackbarTimeout
+    user: state => state.user
+  },
+  modules: {
+    snackbar
   }
 })

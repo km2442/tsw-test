@@ -80,7 +80,7 @@ export default {
         .signOut()
         .then(() => {
           this.$router.push({ name: "Index" });
-          this.$store.commit("changeUser", undefined);
+          this.$store.dispatch("changeUser", undefined);
         });
     }
   }
