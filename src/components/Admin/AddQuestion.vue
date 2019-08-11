@@ -33,7 +33,7 @@
                   />
                   <v-btn block rounded color="green" @click="$refs.fileInput.click()">
                     <span>Wybierz obrazek</span>
-                    <v-icon right>mdi-plus-circle</v-icon>
+                    <v-icon right>mdi-image-plus</v-icon>
                   </v-btn>
                 </v-flex>
                 <v-flex xs-12 md-6 class="mx-3">
@@ -179,7 +179,7 @@
             @click="addQuestion()"
           >
             <span>Dodaj pytanie</span>
-            <v-icon right>mdi-send</v-icon>
+            <v-icon right>mdi-database-plus</v-icon>
           </v-btn>
         </v-flex>
         <v-flex xs-12 md-6 class="mx-3">

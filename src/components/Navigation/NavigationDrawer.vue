@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-navigation-drawer app right disable-resize-watcher v-model="drawer">
-      <v-toolbar flat dark class="px-3 blue-grey darken-2" height="64px">
+      <v-toolbar text dark class="px-3 blue-grey darken-2" height="64px">
         <v-list class="py-0">
           <v-list-item @click="drawer = !drawer">
             <v-list-item-content>
@@ -38,7 +38,7 @@
               <v-list-item-title>Panel administracyjny</v-list-item-title>
             </v-list-item-content>
             <v-list-item-action>
-              <v-icon large class="primary--text">account_box</v-icon>
+              <v-icon large class="primary--text">mdi-account</v-icon>
             </v-list-item-action>
           </v-list-item>
           <v-list-item @click="signOutUser()">
@@ -46,7 +46,7 @@
               <v-list-item-title>Wyloguj</v-list-item-title>
             </v-list-item-content>
             <v-list-item-action>
-              <v-icon large class="primary--text">logout</v-icon>
+              <v-icon large class="primary--text">mdi-logout</v-icon>
             </v-list-item-action>
           </v-list-item>
         </div>

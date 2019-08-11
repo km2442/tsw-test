@@ -13,7 +13,7 @@
       :timeout="$store.getters.snackbarTimeout"
     >
       {{$store.getters.snackbarMsg}}
-      <v-btn flat outlined @click="snackbar = false">
+      <v-btn text outlined @click="snackbar = false">
         <span>Zamknij</span>
         <v-icon right>mdi-close</v-icon>
       </v-btn>
