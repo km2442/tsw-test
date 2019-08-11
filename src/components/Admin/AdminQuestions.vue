@@ -12,11 +12,11 @@
     <v-divider></v-divider>
     <div class="ma-0">
       <v-container fluid class="pa-1">
-        <v-layout row wrap justify-space-around>
+        <v-layout row wrap justify-space-around class="ma-0">
           <v-flex xs12 sm9 md10 class="pt-1 pb-0 px-2">
             <v-text-field
               solo-inverted
-              flat
+              text
               clearable
               hide-details
               v-model="search"
@@ -47,120 +47,7 @@
           :key="index"
           v-show="index >= (page-1)*maxOnPage && index < page*maxOnPage"
         >
-          <v-card class="light-grey darken-3 ma-2">
-            <v-card-title class="pt-2 pb-0 px-3">
-              <div>
-                <h3 class="headline mb-0">Pytanie {{index + 1}}</h3>
-                <div>{{Question.Question}}</div>
-              </div>
-            </v-card-title>
-            <div class="ma-2">
-              <div v-if="Question.Textarea" style="border: 1px dashed;" class="pa-1">
-                <p
-                  class="ma-0 pa-0"
-                  v-for="(row, index) in prepareTextArea(Question.Textarea)"
-                  :key="index"
-                >{{row}}</p>
-              </div>
-              <div v-if="Question.Image" class="pa-1">
-                <img :src="Question.Image" />
-              </div>
-            </div>
-            <v-divider></v-divider>
-            <div class="px-3">
-              <v-checkbox
-                disabled
-                :label="``"
-                v-model="Question.GoodAns[0]"
-                class="ma-0 pa-0 dont-break-out"
-              >
-                <span slot="label" class="mb-0">Odpowiedź A: {{Question.Ans1}}</span>
-              </v-checkbox>
-              <v-divider></v-divider>
-              <v-checkbox
-                disabled
-                :label="``"
-                v-model="Question.GoodAns[1]"
-                class="ma-0 pa-0 dont-break-out"
-              >
-                <span slot="label">Odpowiedź B: {{Question.Ans2}}</span>
-              </v-checkbox>
-              <v-divider></v-divider>
-              <v-checkbox
-                disabled
-                :label="``"
-                v-model="Question.GoodAns[2]"
-                class="ma-0 pa-0 dont-break-out"
-              >
-                <span slot="label">Odpowiedź C: {{Question.Ans3}}</span>
-              </v-checkbox>
-              <v-divider></v-divider>
-              <v-checkbox
-                disabled
-                :label="``"
-                v-model="Question.GoodAns[3]"
-                class="ma-0 pa-0 dont-break-out"
-              >
-                <span slot="label">Odpowiedź D: {{Question.Ans4}}</span>
-              </v-checkbox>
-            </div>
-            <v-divider></v-divider>
-            <div class="px-3 py-1">
-              <v-container class="pa-0">
-                <v-layout row wrap justify-space-between>
-                  <v-flex xs-12 md-6 class="mx-2">
-                    <v-btn
-                      block
-                      rounded
-                      color="green darken-3"
-                      router
-                      :to="{ name: 'EditQuestion', params: {questionId: Question.Id}}"
-                    >
-                      <span>Edytuj pytanie</span>
-                      <v-icon right>mdi-pencil</v-icon>
-                    </v-btn>
-                  </v-flex>
-                  <v-flex xs-12 md-6 class="mx-2">
-                    <v-dialog
-                      full-width
-                      v-model="delQuestion[index].del"
-                      persistent
-                      max-width="600"
-                    >
-                      <v-btn block rounded color="red" slot="activator">
-                        <span>Usuń pytanie</span>
-                        <v-icon right>mdi-delete</v-icon>
-                      </v-btn>
-                      <v-card>
-                        <v-card-title
-                          class="headline"
-                        >Czy na pewno chcesz usunąć pytanie {{Question.Id}}? Ta operacja jest nieodwracalna!</v-card-title>
-                        <v-card-text>Pytanie: {{Question.Question}}</v-card-text>
-                        <v-card-actions>
-                          <v-spacer></v-spacer>
-                          <v-btn
-                            color="red"
-                            flat
-                            outlined
-                            @click="deleteQuestion(Question.Id, index)"
-                          >
-                            <span>Tak, usuń</span>
-                            <v-icon right>mdi-delete</v-icon>
-                          </v-btn>
-                          <v-btn
-                            color="green"
-                            flat
-                            outlined
-                            @click="delQuestion[index].del = false"
-                          >Nie usuwaj!</v-btn>
-                        </v-card-actions>
-                      </v-card>
-                    </v-dialog>
-                  </v-flex>
-                </v-layout>
-              </v-container>
-            </div>
-          </v-card>
+          <SingleQuestion :index="index" :Question="Question" @deleteQuestion="deleteQuestion(Question.Id)"></SingleQuestion>
         </v-flex>
       </v-layout>
     </v-container>
@@ -184,11 +71,12 @@
 /* eslint-disable no-console */
 import firebase from "../../firebase/init";
 let db = firebase.firestore();
+const SingleQuestion = () =>
+  import(/* webpackChunkName: "SingleQuestion" */ "./SingleQuestion");
 export default {
   data() {
     return {
       Questions: [],
-      delQuestion: [],
       search: "",
       getQuestionsError: false,
       questionNumberOptions: [6, 10, 15, 30, 60, 120],
@@ -196,12 +84,9 @@ export default {
       page: 1
     };
   },
+  components: {SingleQuestion},
   methods: {
-    prepareTextArea(text) {
-      return text.split("\\n");
-    },
-    deleteQuestion(id, index) {
-      this.delQuestion[index].del = false;
+        deleteQuestion(id) {
       // delete doc from firestore
       db.collection("Questions")
         .doc(id)
@@ -234,10 +119,6 @@ export default {
         Textarea: question.data().Textarea,
         Image: question.data().Image
       }));
-      for (let i = 0; i < this.Questions.length; i++) {
-        this.delQuestion.push({});
-        this.$set(this.delQuestion[i], "del", false);
-      }
     }
   },
   created() {
