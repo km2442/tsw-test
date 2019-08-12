@@ -18,14 +18,15 @@
         <h4 class="headline py-3 text-center">Powodzenia!</h4>
       </div>
     </v-card>
-    <v-btn block rounded color="green darken-3 my-3" router :to="{ name: 'Test'}">Rozpocznij test!</v-btn>
+    <v-btn block rounded color="green darken-3 my-3" router :to="{ name: 'Test'}"
+    :class="{'animated pulse infinite': animatedBtn}" @mouseover="animatedBtn = true" @mouseleave="animatedBtn = false">Rozpocznij test!</v-btn>
   </div>
 </template>
 
 <script>
 export default {
   data() {
-    return {};
+    return {animatedBtn: false};
   }
 };
 </script>

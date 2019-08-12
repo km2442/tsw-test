@@ -1,16 +1,16 @@
 <template>
   <div class="mx-3">
     <h1 block large class="ma-3 text-center">QUIZ z Technologii Sieci Web</h1>
-    <div v-for="(Question, index) in Questions" :key="Question.Id">
-      <transition
-        enter-active-class="animated slideInLeft"
-        leave-active-class="animated slideOutLeft"
-        mode="out-in"
-      >
+    <transition
+      enter-active-class="animated flipInY faster"
+      leave-active-class="animated flipOutY faster"
+      mode="out-in"
+    >
+      <template v-for="(Question, index) in Questions">
         <v-card
           v-if="QuestionNumber-1 === index"
           class="light-grey darken-3 my-3"
-          key="Question.Id"
+          :key="Question.Id"
         >
           <v-card-title class="pt-2 pb-0 px-3">
             <div>
@@ -76,8 +76,8 @@
             </v-layout>
           </v-container>
         </v-card>
-      </transition>
-    </div>
+      </template>
+    </transition>
 
     <v-btn
       block
@@ -86,7 +86,9 @@
       color="green darken-3"
       class="mb-3"
       v-if="QuestionNumber < 30"
-      @click="nextQuestion()"
+      :class="{'animated shake': animatedBtn}"
+      @animationend="animatedBtn = false"
+      @click="nextQuestion(); animatedBtn = true;"
     >
       <span>Następne pytanie</span>
       <v-icon right large>mdi-step-forward</v-icon>
@@ -141,7 +143,8 @@ export default {
         }
       ],
       Answers: [],
-      getQuestionsError: false
+      getQuestionsError: false,
+      animatedBtn: false
     };
   },
   methods: {
