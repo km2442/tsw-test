@@ -20,7 +20,7 @@
           </v-card-title>
           <v-divider></v-divider>
           <v-container fluid class="pa-0">
-            <v-layout row wrap justify-space-around>
+            <v-layout row wrap justify-space-around class="ma-0">
               <v-flex xs12 md6 v-if="Questions[index].Textarea" class="py-1 px-5">
                 <div class="pa-2" style="border: 1px dashed;">
                   <p
@@ -30,8 +30,8 @@
                   >{{row}}</p>
                 </div>
               </v-flex>
-              <v-flex xs12 md6 v-if="Questions[index].Image" class="pa-1">
-                <div>
+              <v-flex xs12 md6 v-if="Questions[index].Image" class="pa-0">
+                <div class="text-center">
                   <img :src="Questions[index].Image" />
                 </div>
               </v-flex>
