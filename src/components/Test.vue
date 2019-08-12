@@ -2,8 +2,8 @@
   <div class="mx-3">
     <h1 block large class="ma-3 text-center">QUIZ z Technologii Sieci Web</h1>
     <transition
-      enter-active-class="animated flipInY faster"
-      leave-active-class="animated flipOutY faster"
+      enter-active-class="animated zoomInLeft fast"
+      leave-active-class="animated zoomOutRight fast"
       mode="out-in"
     >
       <template v-for="(Question, index) in Questions">
@@ -86,7 +86,7 @@
       color="green darken-3"
       class="mb-3"
       v-if="QuestionNumber < 30"
-      :class="{'animated shake': animatedBtn}"
+      :class="{'animated shake slow': animatedBtn}"
       @animationend="animatedBtn = false"
       @click="nextQuestion(); animatedBtn = true;"
     >

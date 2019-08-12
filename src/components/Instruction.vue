@@ -19,7 +19,7 @@
       </div>
     </v-card>
     <v-btn block rounded color="green darken-3 my-3" router :to="{ name: 'Test'}"
-    :class="{'animated pulse infinite': animatedBtn}" @mouseover="animatedBtn = true" @mouseleave="animatedBtn = false">Rozpocznij test!</v-btn>
+    :class="{'animated pulse slow infinite': animatedBtn}" @mouseover="animatedBtn = true" @mouseleave="animatedBtn = false">Rozpocznij test!</v-btn>
   </div>
 </template>
 
