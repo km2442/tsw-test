@@ -195,8 +195,9 @@
 <script>
 /* eslint-disable no-console */
 import firebase from "../../firebase/init";
+let db = firebase.firestore();
 export default {
-  props: ["buttons", "preloadedQuestion"],
+  props: ["buttons", "preload"],
   data() {
     return {
       Question: "",
@@ -216,15 +217,19 @@ export default {
     };
   },
   created() {
-    console.log(this.preloadedQuestion);
-    this.Question = this.preloadedQuestion.Question;
-    this.Ans1 = this.preloadedQuestion.Ans1;
-    this.Ans2 = this.preloadedQuestion.Ans2;
-    this.Ans3 = this.preloadedQuestion.Ans3;
-    this.Ans4 = this.preloadedQuestion.Ans4;
-    this.GoodAns = this.preloadedQuestion.GoodAns;
-    this.Textarea = this.preloadedQuestion.Textarea;
-    this.Image = this.preloadedQuestion.Image;
+    if (this.preload === "yes") {
+      let ref = db.collection("Questions").doc(this.$route.params.questionId);
+      ref.get().then(doc => {
+        this.Question = doc.data().Question;
+        this.Ans1 = doc.data().Ans1;
+        this.Ans2 = doc.data().Ans2;
+        this.Ans3 = doc.data().Ans3;
+        this.Ans4 = doc.data().Ans4;
+        this.GoodAns = doc.data().GoodAns;
+        this.Textarea = doc.data().Textarea;
+        this.Image = doc.data().Image;
+      });
+    }
   },
   methods: {
     prepareTextArea(text) {

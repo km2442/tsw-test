@@ -3,7 +3,7 @@
     <h1 block large class="ma-3 text-center">Dodaj pytanie</h1>
     <QuestionEditor
       :buttons="buttons"
-      :preloadedQuestion="{}"
+      preload="no"
       @acceptQuestion="addQuestion($event)"
     ></QuestionEditor>
   </div>
