@@ -62,18 +62,17 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <div class="text-center">
-      <v-btn rounded block @click="$vuetify.goTo('#app')" color="green darken-2">
-        <span>Wróć na górę</span>
-        <v-icon large right>mdi-arrow-collapse-up</v-icon>
-      </v-btn>
-    </div>
+    <goTop></goTop>
   </div>
 </template>
 
 <script>
+const goTop = () => import(/* webpackChunkName: "goTop" */ "./Tools/goTop");
 export default {
   props: ["Questions", "Answers"],
+  components: {
+    goTop
+  },
   methods: {
     prepareTextArea(text) {
       return text.split("\\n");

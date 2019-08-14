@@ -43,11 +43,16 @@
         :to="{ name: 'Instruction'}"
       >Przejdź do instrukcji wykonania testu</v-btn>
     </div>
+    <goTop></goTop>
   </div>
 </template>
 
 <script>
+const goTop = () => import(/* webpackChunkName: "goTop" */ "./Tools/goTop");
 export default {
+  components: {
+    goTop
+  },
   data() {
     return {
       imgs: [

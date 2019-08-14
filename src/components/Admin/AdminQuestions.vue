@@ -52,12 +52,6 @@
       </v-layout>
     </v-container>
     <div class="text-center">
-      <v-btn rounded block @click="$vuetify.goTo('#app')" color="green darken-2" class="my-3">
-        <span>Wróć na górę</span>
-        <v-icon large right>mdi-arrow-collapse-up</v-icon>
-      </v-btn>
-    </div>
-    <div class="text-center">
       <v-pagination
         color="green darken-2"
         v-model="page"

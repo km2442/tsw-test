@@ -49,6 +49,7 @@
       </v-layout>
     </v-container>
     <admin-questions v-if="showQuestions"></admin-questions>
+    <goTop></goTop>
   </div>
 </template>
 
@@ -57,9 +58,11 @@
 import firebase from "firebase";
 const AdminQuestions = () =>
   import(/* webpackChunkName: "AdminQuestions" */ "./AdminQuestions");
+const goTop = () => import(/* webpackChunkName: "goTop" */ "../Tools/goTop");
 export default {
   components: {
-    AdminQuestions
+    AdminQuestions,
+    goTop
   },
   data() {
     return {
