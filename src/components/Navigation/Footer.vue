@@ -1,5 +1,5 @@
 <template>
-  <v-footer height="auto">
+  <v-footer padless height="auto">
     <v-card class="flex" tile>
       <v-card-title class="white--text blue-grey darken-2">
         <v-spacer></v-spacer>
