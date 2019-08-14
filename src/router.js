@@ -14,6 +14,14 @@ const NotFound = () => import(/* webpackChunkName: "NotFound" */ './components/N
 
 Vue.use(Router)
 
+const auth = (to, from, next) => {
+  if (store.getters.user !== null && store.getters.user !== undefined) {
+    next();
+  } else {
+    next({ name: 'AdminLogin' });
+  }
+}
+
 export default new Router({
   routes: [
     {
@@ -53,49 +61,25 @@ export default new Router({
       path: '/admin',
       name: 'Admin',
       component: Admin,
-      beforeEnter: (to, from, next) => {
-        if (store.getters.user !== null && store.getters.user !== undefined) {
-          next();
-        } else {
-          next({ name: 'AdminLogin' });
-        }
-      }
+      beforeEnter: auth
     },
     {
       path: '/changepasswd',
       name: 'ChangeAdminPassword',
       component: ChangeAdminPassword,
-      beforeEnter: (to, from, next) => {
-        if (store.getters.user !== null && store.getters.user !== undefined) {
-          next();
-        } else {
-          next({ name: 'AdminLogin' });
-        }
-      }
+      beforeEnter: auth
     },
     {
       path: '/addQuestion',
       name: 'AddQuestion',
       component: AddQuestion,
-      beforeEnter: (to, from, next) => {
-        if (store.getters.user !== null && store.getters.user !== undefined) {
-          next();
-        } else {
-          next({ name: 'AdminLogin' });
-        }
-      }
+      beforeEnter: auth
     },
     {
       path: '/editQuestion/:questionId',
       name: 'EditQuestion',
       component: EditQuestion,
-      beforeEnter: (to, from, next) => {
-        if (store.getters.user !== null && store.getters.user !== undefined) {
-          next();
-        } else {
-          next({ name: 'AdminLogin' });
-        }
-      }
+      beforeEnter: auth
     },
     {
       path: '/404',
