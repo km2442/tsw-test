@@ -38,18 +38,29 @@
     </div>
     <v-divider></v-divider>
     <v-container fluid class="py-1 px-0">
-      <v-layout row wrap justify-space-around>
-        <v-flex
-          xs12
-          md6
-          lg4
-          v-for="(Question, index) in filteredQuestions"
-          :key="index"
-          v-show="index >= (page-1)*maxOnPage && index < page*maxOnPage"
-        >
-          <SingleQuestion :index="index" :Question="Question" @deleteQuestion="deleteQuestion(Question.Id)"></SingleQuestion>
-        </v-flex>
-      </v-layout>
+      <transition-group
+        enter-active-class="animated zoomIn delay-1s"
+        leave-active-class="animated zoomOut"
+        appear
+        tag="v-layout"
+        class="row wrap justify-space-around"
+      >
+        <template v-for="(Question, index) in filteredQuestions">
+          <v-flex
+            xs12
+            md6
+            lg4
+            :key="Question.Id"
+            v-if="index >= (page-1)*maxOnPage && index < page*maxOnPage"
+          >
+            <SingleQuestion
+              :index="Question.Id"
+              :Question="Question"
+              @deleteQuestion="deleteQuestion(Question.Id)"
+            ></SingleQuestion>
+          </v-flex>
+        </template>
+      </transition-group>
     </v-container>
     <div class="text-center">
       <v-pagination
@@ -78,9 +89,9 @@ export default {
       page: 1
     };
   },
-  components: {SingleQuestion},
+  components: { SingleQuestion },
   methods: {
-        deleteQuestion(id) {
+    deleteQuestion(id) {
       // delete doc from firestore
       db.collection("Questions")
         .doc(id)
