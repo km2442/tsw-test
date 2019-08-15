@@ -16,6 +16,7 @@
             v-if="scrollPos || hover"
             class="transition-swing"
             @click="$vuetify.goTo('#app')"
+            style="z-index: 4"
           >
             <span>{{hover ? 'Wróć na górę' : ''}}</span>
             <v-icon
