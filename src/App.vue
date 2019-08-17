@@ -40,6 +40,9 @@ export default {
         this.$store.dispatch("setSnackbarState", value);
       }
     }
+  },
+  created() {
+    this.$store.dispatch('tryAutoLogin');
   }
 };
 </script>

@@ -49,6 +49,23 @@ const actions = {
             })
             .catch(error => console.log(error))
     },
+    tryAutoLogin({ commit, dispatch }) {
+        const token = localStorage.getItem('token')
+        if (!token) {
+            return
+        }
+        const expirationDate = localStorage.getItem('expirationDate')
+        const now = new Date()
+        if (now >= expirationDate) {
+            return
+        }
+        const userId = localStorage.getItem('userId')
+        commit('authUser', {
+            token: token,
+            userId: userId
+        })
+        dispatch('fetchUserdata');
+    },
     logout({ commit }) {
         commit('clearAuthData')
         localStorage.removeItem('expirationDate')
@@ -70,7 +87,8 @@ const actions = {
 }
 
 const getters = {
-    user: state => state.user
+    user: state => state.user,
+    isAuthenticated: (state) => state.idToken !== null
 }
 
 export default {
