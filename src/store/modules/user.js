@@ -7,14 +7,17 @@ const state = {
 }
 
 const mutations = {
-    authUser (state, userData) {
+    authUser(state, userData) {
         state.idToken = userData.token
         state.userId = userData.userId
-      },
-      clearAuthData (state) {
+    },
+    storeUser(state, user) {
+        state.user = user
+    },
+    clearAuthData(state) {
         state.idToken = null
         state.userId = null
-      }
+    }
 }
 
 const actions = {
@@ -46,13 +49,24 @@ const actions = {
             })
             .catch(error => console.log(error))
     },
-    logout ({commit}) {
+    logout({ commit }) {
         commit('clearAuthData')
         localStorage.removeItem('expirationDate')
         localStorage.removeItem('token')
         localStorage.removeItem('userId')
         router.replace('/')
-      },
+    },
+    fetchUserData({ commit, state }) {
+        if (!state.idToken) {
+            return
+        }
+        globalAxios.get('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=' + state.idToken)
+            .then(res => {
+                const data = res.data
+                commit('storeUser', res.data)
+            })
+            .catch(error => console.log(error))
+    }
 }
 
 const getters = {
