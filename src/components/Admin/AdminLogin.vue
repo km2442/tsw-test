@@ -79,6 +79,7 @@ export default {
           .signInWithEmailAndPassword(this.email, this.password)
           .then(user => {
             this.$store.dispatch("changeUser", user);
+            console.log(user);
             this.$router.push({ name: "Admin" });
           })
           .catch(err => {

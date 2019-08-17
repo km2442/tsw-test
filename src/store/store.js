@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import user from "./modules/user"
 import snackbar from "./modules/snackbar"
 
 Vue.use(Vuex);
@@ -8,29 +9,22 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
   state: {
     navDrawer: false,
-    user: null
   },
   mutations: {
-    changeUser(state, user) {
-      state.user = user
-    },
     setNavDrawerState(state, nav) {
       state.navDrawer = nav;
     },
   },
   actions: {
-    changeUser({ commit }, user) {
-      commit("changeUser", user);
-    },
     setNavDrawerState({ commit }, nav) {
       commit("setNavDrawerState", nav);
     },
   },
   getters: {
-    navDrawer: state => state.navDrawer,
-    user: state => state.user
+    navDrawer: state => state.navDrawer
   },
   modules: {
+    user,
     snackbar
   }
 })
