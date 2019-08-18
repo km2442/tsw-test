@@ -74,17 +74,7 @@ export default {
     login() {
       if (this.email && this.password) {
         this.feedback = null;
-        firebase
-          .auth()
-          .signInWithEmailAndPassword(this.email, this.password)
-          .then(user => {
-            this.$store.dispatch("changeUser", user);
-            console.log(user);
-            this.$router.push({ name: "Admin" });
-          })
-          .catch(err => {
-            this.feedback = err.message;
-          });
+        this.$store.dispatch('login', {email: this.email, password: this.password});
       } else {
         this.feedback = "E-mail, oraz hasło muszą zostać wypełnione!";
       }

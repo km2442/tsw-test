@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="mx-3">
-      <h1 block large class="ma-3 text-center">Witaj {{$store.getters.user.user.email}}</h1>
+      <h1 block large class="ma-3 text-center">Witaj {{$store.getters.user.email}}</h1>
       <v-container class="pa-1">
         <v-layout row wrap justify-space-between>
           <v-flex xs-12 md-6 class="mx-3">

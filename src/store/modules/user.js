@@ -8,25 +8,22 @@ const state = {
 
 const mutations = {
     authUser(state, userData) {
-        state.idToken = userData.token
-        state.userId = userData.userId
+        state.idToken = userData.token;
+        state.userId = userData.userId;
     },
     storeUser(state, user) {
-        state.user = user
+        state.user = user.users[0];
     },
     clearAuthData(state) {
-        state.idToken = null
-        state.userId = null
+        state.idToken = null;
+        state.userId = null;
     }
 }
 
 const actions = {
-    changeUser({ commit }, user) {
-        commit("changeUser", user);
-    },
     setLogoutTimer({ commit }, expirationTime) {
         setTimeout(() => {
-            commit('clearAuthData')
+            commit('clearAuthData');
         }, expirationTime * 1000)
     },
     login({ commit, dispatch }, authData) {
@@ -37,58 +34,62 @@ const actions = {
         })
             .then(res => {
                 const now = new Date()
-                const expirationDate = new Date(now.getTime() + res.data.expiresIn * 1000)
-                localStorage.setItem('token', res.data.idToken)
-                localStorage.setItem('userId', res.data.localId)
-                localStorage.setItem('expirationDate', expirationDate)
+                const expirationDate = new Date(now.getTime() + res.data.expiresIn * 1000);
+                console.log(res.data);
+                localStorage.setItem('token', res.data.idToken);
+                localStorage.setItem('userId', res.data.localId);
+                localStorage.setItem('expirationDate', expirationDate);
                 commit('authUser', {
                     token: res.data.idToken,
                     userId: res.data.localId
                 })
-                dispatch('setLogoutTimer', res.data.expiresIn)
+                dispatch('setLogoutTimer', res.data.expiresIn);
+                dispatch('fetchUserData');
+                router.push({ name: "Admin" });
             })
             .catch(error => console.log(error))
     },
     tryAutoLogin({ commit, dispatch }) {
-        const token = localStorage.getItem('token')
+        const token = localStorage.getItem('token');
         if (!token) {
             return
         }
-        const expirationDate = localStorage.getItem('expirationDate')
-        const now = new Date()
+        const expirationDate = localStorage.getItem('expirationDate');
+        const now = new Date();
         if (now >= expirationDate) {
             return
         }
-        const userId = localStorage.getItem('userId')
+        const userId = localStorage.getItem('userId');
         commit('authUser', {
             token: token,
             userId: userId
         })
-        dispatch('fetchUserdata');
+        dispatch('fetchUserData');
     },
     logout({ commit }) {
         commit('clearAuthData')
-        localStorage.removeItem('expirationDate')
-        localStorage.removeItem('token')
-        localStorage.removeItem('userId')
-        router.replace('/')
+        localStorage.removeItem('expirationDate');
+        localStorage.removeItem('token');
+        localStorage.removeItem('userId');
+        router.replace('/');
     },
     fetchUserData({ commit, state }) {
         if (!state.idToken) {
             return
         }
-        globalAxios.get('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=' + state.idToken)
+        axios.post('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyC7TWgPiFeplz8-ZU8Zl936-vEbL1zPyJk', {idToken: state.idToken})
             .then(res => {
-                const data = res.data
-                commit('storeUser', res.data)
+                const data = res.data;
+                console.log(res.data);
+                commit('storeUser', res.data);
             })
-            .catch(error => console.log(error))
+            .catch(error => console.log(error));
     }
 }
 
 const getters = {
     user: state => state.user,
-    isAuthenticated: (state) => state.idToken !== null
+    isAuthenticated: state => state.idToken !== null
 }
 
 export default {

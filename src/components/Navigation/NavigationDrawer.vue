@@ -30,9 +30,9 @@
           </v-list-item-action>
         </v-list-item>
         <!-- Admin Menu -->
-        <div v-if="$store.getters.user !== null && $store.getters.user !== undefined">
+        <div v-if="auth">
           <v-divider></v-divider>
-          <h3 class="mt-2 mb-0 text-center">{{$store.getters.user.user.email}}</h3>
+          <h3 class="mt-2 mb-0 text-center">{{$store.getters.user.email}}</h3>
           <v-list-item router :to="{name: 'Admin'}" @click="drawer = !drawer">
             <v-list-item-content>
               <v-list-item-title>Panel administracyjny</v-list-item-title>
@@ -90,13 +90,7 @@ export default {
   methods: {
     signOutUser() {
       this.drawer = !this.drawer;
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          this.$router.push({ name: "Index" });
-          this.$store.dispatch("changeUser", undefined);
-        });
+      this.$store.dispatch("logout");
     }
   },
   computed: {
@@ -116,6 +110,9 @@ export default {
         this.$vuetify.theme.dark = value;
         VueCookies.set("Theme", value);
       }
+    },
+    auth() {
+      return this.$store.getters.isAuthenticated;
     }
   }
 };

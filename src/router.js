@@ -15,7 +15,7 @@ const NotFound = () => import(/* webpackChunkName: "NotFound" */ './components/N
 Vue.use(Router)
 
 const auth = (to, from, next) => {
-  if (store.getters.user !== null && store.getters.user !== undefined) {
+  if (store.getters.isAuthenticated) {
     next();
   } else {
     next({ name: 'AdminLogin' });
@@ -55,13 +55,24 @@ export default new Router({
     {
       path: '/adminlogin',
       name: 'AdminLogin',
-      component: AdminLogin
+      component: AdminLogin,
+      beforeEnter: (to, from, next) => {
+        if (store.getters.isAuthenticated) {
+          next({name: 'Admin'});
+        } else {
+          next();
+        }
+      }
     },
     {
       path: '/admin',
       name: 'Admin',
       component: Admin,
       beforeEnter: auth
+    },
+    {
+      path: '/administrator',
+      redirect: '/admin'
     },
     {
       path: '/changepasswd',
