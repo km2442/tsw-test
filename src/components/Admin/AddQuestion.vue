@@ -1,18 +1,15 @@
 <template>
   <div class="mb-4 mx-3">
     <h1 block large class="ma-3 text-center">Dodaj pytanie</h1>
-    <QuestionEditor
-      :buttons="buttons"
-      preload="no"
-      @acceptQuestion="addQuestion($event)"
-    ></QuestionEditor>
+    <QuestionEditor :buttons="buttons" preload="no" @acceptQuestion="addQuestion($event)"></QuestionEditor>
   </div>
 </template>
 
 <script>
 /* eslint-disable no-console */
 import firebase from "../../firebase/init";
-import QuestionEditor from "./QuestionEditor";
+const QuestionEditor = () =>
+  import(/* webpackChunkName: "QuestionEditor" */ "./QuestionEditor");
 let db = firebase.firestore();
 export default {
   components: {

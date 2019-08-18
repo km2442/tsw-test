@@ -77,7 +77,7 @@
 import firebase from "../../firebase/init";
 let db = firebase.firestore();
 const SingleQuestion = () =>
-  import(/* webpackChunkName: "SingleQuestion" */ "./SingleQuestion");
+  import(/* webpackChunkName: "AdminQuestions" */ "./SingleQuestion");
 export default {
   data() {
     return {

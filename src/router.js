@@ -8,8 +8,8 @@ const Result = () => import(/* webpackChunkName: "Result" */ './components/Resul
 const Admin = () => import(/* webpackChunkName: "Admin" */ './components/Admin/Admin')
 const ChangeAdminPassword = () => import(/* webpackChunkName: "ChangeAdminPassword" */ './components/Admin/ChangeAdminPassword')
 const AdminLogin = () => import(/* webpackChunkName: "AdminLogin" */ './components/Admin/AdminLogin')
-const AddQuestion = () => import(/* webpackChunkName: "AddQuestion" */ './components/Admin/AddQuestion')
-const EditQuestion = () => import(/* webpackChunkName: "EditQuestion" */ './components/Admin/EditQuestion')
+const AddQuestion = () => import(/* webpackChunkName: "QuestionEditor" */ './components/Admin/AddQuestion')
+const EditQuestion = () => import(/* webpackChunkName: "QuestionEditor" */ './components/Admin/EditQuestion')
 const NotFound = () => import(/* webpackChunkName: "NotFound" */ './components/NotFound')
 
 Vue.use(Router)
