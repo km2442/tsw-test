@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import { store } from './store/store'
-import { timeout } from 'q';
 const Index = () => import(/* webpackChunkName: "Index" */ './components/Index')
 const Instruction = () => import(/* webpackChunkName: "Instruction" */ './components/Instruction')
 const Test = () => import(/* webpackChunkName: "Test" */ './components/Test')

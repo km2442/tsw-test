@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-navigation-drawer app right disable-resize-watcher v-model="drawer">
+    <v-navigation-drawer app right disable-resize-watcher v-model="drawer" width="300px">
       <v-toolbar text dark class="px-3 blue-grey darken-2" height="64px">
         <v-list class="py-0">
           <v-list-item @click="drawer = !drawer">
@@ -67,7 +67,6 @@
 </template>
 
 <script>
-import firebase from "firebase";
 import VueCookies from "vue-cookies";
 export default {
   data() {
