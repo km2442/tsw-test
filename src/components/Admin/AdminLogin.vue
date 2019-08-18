@@ -52,7 +52,6 @@
 
 <script>
 /* eslint-disable no-console */
-import firebase from "../../firebase/init";
 export default {
   data() {
     return {

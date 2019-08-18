@@ -35,7 +35,6 @@ const actions = {
             .then(res => {
                 const now = new Date()
                 const expirationDate = new Date(now.getTime() + res.data.expiresIn * 1000);
-                console.log(res.data);
                 localStorage.setItem('token', res.data.idToken);
                 localStorage.setItem('userId', res.data.localId);
                 localStorage.setItem('expirationDate', expirationDate);
@@ -64,6 +63,7 @@ const actions = {
             token: token,
             userId: userId
         })
+        dispatch('setLogoutTimer', expirationDate - now);
         dispatch('fetchUserData');
     },
     logout({ commit }) {
@@ -80,10 +80,12 @@ const actions = {
         axios.post('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyC7TWgPiFeplz8-ZU8Zl936-vEbL1zPyJk', {idToken: state.idToken})
             .then(res => {
                 const data = res.data;
-                console.log(res.data);
                 commit('storeUser', res.data);
             })
             .catch(error => console.log(error));
+    },
+    changeUserPassword({commit}, auth) {
+
     }
 }
 

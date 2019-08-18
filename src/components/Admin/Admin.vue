@@ -78,13 +78,7 @@ export default {
       }
     },
     signOutUser() {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          this.$router.push({ name: "Index" });
-          this.$store.dispatch("changeUser", undefined);
-        });
+      this.$store.dispatch("logout");
     }
   }
 };
