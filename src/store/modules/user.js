@@ -1,6 +1,9 @@
 import axios from "axios"
 import router from '../../router'
 
+axios.defaults.baseURL = "https://identitytoolkit.googleapis.com/v1";
+const apiKey = "?key=AIzaSyC7TWgPiFeplz8-ZU8Zl936-vEbL1zPyJk";
+
 const state = {
     idToken: null,
     userId: null,
@@ -33,7 +36,7 @@ const actions = {
         commit('setLogoutTimeout', timeout);
     },
     login({ commit, dispatch }, authData) {
-        axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyC7TWgPiFeplz8-ZU8Zl936-vEbL1zPyJk', {
+        axios.post('/accounts:signInWithPassword' + apiKey, {
             email: authData.email,
             password: authData.password,
             returnSecureToken: true
@@ -54,7 +57,7 @@ const actions = {
             })
             .catch(error => console.log(error))
     },
-    tryAutoLogin({ commit, dispatch }) {
+    tryAutoLogin({ dispatch, commit }) {
         const token = localStorage.getItem('token');
         if (!token) return;
         else {
@@ -75,7 +78,7 @@ const actions = {
             }
         }
     },
-    logout({ commit, state }) {
+    logout({ dispatch, commit, state }) {
         commit('clearAuthData')
         dispatch('clearLocalStorage');
         clearTimeout(state.logoutTomeout);
@@ -90,7 +93,7 @@ const actions = {
     fetchUserData({ commit, state }) {
         if (!state.idToken) return;
         else {
-            axios.post('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyC7TWgPiFeplz8-ZU8Zl936-vEbL1zPyJk', { idToken: state.idToken })
+            axios.post('/accounts:lookup' + apiKey, { idToken: state.idToken })
                 .then(res => {
                     const data = res.data;
                     commit('storeUser', res.data);
@@ -98,8 +101,26 @@ const actions = {
                 .catch(error => console.log(error));
         }
     },
-    changeUserPassword({commit}, auth) {
-
+    changeUserPassword({ dispatch, state }, auth) {
+        axios.post('/accounts:update' + apiKey, {
+            idToken: state.idToken,
+            password: auth,
+            returnSecureToken: false
+        }).then(res => {
+            dispatch('logout');
+            router.replace('/adminlogin');
+            dispatch('modifySnackbar', {
+                snackbarState: true,
+                snackbarMsg: 'Hasło zostało zmienione',
+                snackbarColor: 'info'
+            })
+        }).catch(error => {
+            dispatch('modifySnackbar', {
+                snackbarState: true,
+                snackbarMsg: error,
+                snackbarColor: 'error'
+            })
+        })
     }
 }
 

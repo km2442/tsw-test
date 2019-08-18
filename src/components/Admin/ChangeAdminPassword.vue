@@ -4,19 +4,11 @@
       <v-card class="elevation-12 pb-1">
         <v-toolbar color="green darken-3">
           <v-spacer></v-spacer>
-          <v-toolbar-title wrap>Zmień hasło dla {{$store.getters.user.user.email}}</v-toolbar-title>
+          <v-toolbar-title wrap>Zmień hasło dla {{$store.getters.user.email}}</v-toolbar-title>
           <v-spacer></v-spacer>
         </v-toolbar>
         <v-card-text class="pa-3">
           <v-form v-model="inputValidated" @submit.prevent="changePassword()">
-            <v-text-field
-              v-model="oldPasswd"
-              prepend-icon="mdi-lock"
-              label="Stare hasło"
-              :rules="[rules.required, rules.counter]"
-              color="green"
-              type="password"
-            ></v-text-field>
             <v-divider></v-divider>
             <v-text-field
               v-model="newPasswd"
@@ -47,7 +39,7 @@
           <v-flex xs-12 md-6 class="mx-2" @click="changePassword()">
             <v-btn
               block
-              :disabled="!inputValidated || !oldPasswd.length > 7 || !newPasswd.length > 7 || !repeatPasswd.length > 7"
+              :disabled="!inputValidated || !newPasswd.length > 7 || !repeatPasswd.length > 7"
               rounded
               color="green darken-3"
             >
@@ -68,12 +60,10 @@
 </template>
 
 <script>
-import firebase from "firebase";
 export default {
   data() {
     return {
       inputValidated: null,
-      oldPasswd: "",
       newPasswd: "",
       repeatPasswd: "",
       feedback: null,
@@ -88,28 +78,7 @@ export default {
   methods: {
     changePassword() {
       this.feedback = null;
-      firebase
-        .auth()
-        .currentUser.reauthenticateAndRetrieveDataWithCredential(
-          firebase.auth.EmailAuthProvider.credential(
-            firebase.auth().currentUser.email,
-            this.oldPasswd
-          )
-        )
-        .then(() => {
-          firebase
-            .auth()
-            .currentUser.updatePassword(this.newPasswd)
-            .then(() => {
-              this.$router.push({ name: "Admin" });
-            })
-            .catch(error => {
-              this.feedback = error.message;
-            });
-        })
-        .catch(error => {
-          this.feedback = error.message;
-        });
+      this.$store.dispatch('changeUserPassword', this.newPasswd);
     }
   }
 };
