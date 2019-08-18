@@ -50,39 +50,45 @@ const actions = {
     },
     tryAutoLogin({ commit, dispatch }) {
         const token = localStorage.getItem('token');
-        if (!token) {
-            return
+        if (!token) return;
+        else {
+            const expirationDate = new Date(localStorage.getItem('expirationDate'));
+            const now = new Date();
+            if (now >= expirationDate) {
+                dispatch('clearLocalStorage');
+                return;
+            }
+            else {
+                const userId = localStorage.getItem('userId');
+                commit('authUser', {
+                    token: token,
+                    userId: userId
+                })
+                dispatch('setLogoutTimer', expirationDate - now);
+                dispatch('fetchUserData');
+            }
         }
-        const expirationDate = localStorage.getItem('expirationDate');
-        const now = new Date();
-        if (now >= expirationDate) {
-            return
-        }
-        const userId = localStorage.getItem('userId');
-        commit('authUser', {
-            token: token,
-            userId: userId
-        })
-        dispatch('setLogoutTimer', expirationDate - now);
-        dispatch('fetchUserData');
     },
     logout({ commit }) {
         commit('clearAuthData')
+        dispatch('clearLocalStorage');
+        router.replace('/');
+    },
+    clearLocalStorage() {
         localStorage.removeItem('expirationDate');
         localStorage.removeItem('token');
         localStorage.removeItem('userId');
-        router.replace('/');
     },
     fetchUserData({ commit, state }) {
-        if (!state.idToken) {
-            return
+        if (!state.idToken) return;
+        else {
+            axios.post('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyC7TWgPiFeplz8-ZU8Zl936-vEbL1zPyJk', { idToken: state.idToken })
+                .then(res => {
+                    const data = res.data;
+                    commit('storeUser', res.data);
+                })
+                .catch(error => console.log(error));
         }
-        axios.post('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyC7TWgPiFeplz8-ZU8Zl936-vEbL1zPyJk', {idToken: state.idToken})
-            .then(res => {
-                const data = res.data;
-                commit('storeUser', res.data);
-            })
-            .catch(error => console.log(error));
     },
     changeUserPassword({commit}, auth) {
 
