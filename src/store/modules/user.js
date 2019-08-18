@@ -1,9 +1,11 @@
 import axios from "axios"
+import router from '../../router'
 
 const state = {
     idToken: null,
     userId: null,
-    user: null
+    user: null,
+    logoutTomeout: null
 }
 
 const mutations = {
@@ -17,14 +19,18 @@ const mutations = {
     clearAuthData(state) {
         state.idToken = null;
         state.userId = null;
+    },
+    setLogoutTimeout(state, payload) {
+        state.logoutTomeout = payload;
     }
 }
 
 const actions = {
     setLogoutTimer({ commit }, expirationTime) {
-        setTimeout(() => {
+        const timeout = setTimeout(() => {
             commit('clearAuthData');
-        }, expirationTime * 1000)
+        }, expirationTime * 1000);
+        commit('setLogoutTimeout', timeout);
     },
     login({ commit, dispatch }, authData) {
         axios.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyC7TWgPiFeplz8-ZU8Zl936-vEbL1zPyJk', {
@@ -64,14 +70,16 @@ const actions = {
                     token: token,
                     userId: userId
                 })
-                dispatch('setLogoutTimer', expirationDate - now);
+                dispatch('setLogoutTimer', (expirationDate - now) / 1000);
                 dispatch('fetchUserData');
             }
         }
     },
-    logout({ commit }) {
+    logout({ commit, state }) {
         commit('clearAuthData')
         dispatch('clearLocalStorage');
+        clearTimeout(state.logoutTomeout);
+        commit('setLogoutTimeout', null);
         router.replace('/');
     },
     clearLocalStorage() {
