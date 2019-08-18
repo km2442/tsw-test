@@ -13,7 +13,7 @@
             :fab="hover ? false : true"
             :elevation="10"
             color="primary"
-            v-if="scrollPos || hover"
+            v-show="scrollPos || hover"
             class="transition-swing"
             @click="$vuetify.goTo('#app')"
             style="z-index: 4"
