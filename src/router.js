@@ -48,7 +48,7 @@ export default new Router({
         if (to.params.points >= 0) {
           next()
         } else {
-          next({ name: 'NotFound' })
+          next("/")
         }
       }
     },

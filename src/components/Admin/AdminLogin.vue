@@ -3,13 +3,13 @@
     <v-content>
       <v-container fluid fill-height>
         <v-layout align-center justify-center>
-          <v-flex xs12 sm8 md6 md5 lg4>
+          <v-flex xs12 sm10 md8 md6 lg4>
             <v-card class="elevation-12">
               <v-toolbar color="green darken-3">
                 <v-toolbar-title>Logowanie</v-toolbar-title>
               </v-toolbar>
               <v-card-text>
-                <v-form v-model="inputValidated" @submit.prevent="login()">
+                <v-form v-model="inputValidated" @submit.prevent>
                   <v-text-field
                     v-model="email"
                     prepend-icon="mdi-account"
@@ -51,6 +51,7 @@
 </template>
 
 <script>
+import { constants } from "fs";
 /* eslint-disable no-console */
 export default {
   data() {
@@ -73,7 +74,10 @@ export default {
     login() {
       if (this.email && this.password) {
         this.feedback = null;
-        this.$store.dispatch('login', {email: this.email, password: this.password});
+        this.$store.dispatch("login", {
+          email: this.email,
+          password: this.password
+        });
       } else {
         this.feedback = "E-mail, oraz hasło muszą zostać wypełnione!";
       }

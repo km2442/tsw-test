@@ -39,8 +39,8 @@
     <v-divider></v-divider>
     <v-container fluid class="py-1 px-0">
       <transition-group
-        enter-active-class="animated zoomIn delay-1s"
-        leave-active-class="animated zoomOut"
+        enter-active-class="animated flipInY delay-1s"
+        leave-active-class="animated flipOutY"
         appear
         tag="v-layout"
         class="row wrap justify-space-around"
@@ -51,7 +51,7 @@
             md6
             lg4
             :key="Question.Id"
-            v-if="index >= (page-1)*maxOnPage && index < page*maxOnPage"
+            v-show="index >= (page-1)*maxOnPage && index < page*maxOnPage"
           >
             <SingleQuestion
               :index="Question.Id"
@@ -105,25 +105,34 @@ export default {
           console.log(err);
         });
     },
-    async fetchDataFromFirestore() {
-      const firestoreData = await db.collection("Questions").get();
-      const foundQuestions = firestoreData.docs;
+    fetchDataFromFirestore() {
+      firebase
+        .auth()
+        .signInWithCustomToken(this.$store.getters.token)
+        .then(user => {
+          db.collection("Questions").get()
+          .then(data => {
+            console.log(data);
+          //   const foundQuestions = firestoreData.docs;
 
-      if (!foundQuestions) {
-        this.getQuestionsError = true;
-        throw console.error("Cant fetch data from database!");
-      }
-      this.Questions = foundQuestions.map(question => ({
-        Id: question.id,
-        Question: question.data().Question,
-        Ans1: question.data().Ans1,
-        Ans2: question.data().Ans2,
-        Ans3: question.data().Ans3,
-        Ans4: question.data().Ans4,
-        GoodAns: question.data().GoodAns,
-        Textarea: question.data().Textarea,
-        Image: question.data().Image
-      }));
+          // if (!foundQuestions) {
+          //   this.getQuestionsError = true;
+          //   throw console.error("Cant fetch data from database!");
+          // }
+          // this.Questions = foundQuestions.map(question => ({
+          //   Id: question.id,
+          //   Question: question.data().Question,
+          //   Ans1: question.data().Ans1,
+          //   Ans2: question.data().Ans2,
+          //   Ans3: question.data().Ans3,
+          //   Ans4: question.data().Ans4,
+          //   GoodAns: question.data().GoodAns,
+          //   Textarea: question.data().Textarea,
+          //   Image: question.data().Image
+          // }));
+          })
+          
+        });
     }
   },
   created() {
