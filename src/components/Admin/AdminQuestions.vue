@@ -37,6 +37,7 @@
       </v-container>
     </div>
     <v-divider></v-divider>
+
     <v-container fluid class="py-1 px-0">
       <transition-group
         enter-active-class="animated flipInY delay-1s"
@@ -74,8 +75,7 @@
 
 <script>
 /* eslint-disable no-console */
-import firebase from "../../firebase/init";
-let db = firebase.firestore();
+import axios from "../../js/axiosData";
 const SingleQuestion = () =>
   import(/* webpackChunkName: "AdminQuestions" */ "./SingleQuestion");
 export default {
@@ -106,32 +106,32 @@ export default {
         });
     },
     fetchDataFromFirestore() {
-      firebase
-        .auth()
-        .signInWithCustomToken(this.$store.getters.token)
-        .then(user => {
-          db.collection("Questions").get()
-          .then(data => {
-            console.log(data);
-          //   const foundQuestions = firestoreData.docs;
-
-          // if (!foundQuestions) {
-          //   this.getQuestionsError = true;
-          //   throw console.error("Cant fetch data from database!");
-          // }
-          // this.Questions = foundQuestions.map(question => ({
-          //   Id: question.id,
-          //   Question: question.data().Question,
-          //   Ans1: question.data().Ans1,
-          //   Ans2: question.data().Ans2,
-          //   Ans3: question.data().Ans3,
-          //   Ans4: question.data().Ans4,
-          //   GoodAns: question.data().GoodAns,
-          //   Textarea: question.data().Textarea,
-          //   Image: question.data().Image
-          // }));
-          })
-          
+      axios
+        .get(
+          "Questions?pageSize=100",
+          {
+            headers: {
+              Authorization: "Bearer " + this.$store.getters.token
+            }
+          }
+        )
+        .then(data => {
+          const foundQuestions = data.data.documents;
+          if (!foundQuestions) {
+            this.getQuestionsError = true;
+            throw console.error("Cant fetch data from database!");
+          }
+          this.Questions = foundQuestions.map(question => ({
+            Id: question.name.match(/(\b[0-z]*\b)$/g)[0],
+            Question: question.fields.Question.stringValue,
+            Ans1: question.fields.Ans1.stringValue,
+            Ans2: question.fields.Ans2.stringValue,
+            Ans3: question.fields.Ans3.stringValue,
+            Ans4: question.fields.Ans4.stringValue,
+            GoodAns: question.fields.GoodAns,
+            Textarea: question.fields.Textarea.stringValue,
+            Image: question.fields.Image.stringValue
+          }));
         });
     }
   },
