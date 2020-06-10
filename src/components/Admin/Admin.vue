@@ -55,7 +55,6 @@
 
 <script>
 /* eslint-disable no-console */
-import firebase from "firebase";
 const AdminQuestions = () =>
   import(/* webpackChunkName: "AdminQuestions" */ "./AdminQuestions");
 const goTop = () => import(/* webpackChunkName: "goTop" */ "../Tools/goTop");

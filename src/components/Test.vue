@@ -120,9 +120,8 @@
 
 <script>
 /* eslint-disable no-console */
-import firebase from "../firebase/init";
+import axios from "../js/axiosData";
 import LongPress from "vue-directive-long-press";
-let db = firebase.firestore();
 export default {
   directives: {
     "long-press": LongPress
@@ -222,28 +221,37 @@ export default {
       });
     },
     async fetchDataFromFirestore() {
-      const firestoreData = await db.collection("Questions").get();
-      const foundQuestions = firestoreData.docs;
-
-      if (!foundQuestions) {
-        this.getQuestionsError = true;
-        throw console.error("Cant fetch data from database!");
-      }
-      const unshuffledQuestions = foundQuestions.map(question => ({
-        Id: question.id,
-        Question: question.data().Question,
-        Ans1: question.data().Ans1,
-        Ans2: question.data().Ans2,
-        Ans3: question.data().Ans3,
-        Ans4: question.data().Ans4,
-        GoodAns: question.data().GoodAns,
-        Textarea: question.data().Textarea,
-        Image: question.data().Image
-      }));
-      const shuffledQuestions = this.shuffleArray(unshuffledQuestions);
-      this.Questions = shuffledQuestions.map(question =>
-        this.shuffleAnswers(question)
-      );
+      var unshuffledQuestions;
+      axios
+        .get("Questions?pageSize=100")
+        .then(data => {
+          const foundQuestions = data.data.documents;
+          if (!foundQuestions) {
+            throw console.error("Cant fetch data from database!");
+          }
+          unshuffledQuestions = foundQuestions.map(question => ({
+            Id: question.name.match(/(\b[0-z]*\b)$/g)[0],
+            Question: question.fields.Question.stringValue,
+            Ans1: question.fields.Ans1.stringValue,
+            Ans2: question.fields.Ans2.stringValue,
+            Ans3: question.fields.Ans3.stringValue,
+            Ans4: question.fields.Ans4.stringValue,
+            GoodAns: [
+              question.fields.GoodAns.arrayValue.values[0].booleanValue,
+              question.fields.GoodAns.arrayValue.values[1].booleanValue,
+              question.fields.GoodAns.arrayValue.values[2].booleanValue,
+              question.fields.GoodAns.arrayValue.values[3].booleanValue,
+            ],
+            Textarea: question.fields.Textarea.stringValue,
+            Image: question.fields.Image.stringValue
+          }));
+        })
+        .then(() => {
+          const shuffledQuestions = this.shuffleArray(unshuffledQuestions);
+          this.Questions = shuffledQuestions.map(question =>
+            this.shuffleAnswers(question)
+          );
+        });
     },
     onLongPressStart() {
       let vm = this;

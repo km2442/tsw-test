@@ -127,7 +127,12 @@ export default {
             Ans2: question.fields.Ans2.stringValue,
             Ans3: question.fields.Ans3.stringValue,
             Ans4: question.fields.Ans4.stringValue,
-            GoodAns: question.fields.GoodAns,
+            GoodAns: [
+              question.fields.GoodAns.arrayValue.values[0].booleanValue,
+              question.fields.GoodAns.arrayValue.values[1].booleanValue,
+              question.fields.GoodAns.arrayValue.values[2].booleanValue,
+              question.fields.GoodAns.arrayValue.values[3].booleanValue,
+            ],
             Textarea: question.fields.Textarea.stringValue,
             Image: question.fields.Image.stringValue
           }));
