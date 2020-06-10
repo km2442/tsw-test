@@ -21,7 +21,7 @@ const actions = {
         commit("modifySnackbar", snack);
     },
     setSnackbarState({ commit }, payload) {
-        commit("setSnackbarstate", payload);
+        commit("setSnackbarState", payload);
     }
 }
 

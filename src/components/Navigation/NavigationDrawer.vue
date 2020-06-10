@@ -114,7 +114,7 @@ export default {
       return this.$store.getters.isAuthenticated;
     },
     email() {
-      return this.$store.getters.user.email !== null ? this.$store.getters.user.email : "Loading";
+      return this.$store.getters.user !== null ? this.$store.getters.user.email : "Loading...";
     }
   }
 };
