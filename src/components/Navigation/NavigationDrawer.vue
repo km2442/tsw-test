@@ -32,7 +32,7 @@
         <!-- Admin Menu -->
         <div v-if="auth">
           <v-divider></v-divider>
-          <h3 class="mt-2 mb-0 text-center">{{$store.getters.user.email}}</h3>
+          <h3 class="mt-2 mb-0 text-center">{{email}}</h3>
           <v-list-item router :to="{name: 'Admin'}" @click="drawer = !drawer">
             <v-list-item-content>
               <v-list-item-title>Panel administracyjny</v-list-item-title>
@@ -112,6 +112,9 @@ export default {
     },
     auth() {
       return this.$store.getters.isAuthenticated;
+    },
+    email() {
+      return this.$store.getters.user.email !== null ? this.$store.getters.user.email : "Loading";
     }
   }
 };

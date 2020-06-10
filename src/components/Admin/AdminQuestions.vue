@@ -37,13 +37,12 @@
       </v-container>
     </div>
     <v-divider></v-divider>
-
-    <v-container fluid class="py-1 px-0">
+<v-container fluid class="py-1 px-0">
       <transition-group
         enter-active-class="animated flipInY delay-1s"
         leave-active-class="animated flipOutY"
         appear
-        tag="v-layout"
+        name="v-layout"
         class="row wrap justify-space-around"
       >
         <template v-for="(Question, index) in filteredQuestions">
