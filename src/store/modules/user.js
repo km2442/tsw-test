@@ -95,7 +95,6 @@ const actions = {
         else {
             axios.post('/accounts:lookup' + apiKey, { idToken: state.idToken })
                 .then(res => {
-                    const data = res.data;
                     commit('storeUser', res.data);
                 })
                 .catch(error => console.log(error));

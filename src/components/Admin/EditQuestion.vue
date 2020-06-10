@@ -1,19 +1,13 @@
 <template>
   <div class="mb-4 mx-3">
     <h1 block large class="ma-3 text-center">Edytuj pytanie {{$route.params.questionId}}</h1>
-    <QuestionEditor
-      :buttons="buttons"
-      preload="yes"
-      @acceptQuestion="editQuestion($event)"
-    ></QuestionEditor>
+    <QuestionEditor :buttons="buttons" preload="yes" @acceptQuestion="editQuestion($event)"></QuestionEditor>
   </div>
 </template>
 
 <script>
-/* eslint-disable no-console */
-import firebase from "../../firebase/init";
-let db = firebase.firestore();
 import QuestionEditor from "./QuestionEditor";
+import axios from "../../js/axiosData";
 export default {
   components: {
     QuestionEditor
@@ -29,17 +23,31 @@ export default {
   },
   methods: {
     editQuestion(payload) {
-      db.collection("Questions")
-        .doc(this.$route.params.questionId)
-        .update({
-          Question: payload.Question,
-          Ans1: payload.Ans1,
-          Ans2: payload.Ans2,
-          Ans3: payload.Ans3,
-          Ans4: payload.Ans4,
-          GoodAns: payload.GoodAns,
-          Textarea: payload.Textarea,
-          Image: payload.Image
+      axios
+        .patch("Questions/" + this.$route.params.questionId, {
+          fields: {
+            Question: { stringValue: payload.Question },
+            Ans1: { stringValue: payload.Ans1 },
+            Ans2: { stringValue: payload.Ans2 },
+            Ans3: { stringValue: payload.Ans3 },
+            Ans4: { stringValue: payload.Ans4 },
+            GoodAns: {
+              arrayValue: {
+                values: [
+                { booleanValue: payload.GoodAns[0] },
+                { booleanValue: payload.GoodAns[1] },
+                { booleanValue: payload.GoodAns[2] },
+                { booleanValue: payload.GoodAns[3] }
+              ]
+              }
+            },
+            Textarea: { stringValue: payload.Textarea },
+            Image: { stringValue: payload.Image }
+          }
+        }, {
+          headers: {
+            Authorization: "Bearer " + this.$store.getters.token
+          }
         })
         .then(() => {
           this.$store.dispatch("modifySnackbar", {

@@ -7,10 +7,9 @@
 
 <script>
 /* eslint-disable no-console */
-import firebase from "../../firebase/init";
+import axios from "../../js/axiosData";
 const QuestionEditor = () =>
   import(/* webpackChunkName: "QuestionEditor" */ "./QuestionEditor");
-let db = firebase.firestore();
 export default {
   components: {
     QuestionEditor
@@ -26,17 +25,36 @@ export default {
   },
   methods: {
     addQuestion(payload) {
-      db.collection("Questions")
-        .add({
-          Question: payload.Question,
-          Ans1: payload.Ans1,
-          Ans2: payload.Ans2,
-          Ans3: payload.Ans3,
-          Ans4: payload.Ans4,
-          GoodAns: payload.GoodAns,
-          Textarea: payload.Textarea,
-          Image: payload.Image
-        })
+      axios
+        .post(
+          "Questions",
+          {
+            fields: {
+              Question: { stringValue: payload.Question },
+              Ans1: { stringValue: payload.Ans1 },
+              Ans2: { stringValue: payload.Ans2 },
+              Ans3: { stringValue: payload.Ans3 },
+              Ans4: { stringValue: payload.Ans4 },
+              GoodAns: {
+                arrayValue: {
+                  values: [
+                    { booleanValue: payload.GoodAns[0] },
+                    { booleanValue: payload.GoodAns[1] },
+                    { booleanValue: payload.GoodAns[2] },
+                    { booleanValue: payload.GoodAns[3] }
+                  ]
+                }
+              },
+              Textarea: { stringValue: payload.Textarea },
+              Image: { stringValue: payload.Image }
+            }
+          },
+          {
+            headers: {
+              Authorization: "Bearer " + this.$store.getters.token
+            }
+          }
+        )
         .then(() => {
           this.$store.dispatch("modifySnackbar", {
             state: true,

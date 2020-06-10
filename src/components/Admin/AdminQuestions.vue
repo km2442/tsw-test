@@ -37,7 +37,7 @@
       </v-container>
     </div>
     <v-divider></v-divider>
-<v-container fluid class="py-1 px-0">
+    <v-container fluid class="py-1 px-0">
       <transition-group
         enter-active-class="animated flipInY delay-1s"
         leave-active-class="animated flipOutY"
@@ -91,10 +91,15 @@ export default {
   components: { SingleQuestion },
   methods: {
     deleteQuestion(id) {
-      // delete doc from firestore
-      db.collection("Questions")
-        .doc(id)
-        .delete()
+      axios
+        .delete(
+          "Questions/" + id,
+          {
+            headers: {
+              Authorization: "Bearer " + this.$store.getters.token
+            }
+          }
+        )
         .then(() => {
           this.Questions = this.Questions.filter(Question => {
             return Question.Id != id;
@@ -106,14 +111,11 @@ export default {
     },
     fetchDataFromFirestore() {
       axios
-        .get(
-          "Questions?pageSize=100",
-          {
-            headers: {
-              Authorization: "Bearer " + this.$store.getters.token
-            }
+        .get("Questions?pageSize=100", {
+          headers: {
+            Authorization: "Bearer " + this.$store.getters.token
           }
-        )
+        })
         .then(data => {
           const foundQuestions = data.data.documents;
           if (!foundQuestions) {
@@ -131,7 +133,7 @@ export default {
               question.fields.GoodAns.arrayValue.values[0].booleanValue,
               question.fields.GoodAns.arrayValue.values[1].booleanValue,
               question.fields.GoodAns.arrayValue.values[2].booleanValue,
-              question.fields.GoodAns.arrayValue.values[3].booleanValue,
+              question.fields.GoodAns.arrayValue.values[3].booleanValue
             ],
             Textarea: question.fields.Textarea.stringValue,
             Image: question.fields.Image.stringValue
