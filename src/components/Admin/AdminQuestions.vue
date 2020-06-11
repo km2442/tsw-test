@@ -54,7 +54,7 @@
             v-show="index >= (page-1)*maxOnPage && index < page*maxOnPage"
           >
             <SingleQuestion
-              :index="Question.Id"
+              :index="index + 1"
               :Question="Question"
               @deleteQuestion="deleteQuestion(Question.Id)"
             ></SingleQuestion>
@@ -145,7 +145,8 @@ export default {
             Textarea: question.fields.Textarea.stringValue,
             Image: question.fields.Image.stringValue
           }));
-        }).catch( err => {
+        })
+        .catch(err => {
           this.$store.dispatch("modifySnackbar", {
             state: true,
             msg: "Wystąpił błąd przy pobieraniu pytań!",
