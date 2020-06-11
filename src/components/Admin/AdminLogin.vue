@@ -23,6 +23,8 @@
                     prepend-icon="mdi-lock"
                     label="Hasło"
                     :rules="[rules.required, rules.counter]"
+                    :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
+                    @click:append="showPass = !showPass"
                     color="green"
                     type="password"
                   ></v-text-field>
@@ -60,6 +62,7 @@ export default {
       email: "",
       password: "",
       feedback: null,
+      showPass: false,
       rules: {
         required: value => !!value || "Pole wymagane",
         counter: value => value.length >= 8 || "Minimum 8 znaków",

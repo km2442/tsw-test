@@ -13,6 +13,8 @@
             <v-text-field
               v-model="newPasswd"
               prepend-icon="mdi-lock"
+              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="show1 = !show1"
               label="Nowe hasło"
               :rules="[rules.required, rules.counter]"
               color="green"
@@ -21,6 +23,8 @@
             <v-text-field
               v-model="repeatPasswd"
               prepend-icon="mdi-lock"
+              :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="show2 = !show2"
               label="Powtórz nowe hasło"
               :rules="[rules.required, rules.counter, rules.samePasswd]"
               color="green"
@@ -66,6 +70,8 @@ export default {
       inputValidated: null,
       newPasswd: "",
       repeatPasswd: "",
+      show1: false,
+      show2: false,
       feedback: null,
       rules: {
         required: value => !!value || "Pole wymagane.",
