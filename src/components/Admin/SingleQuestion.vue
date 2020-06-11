@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-card class="light-grey darken-3 ma-2">
-      <v-card-title class="pt-2 pb-0 px-3">
+      <v-card-title class="pt-2 pb-0 px-3 dont-break-out">
         <div>
           <h3 class="headline mb-0">Pytanie {{index + 1}}</h3>
           <div>{{Question.Question}}</div>
@@ -128,3 +128,17 @@ export default {
   }
 };
 </script>
+
+<style>
+.dont-break-out {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+.v-input--selection-controls:not(.v-input--hide-details) .v-input__slot {
+  margin-bottom: 0px;
+}
+.v-messages {
+  min-height: 0px;
+}
+</style>
