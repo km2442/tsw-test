@@ -1,53 +1,61 @@
 <template>
   <div>
+    <h1 block large class="ma-1 text-center">Witaj {{email}}</h1>
+    <v-divider></v-divider>
     <div class="mx-3">
-      <h1 block large class="ma-3 text-center">Witaj {{email}}</h1>
-      <v-container class="pa-1">
+      <v-container class="pa-2">
         <v-layout row wrap justify-space-between>
-          <v-flex xs-12 md-6 class="mx-3">
-            <v-btn block rounded color="green darken-3" router :to="{name: 'ChangeAdminPassword'}">
-              <span>Zmień hasło</span>
-              <v-icon right>mdi-pencil</v-icon>
-            </v-btn>
+          <v-flex sm12 md6>
+            <admin-button
+              :color="'primary'"
+              :text="'Zmień hasło'"
+              :icon="'mdi-pencil'"
+              @click.native="$router.push({ name: 'ChangeAdminPassword' })"
+            ></admin-button>
           </v-flex>
-          <v-flex xs-12 md-6 class="mx-3">
-            <v-btn block rounded color="amber darken-2" @click="signOutUser()">
-              <span>Wyloguj</span>
-              <v-icon right>mdi-logout</v-icon>
-            </v-btn>
+          <v-flex sm12 md6>
+            <admin-button
+              :color="'amber darken-2'"
+              :text="'Wyloguj się'"
+              :icon="'mdi-logout'"
+              @click.native="signOutUser()"
+            ></admin-button>
           </v-flex>
         </v-layout>
       </v-container>
     </div>
     <v-divider></v-divider>
-    <h1 block large class="ma-3 text-center">Panel administracyjny</h1>
-    <v-container class="pa-1">
-      <v-layout row wrap justify-space-between>
-        <v-flex
-          xs-12
-          class="mx-3"
-          v-if="showQuestions === false"
-          @click="showQuestions = !showQuestions"
-        >
-          <v-btn block rounded color="green darken-3">
-            <span>Pokaż wszystkie pytania</span>
-            <v-icon right>mdi-pencil</v-icon>
-          </v-btn>
-        </v-flex>
-        <v-flex xs-12 class="mx-3" v-else @click="showQuestions = !showQuestions">
-          <v-btn block rounded color="green darken-3">
-            <span>Ukryj pytania</span>
-            <v-icon right>mdi-pencil</v-icon>
-          </v-btn>
-        </v-flex>
-        <v-flex xs-12 class="mx-3">
-          <v-btn block rounded color="green darken-3" router :to="{name: 'AddQuestion'}">
-            <span>Dodaj pytanie</span>
-            <v-icon right>mdi-plus-circle</v-icon>
-          </v-btn>
-        </v-flex>
-      </v-layout>
-    </v-container>
+    <div>
+      <h1 block large class="ma-3 text-center">Panel administracyjny</h1>
+      <v-container class="pa-2">
+        <v-layout row wrap justify-space-between>
+          <v-flex sm12 md6 v-if="showQuestions === false">
+            <admin-button
+              :color="'primary'"
+              :text="'Pokaż wszystkie pytania'"
+              :icon="'mdi-view-list'"
+              @click.native="showQuestions = !showQuestions"
+            ></admin-button>
+          </v-flex>
+          <v-flex sm12 md6 v-else>
+            <admin-button
+              :color="'primary'"
+              :text="'Ukryj pytania'"
+              :icon="'mdi-eye-off'"
+              @click.native="showQuestions = !showQuestions"
+            ></admin-button>
+          </v-flex>
+          <v-flex sm12 md6>
+            <admin-button
+              :color="'primary'"
+              :text="'Dodaj pytanie'"
+              :icon="'mdi-plus-circle'"
+              @click.native="$router.push({ name: 'AddQuestion' })"
+            ></admin-button>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </div>
     <admin-questions v-if="showQuestions"></admin-questions>
     <goTop></goTop>
   </div>
@@ -57,10 +65,13 @@
 /* eslint-disable no-console */
 const AdminQuestions = () =>
   import(/* webpackChunkName: "AdminQuestions" */ "./AdminQuestions");
+const AdminButton = () =>
+  import(/* webpackChunkName: "AdminQuestions" */ "./AdminButton");
 const goTop = () => import(/* webpackChunkName: "goTop" */ "../Tools/goTop");
 export default {
   components: {
     AdminQuestions,
+    AdminButton,
     goTop
   },
   data() {
@@ -82,7 +93,9 @@ export default {
   },
   computed: {
     email() {
-      return this.$store.getters.user !== null ? this.$store.getters.user.email : "Loading...";
+      return this.$store.getters.user !== null
+        ? this.$store.getters.user.email
+        : "Loading...";
     }
   }
 };
