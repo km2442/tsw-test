@@ -8,7 +8,8 @@ const state = {
     idToken: null,
     userId: null,
     user: null,
-    logoutTomeout: null
+    logoutTomeout: null,
+    loginError: true
 }
 
 const mutations = {
@@ -25,6 +26,9 @@ const mutations = {
     },
     setLogoutTimeout(state, payload) {
         state.logoutTomeout = payload;
+    },
+    setLoginError(state, payload) {
+        state.setLoginError = payload;
     }
 }
 
@@ -55,7 +59,13 @@ const actions = {
                 dispatch('fetchUserData');
                 router.push({ name: "Admin" });
             })
-            .catch(error => console.log(error))
+            .catch(err => {
+                dispatch("modifySnackbar", {
+                    state: true,
+                    msg: "Wystąpił błąd podczas logowania!",
+                    color: "error"
+                });
+            })
     },
     tryAutoLogin({ dispatch, commit }) {
         const token = localStorage.getItem('token');
@@ -126,7 +136,8 @@ const actions = {
 const getters = {
     user: state => state.user,
     token: state => state.idToken,
-    isAuthenticated: state => state.idToken !== null
+    isAuthenticated: state => state.idToken !== null,
+    loginError: state => state.loginError
 }
 
 export default {

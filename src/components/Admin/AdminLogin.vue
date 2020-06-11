@@ -35,7 +35,7 @@
                 <v-card-actions>
                   <v-spacer></v-spacer>
                   <v-btn
-                  x-large
+                    x-large
                     :disabled="!inputValidated || !email.length > 3 || !password.length > 7"
                     color="green darken-3"
                     @click="login()"
@@ -77,15 +77,11 @@ export default {
   },
   methods: {
     login() {
-      if (this.email && this.password) {
-        this.feedback = null;
-        this.$store.dispatch("login", {
-          email: this.email,
-          password: this.password
-        });
-      } else {
-        this.feedback = "E-mail, oraz hasło muszą zostać wypełnione!";
-      }
+      this.feedback = null;
+      this.$store.dispatch("login", {
+        email: this.email,
+        password: this.password
+      });
     }
   }
 };
