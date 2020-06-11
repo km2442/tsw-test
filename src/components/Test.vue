@@ -151,6 +151,7 @@ export default {
       return text.split("\\n");
     },
     shuffleArray(array) {
+      if (!array) return;
       let ctr = array.length,
         temp,
         index;
@@ -228,29 +229,41 @@ export default {
           const foundQuestions = data.data.documents;
           if (!foundQuestions) {
             throw console.error("Cant fetch data from database!");
+          } else {
+            unshuffledQuestions = foundQuestions.map(question => ({
+              Id: question.name.match(/(\b[0-z]*\b)$/g)[0],
+              Question: question.fields.Question.stringValue,
+              Ans1: question.fields.Ans1.stringValue,
+              Ans2: question.fields.Ans2.stringValue,
+              Ans3: question.fields.Ans3.stringValue,
+              Ans4: question.fields.Ans4.stringValue,
+              GoodAns: [
+                question.fields.GoodAns.arrayValue.values[0].booleanValue,
+                question.fields.GoodAns.arrayValue.values[1].booleanValue,
+                question.fields.GoodAns.arrayValue.values[2].booleanValue,
+                question.fields.GoodAns.arrayValue.values[3].booleanValue
+              ],
+              Textarea: question.fields.Textarea.stringValue,
+              Image: question.fields.Image.stringValue
+            }));
           }
-          unshuffledQuestions = foundQuestions.map(question => ({
-            Id: question.name.match(/(\b[0-z]*\b)$/g)[0],
-            Question: question.fields.Question.stringValue,
-            Ans1: question.fields.Ans1.stringValue,
-            Ans2: question.fields.Ans2.stringValue,
-            Ans3: question.fields.Ans3.stringValue,
-            Ans4: question.fields.Ans4.stringValue,
-            GoodAns: [
-              question.fields.GoodAns.arrayValue.values[0].booleanValue,
-              question.fields.GoodAns.arrayValue.values[1].booleanValue,
-              question.fields.GoodAns.arrayValue.values[2].booleanValue,
-              question.fields.GoodAns.arrayValue.values[3].booleanValue,
-            ],
-            Textarea: question.fields.Textarea.stringValue,
-            Image: question.fields.Image.stringValue
-          }));
+        })
+        .catch(err => {
+          console.log(err);
+          this.$store.dispatch("modifySnackbar", {
+            state: true,
+            msg:
+              "Wystąpił błąd przy pobieraniu pytań! Sprawdź swoje połączenie internetowe i spróbuj ponownie później.",
+            color: "error"
+          });
         })
         .then(() => {
-          const shuffledQuestions = this.shuffleArray(unshuffledQuestions);
-          this.Questions = shuffledQuestions.map(question =>
-            this.shuffleAnswers(question)
-          );
+          if (unshuffledQuestions) {
+            const shuffledQuestions = this.shuffleArray(unshuffledQuestions);
+            this.Questions = shuffledQuestions.map(question =>
+              this.shuffleAnswers(question)
+            );
+          }
         });
     },
     onLongPressStart() {

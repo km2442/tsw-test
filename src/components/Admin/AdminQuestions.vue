@@ -92,21 +92,28 @@ export default {
   methods: {
     deleteQuestion(id) {
       axios
-        .delete(
-          "Questions/" + id,
-          {
-            headers: {
-              Authorization: "Bearer " + this.$store.getters.token
-            }
+        .delete("Questions/" + id, {
+          headers: {
+            Authorization: "Bearer " + this.$store.getters.token
           }
-        )
+        })
         .then(() => {
           this.Questions = this.Questions.filter(Question => {
             return Question.Id != id;
+            this.$store.dispatch("modifySnackbar", {
+              state: true,
+              msg: "Pytanie zostało usunięte",
+              color: "success"
+            });
           });
         })
         .catch(err => {
           console.log(err);
+          this.$store.dispatch("modifySnackbar", {
+            state: true,
+            msg: "Wystąpił błąd przy usuwaniu pytania",
+            color: "error"
+          });
         });
     },
     fetchDataFromFirestore() {
@@ -138,6 +145,12 @@ export default {
             Textarea: question.fields.Textarea.stringValue,
             Image: question.fields.Image.stringValue
           }));
+        }).catch( err => {
+          this.$store.dispatch("modifySnackbar", {
+            state: true,
+            msg: "Wystąpił błąd przy pobieraniu pytań!",
+            color: "error"
+          });
         });
     }
   },

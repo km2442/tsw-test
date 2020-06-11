@@ -194,6 +194,7 @@
 
 <script>
 /* eslint-disable no-console */
+import axios from "../../js/axiosData";
 import firebase from "../../firebase/init";
 let db = firebase.firestore();
 export default {
@@ -218,17 +219,33 @@ export default {
   },
   created() {
     if (this.preload === "yes") {
-      let ref = db.collection("Questions").doc(this.$route.params.questionId);
-      ref.get().then(doc => {
-        this.Question = doc.data().Question;
-        this.Ans1 = doc.data().Ans1;
-        this.Ans2 = doc.data().Ans2;
-        this.Ans3 = doc.data().Ans3;
-        this.Ans4 = doc.data().Ans4;
-        this.GoodAns = doc.data().GoodAns;
-        this.Textarea = doc.data().Textarea;
-        this.Image = doc.data().Image;
-      });
+      axios
+        .get("Questions/" + this.$route.params.questionId)
+        .then(data => {
+          console.log(data);
+          const question = data.data.fields;
+          this.Question = question.Question.stringValue;
+          this.Ans1 = question.Ans1.stringValue;
+          this.Ans2 = question.Ans2.stringValue;
+          this.Ans3 = question.Ans3.stringValue;
+          this.Ans4 = question.Ans4.stringValue;
+          this.GoodAns = [
+            question.GoodAns.arrayValue.values[0].booleanValue,
+            question.GoodAns.arrayValue.values[1].booleanValue,
+            question.GoodAns.arrayValue.values[2].booleanValue,
+            question.GoodAns.arrayValue.values[3].booleanValue
+          ];
+          this.Textarea = question.Textarea.stringValue;
+          this.Image = question.Image.stringValue;
+        })
+        .catch(err => {
+          console.log(err);
+          this.$store.dispatch("modifySnackbar", {
+            state: true,
+            msg: "Wystąpił błąd przy wczytywaniu pytania pytania",
+            color: "error"
+          });
+        });
     }
   },
   methods: {
