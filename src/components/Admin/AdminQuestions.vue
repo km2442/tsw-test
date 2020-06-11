@@ -66,7 +66,7 @@
       <v-pagination
         color="green darken-2"
         v-model="page"
-        :length="Math.ceil(Questions.length/maxOnPage)"
+        :length="Math.ceil(filteredQuestions.length/maxOnPage)"
       ></v-pagination>
     </div>
   </div>
