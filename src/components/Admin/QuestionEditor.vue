@@ -22,7 +22,7 @@
           <div>
             <v-container class="pa-0">
               <v-layout row wrap justify-space-between>
-                <v-flex xs-12 md-6 class="mx-3">
+                <v-flex xs12 md6 class="px-2">
                   <input
                     style="display: none"
                     type="file"
@@ -35,7 +35,7 @@
                     <v-icon right>mdi-image-plus</v-icon>
                   </v-btn>
                 </v-flex>
-                <v-flex xs-12 md-6 class="mx-3">
+                <v-flex xs12 md6 class="px-2">
                   <v-btn
                     block
                     rounded
@@ -169,7 +169,7 @@
     </div>
     <v-container class="pa-0">
       <v-layout row wrap justify-space-between>
-        <v-flex xs-12 md-6 class="mx-3">
+        <v-flex xs12 md6 class="px-2">
           <v-btn
             block
             :disabled="!formState || !Question || !Ans1 || !Ans2 || !Ans3 || !Ans4"
@@ -181,7 +181,7 @@
             <v-icon right>{{buttons.acceptIcon}}</v-icon>
           </v-btn>
         </v-flex>
-        <v-flex xs-12 md-6 class="mx-3">
+        <v-flex xs12 md6 class="px-2">
           <v-btn block rounded color="red" @click="cancelEdit()">
             <span>{{ buttons.cancelText }}</span>
             <v-icon right>mdi-cancel</v-icon>

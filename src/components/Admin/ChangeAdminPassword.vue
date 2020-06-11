@@ -36,7 +36,7 @@
     <div>
       <v-container class="pa-1">
         <v-layout row wrap justify-space-between>
-          <v-flex xs-12 md-6 class="mx-2" @click="changePassword()">
+          <v-flex xs12 md6 class="my-2 px-2" @click="changePassword()">
             <v-btn
               block
               :disabled="!inputValidated || !newPasswd.length > 7 || !repeatPasswd.length > 7"
@@ -47,7 +47,7 @@
               <v-icon right>mdi-pencil</v-icon>
             </v-btn>
           </v-flex>
-          <v-flex xs-12 md-6 class="mx-2">
+          <v-flex xs12 md6 class="my-2 px-2">
             <v-btn block rounded color="red" router :to="{name: 'Admin'}">
               <span>Anuluj zmianę hasła</span>
               <v-icon right>mdi-cancel</v-icon>

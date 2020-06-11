@@ -61,7 +61,7 @@
       <div class="px-3">
         <v-container class="pa-0">
           <v-layout row wrap justify-space-between>
-            <v-flex xs-12 md-6 class="mx-2">
+            <v-flex xs12 md6 class="my-1 px-2">
               <v-btn
                 block
                 rounded
@@ -73,7 +73,7 @@
                 <v-icon right>mdi-pencil</v-icon>
               </v-btn>
             </v-flex>
-            <v-flex xs-12 md-6 class="mx-2">
+            <v-flex xs12 md6 class="my-1 px-2">
               <v-btn block rounded color="red" @click="dialog = true">
                 <span>Usuń pytanie</span>
                 <v-icon right>mdi-delete</v-icon>
@@ -92,13 +92,13 @@
         <v-card-actions>
           <v-container>
             <v-layout row wrap justify-space-between>
-              <v-flex xs-12 md-6 class="mx-2">
+              <v-flex xs12 md6 class="my-1 px-2">
                 <v-btn color="red" block outlined @click="deleteQuestion(); dialog = false;">
                   <span>Tak, usuń</span>
                   <v-icon right>mdi-delete</v-icon>
                 </v-btn>
               </v-flex>
-              <v-flex xs-12 md-6 class="mx-2">
+              <v-flex xs12 md6 class="my-1 px-2">
                 <v-btn color="green" block outlined @click="dialog = false">
                   <span>Nie usuwaj!</span>
                   <v-icon right>mdi-cancel</v-icon>

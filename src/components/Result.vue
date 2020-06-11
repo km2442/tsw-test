@@ -17,7 +17,7 @@
       <div>
         <v-container class="pa-1">
           <v-layout row wrap justify-space-between>
-            <v-flex xs-12 md-6 class="mx-3">
+            <v-flex xs12 md6 class="my-1 px-2">
               <v-btn
                 large
                 block
@@ -27,7 +27,7 @@
                 :to="{name: 'Index'}"
               >Powrót na stronę główną</v-btn>
             </v-flex>
-            <v-flex xs-12 md-6 class="mx-3">
+            <v-flex xs12 md6 class="my-1 px-2">
               <v-btn
                 large
                 block
