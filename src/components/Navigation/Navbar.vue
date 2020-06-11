@@ -15,9 +15,6 @@
       >Quiz</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-app-bar-nav-icon large v-if="!drawer" @click="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-app-bar-nav-icon large v-else @click="drawer = !drawer">
-        <v-icon>mdi-close</v-icon>
-      </v-app-bar-nav-icon>
     </v-app-bar>
     <NavDrawer />
   </nav>

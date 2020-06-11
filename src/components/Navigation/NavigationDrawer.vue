@@ -2,16 +2,10 @@
   <div>
     <v-navigation-drawer app right disable-resize-watcher v-model="drawer" width="300px">
       <v-toolbar text dark class="px-3 blue-grey darken-2" height="64px">
-        <v-list class="py-0">
-          <v-list-item @click="drawer = !drawer">
-            <v-list-item-content>
-              <v-list-item-title>Zamknij</v-list-item-title>
-            </v-list-item-content>
-            <v-list-item-action>
-              <v-icon large>mdi-close</v-icon>
-            </v-list-item-action>
-          </v-list-item>
-        </v-list>
+        <v-btn large block flat outlined @click="drawer = !drawer">
+          Zamknij
+          <v-icon large>mdi-close</v-icon>
+        </v-btn>
       </v-toolbar>
       <!-- Menu -->
       <v-list class="pa-3">
@@ -114,7 +108,9 @@ export default {
       return this.$store.getters.isAuthenticated;
     },
     email() {
-      return this.$store.getters.user !== null ? this.$store.getters.user.email : "Loading...";
+      return this.$store.getters.user !== null
+        ? this.$store.getters.user.email
+        : "Loading...";
     }
   }
 };
