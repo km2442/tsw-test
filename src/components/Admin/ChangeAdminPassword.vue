@@ -18,7 +18,7 @@
               label="Nowe hasło"
               :rules="[rules.required, rules.counter]"
               color="green"
-              type="password"
+              :type="show1 ? 'text' : 'password'"
             ></v-text-field>
             <v-text-field
               v-model="repeatPasswd"
@@ -28,7 +28,7 @@
               label="Powtórz nowe hasło"
               :rules="[rules.required, rules.counter, rules.samePasswd]"
               color="green"
-              type="password"
+              :type="show2 ? 'text' : 'password'"
             ></v-text-field>
           </v-form>
         </v-card-text>

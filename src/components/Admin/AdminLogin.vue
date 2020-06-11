@@ -3,13 +3,13 @@
     <v-content>
       <v-container fluid fill-height>
         <v-layout align-center justify-center>
-          <v-flex xs12 sm10 md8 md6 lg4>
+          <v-flex xs12 sm10 md8 lg4>
             <v-card class="elevation-12">
-              <v-toolbar color="green darken-3">
-                <v-toolbar-title>Logowanie</v-toolbar-title>
-              </v-toolbar>
-              <v-card-text>
-                <v-form v-model="inputValidated" @submit.prevent>
+              <v-form v-model="inputValidated" @submit="login()">
+                <v-toolbar color="green darken-3">
+                  <v-toolbar-title>Logowanie</v-toolbar-title>
+                </v-toolbar>
+                <v-card-text>
                   <v-text-field
                     v-model="email"
                     prepend-icon="mdi-account"
@@ -21,29 +21,31 @@
                   <v-text-field
                     v-model="password"
                     prepend-icon="mdi-lock"
-                    label="Hasło"
-                    :rules="[rules.required, rules.counter]"
                     :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
                     @click:append="showPass = !showPass"
+                    label="Hasło"
+                    :rules="[rules.required, rules.counter]"
                     color="green"
-                    type="password"
+                    :type="showPass ? 'text' : 'password'"
                   ></v-text-field>
-                </v-form>
-                <div v-if="feedback">
-                  <p class="error text-center mb-0">{{ feedback }}</p>
-                </div>
-              </v-card-text>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn
-                  :disabled="!inputValidated || !email.length > 3 || !password.length > 7"
-                  color="green darken-3"
-                  @click="login()"
-                >
-                  <span>Zaloguj</span>
-                  <v-icon right>mdi-key</v-icon>
-                </v-btn>
-              </v-card-actions>
+                  <div v-if="feedback">
+                    <p class="error text-center mb-0">{{ feedback }}</p>
+                  </div>
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn
+                  x-large
+                    :disabled="!inputValidated || !email.length > 3 || !password.length > 7"
+                    color="green darken-3"
+                    @click="login()"
+                    type="submit"
+                  >
+                    <span class="pr-2 headline">Zaloguj</span>
+                    <v-icon large>mdi-key</v-icon>
+                  </v-btn>
+                </v-card-actions>
+              </v-form>
             </v-card>
           </v-flex>
         </v-layout>
