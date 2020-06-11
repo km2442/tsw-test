@@ -162,16 +162,16 @@ export default {
       if (!this.search) return this.Questions;
       return this.Questions.filter(Question => {
         let temp =
-          Question.Question +
+          Question.Question.toLowerCase() +
           " " +
-          Question.Ans1 +
+          Question.Ans1.toLowerCase() +
           " " +
-          Question.Ans2 +
+          Question.Ans2.toLowerCase() +
           " " +
-          Question.Ans3 +
+          Question.Ans3.toLowerCase() +
           " " +
-          Question.Ans4;
-        return temp.match(this.search);
+          Question.Ans4.toLowerCase();
+        return temp.match(this.search.toLowerCase());
       });
     }
   }
