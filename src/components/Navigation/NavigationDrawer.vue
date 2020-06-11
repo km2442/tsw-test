@@ -2,7 +2,7 @@
   <div>
     <v-navigation-drawer app right disable-resize-watcher v-model="drawer" width="300px">
       <v-toolbar text dark class="px-3 blue-grey darken-2" height="64px">
-        <v-btn large block flat outlined @click="drawer = !drawer">
+        <v-btn large block text outlined @click="drawer = !drawer">
           Zamknij
           <v-icon large>mdi-close</v-icon>
         </v-btn>
