@@ -73,23 +73,19 @@ export default new Router({
     beforeEnter: auth
   },
   {
-    path: '/administrator',
-    redirect: '/admin'
-  },
-  {
-    path: '/changepasswd',
+    path: '/admin/changepasswd',
     name: 'ChangeAdminPassword',
     component: ChangeAdminPassword,
     beforeEnter: auth
   },
   {
-    path: '/addQuestion',
+    path: '/admin/addQuestion',
     name: 'AddQuestion',
     component: AddQuestion,
     beforeEnter: auth
   },
   {
-    path: '/editQuestion/:questionId',
+    path: '/admin/editQuestion/:questionId',
     name: 'EditQuestion',
     component: EditQuestion,
     beforeEnter: auth
@@ -98,6 +94,10 @@ export default new Router({
     path: '/404',
     name: 'NotFound',
     component: NotFound
+  },
+  {
+    path: '/admin*',
+    redirect: '/admin'
   },
   { path: '*', redirect: '/404' }
   ]
