@@ -13,5 +13,8 @@ export default new Vuetify({
   lang: {
     locales: { pl, en },
     current: 'pl',
+  },
+  theme: {
+    options: { variations: false }
   }
 });
