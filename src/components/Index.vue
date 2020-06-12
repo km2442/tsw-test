@@ -17,9 +17,9 @@
     <div class="hidden-sm-and-down">
       <v-parallax :src="require('../assets/imgs/paralax.jpg')">
         <v-layout align-center column justify-center>
-          <v-card class="dark rounded-xl pa-6" color="rgba(0, 0, 0, 0.5)">
-            <p class="text-h3 text-center text-uppercase font-weight-thin mb-3">Quiz</p>
-            <p class="subheading text-center">Z Technologii Sieci WEB</p>
+          <v-card class="rounded-xl pa-6" color="rgba(0, 0, 0, 0.5)">
+            <p class="text-h3 text-center text-uppercase font-weight-thin mb-3 white--text">Quiz</p>
+            <p class="subheading text-center white--text">Z Technologii Sieci WEB</p>
           </v-card>
         </v-layout>
       </v-parallax>
