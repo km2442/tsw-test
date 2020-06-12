@@ -3,18 +3,24 @@
     <div class="mb-3">
       <v-carousel :cycle="!$vuetify.breakpoint.smAndDown">
         <v-carousel-item v-for="(img, i) in imgs" :key="i" :src="img.src">
-          <p
-            class="light-blue darken-3 text-h5 text-center main-carousel"
-            style="position: absolute; bottom:10%; width:80%; border-radius: 25px; border: 2px solid; left: 10%;"
-          >{{img.text}}</p>
+          <v-card
+            class="rounded-pill pa-3"
+            color="rgba(3, 169, 244, 0.75)"
+            width="80%"
+            style="position: absolute; bottom:10%; left: 10%;"
+          >
+            <p class="text-h5 text-center mb-0">{{img.text}}</p>
+          </v-card>
         </v-carousel-item>
       </v-carousel>
     </div>
     <div class="hidden-sm-and-down">
       <v-parallax :src="require('../assets/imgs/paralax.jpg')">
         <v-layout align-center column justify-center>
-          <h1 class="text-h3 font-weight-thin mb-3 black">Quiz</h1>
-          <h4 class="subheading black">Z Technologii Sieci WEB</h4>
+          <v-card class="rounded-xl pa-6" color="rgba(0, 0, 0, 0.5)">
+            <p class="text-h3 text-center text-uppercase font-weight-thin mb-3">Quiz</p>
+            <p class="subheading text-center">Z Technologii Sieci WEB</p>
+          </v-card>
         </v-layout>
       </v-parallax>
     </div>
