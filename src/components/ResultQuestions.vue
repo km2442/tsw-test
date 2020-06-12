@@ -7,7 +7,7 @@
         <v-flex xs12 sm6 lg4 v-for="(Question, index) in Questions" :key="Question.Id">
           <div v-if="index < 30">
             <v-card class="light-grey darken-3 ma-2">
-              <v-card-title class="pt-2 pb-0 px-3">
+              <v-card-title class="pt-2 pb-0 px-3 dont-break-out">
                 <div>
                   <h3 class="text-h5 mb-0">Pytanie {{index+1}}/30</h3>
                   <div>{{Question.Question}}</div>
