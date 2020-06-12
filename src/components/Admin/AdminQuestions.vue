@@ -22,7 +22,7 @@
               v-model="search"
               color="green"
               label="Wyszykaj pytania"
-              prepend-inner-icon="mdi-file-document-box-search"
+              prepend-inner-icon="mdi-database-search"
             ></v-text-field>
           </v-flex>
           <v-flex xs12 sm3 md2 class="pt-1 pb-0 px-2">
