@@ -1,6 +1,10 @@
 <template>
   <div class="mx-3">
     <h1 block large class="ma-3 text-center">QUIZ z Technologii Sieci Web</h1>
+    <v-progress-linear color="light-blue" height="25" striped rounded :value="QuestionNumber / 30 * 100">
+    <template v-slot="{ value }">
+        <strong>Postęp:{{ Math.ceil(value) }}%</strong>
+      </template></v-progress-linear>
     <transition
       enter-active-class="animated zoomInLeft fast"
       leave-active-class="animated zoomOutRight fast"
@@ -15,7 +19,7 @@
           <v-card-title class="pt-2 pb-0 px-3 dont-break-out">
             <div>
               <h3 class="text-h5 mb-0">Pytanie {{index+1}}/30</h3>
-              <div>{{Questions[index].Question}}</div>
+              <div>{{Question.Question}}</div>
             </div>
           </v-card-title>
           <v-divider></v-divider>
