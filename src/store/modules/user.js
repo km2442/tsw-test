@@ -33,9 +33,15 @@ const mutations = {
 }
 
 const actions = {
-    setLogoutTimer({ commit }, expirationTime) {
+    setLogoutTimer({ commit, dispatch }, expirationTime) {
         const timeout = setTimeout(() => {
             commit('clearAuthData');
+            if (router.currentRoute.path.includes("admin")) router.replace({ name: "Index" });
+            dispatch("modifySnackbar", {
+                state: true,
+                msg: "Twoja sesja wygasła. Wylogowano z panelu administracyjnego.",
+                color: "info"
+            });
         }, expirationTime * 1000);
         commit('setLogoutTimeout', timeout);
     },
