@@ -37,7 +37,14 @@
       </v-container>
     </div>
     <v-divider></v-divider>
-    <v-container fluid class="py-1 px-0">
+    <div v-if="!loaded">
+      <v-layout row wrap justify-space-between>
+        <v-flex sm12 md4 v-for="(i, index) in 6" :key="index">
+          <v-skeleton-loader type="card" class="pa-2"></v-skeleton-loader>
+        </v-flex>
+      </v-layout>
+    </div>
+    <v-container fluid class="py-1 px-0" v-else>
       <transition-group
         enter-active-class="animated flipInY delay-1s"
         leave-active-class="animated flipOutY"
@@ -85,7 +92,8 @@ export default {
       getQuestionsError: false,
       questionNumberOptions: [6, 10, 15, 30, 60, 120],
       maxOnPage: 30,
-      page: 1
+      page: 1,
+      loaded: false
     };
   },
   components: { SingleQuestion },
@@ -145,6 +153,7 @@ export default {
             Textarea: question.fields.Textarea.stringValue,
             Image: question.fields.Image.stringValue
           }));
+          this.loaded = true;
         })
         .catch(err => {
           this.$store.dispatch("modifySnackbar", {

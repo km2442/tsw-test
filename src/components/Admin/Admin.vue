@@ -26,7 +26,7 @@
     </div>
     <v-divider></v-divider>
     <div>
-      <h1 block large class="ma-3 text-center">Panel administracyjny</h1>
+      <h1 block large class="mx-3 mt-3 mb-0 text-center">Panel administracyjny</h1>
       <v-container class="pa-2">
         <v-layout row wrap justify-space-between>
           <v-flex sm12 md6 v-if="showQuestions === false">
