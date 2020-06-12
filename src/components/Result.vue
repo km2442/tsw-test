@@ -16,7 +16,7 @@
       </div>
       <v-divider></v-divider>
       <div>
-        <v-container class="pa-1">
+        <v-container class="pa-1 px-3">
           <v-layout row wrap justify-space-between>
             <v-flex xs12 md6 class="my-1 px-2">
               <v-btn
