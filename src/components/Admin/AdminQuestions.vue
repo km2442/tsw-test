@@ -46,10 +46,11 @@
     </div>
     <v-container fluid class="py-1 px-0" v-else>
       <transition-group
-        enter-active-class="animated flipInY delay-1s"
-        leave-active-class="animated flipOutY"
+        enter-active-class="animate__animated animate__fadeIn animate__delay-1s"
+        leave-active-class="animate__animated animate__fadeOut"
         appear
         name="v-layout"
+        mode="out-in"
         class="row wrap justify-space-around"
       >
         <template v-for="(Question, index) in filteredQuestions">

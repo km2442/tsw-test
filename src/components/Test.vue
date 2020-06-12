@@ -6,8 +6,8 @@
         <strong>Postęp:{{ Math.ceil(value) }}%</strong>
       </template></v-progress-linear>
     <transition
-      enter-active-class="animated zoomInLeft fast"
-      leave-active-class="animated zoomOutRight fast"
+      enter-active-class="animate__animated animate__bounceIn animate__fast"
+      leave-active-class="animate__animated animate__bounceOut animate__fast"
       mode="out-in"
     >
       <template v-for="(Question, index) in Questions">

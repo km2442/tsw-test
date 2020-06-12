@@ -1,6 +1,6 @@
 <template>
   <div>
-    <transition enter-active-class="animate__animated animate__rotateIn" leave-active-class="animate__animated animate__rotateOut">
+    <transition enter-active-class="animate__animated animate__bounceIn" leave-active-class="animate__animated animate__bounceOut">
       <v-hover>
         <template v-slot="{ hover }">
           <v-btn
@@ -13,7 +13,7 @@
             :fab="hover ? false : true"
             :elevation="10"
             color="primary"
-            v-show="scrollPos || hover"
+            v-if="scrollPos || hover"
             class="transition-swing"
             @click="$vuetify.goTo('#app')"
             style="z-index: 4"

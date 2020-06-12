@@ -24,6 +24,7 @@
 <script>
 const Navbar = () => import(/* webpackChunkName: "Navigation" */ "./components/Navigation/Navbar");
 const Footer = () => import(/* webpackChunkName: "Navigation" */ "./components/Navigation/Footer");
+import 'animate.css';
 
 export default {
   name: "App",
