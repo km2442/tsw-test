@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-content>
+    <v-main>
       <v-container fluid fill-height>
         <v-layout align-center justify-center>
           <v-flex xs12 sm10 md8 lg4>
@@ -41,7 +41,7 @@
                     @click="login()"
                     type="submit"
                   >
-                    <span class="pr-2 headline">Zaloguj</span>
+                    <span class="pr-2 text-h5">Zaloguj</span>
                     <v-icon large>mdi-key</v-icon>
                   </v-btn>
                 </v-card-actions>
@@ -50,7 +50,7 @@
           </v-flex>
         </v-layout>
       </v-container>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 

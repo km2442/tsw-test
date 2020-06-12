@@ -9,7 +9,7 @@
         style="cursor: pointer;"
       ></v-img>
       <v-toolbar-title
-        class="display-1 text-uppercase font-weight-black"
+        class="text-h4 text-uppercase font-weight-black"
         @click="$router.push('/')"
         style="cursor: pointer;"
       >Quiz</v-toolbar-title>

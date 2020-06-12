@@ -139,7 +139,7 @@
       <v-card class="light-grey darken-3 mb-2">
         <v-card-title class="pa-3">
           <div>
-            <h3 class="headline mb-0">Pytanie [numer]</h3>
+            <h3 class="text-h5 mb-0">Pytanie [numer]</h3>
             <div>{{Question}}</div>
           </div>
         </v-card-title>

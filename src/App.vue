@@ -1,9 +1,9 @@
 <template>
   <v-app id="app">
     <Navbar></Navbar>
-    <v-content id="content">
+    <v-main id="content">
       <router-view />
-    </v-content>
+    </v-main>
     <Footer />
     <!-- Wyskakujący komunikat -->
     <v-snackbar

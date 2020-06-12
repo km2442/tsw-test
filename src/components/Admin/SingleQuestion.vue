@@ -3,7 +3,7 @@
     <v-card class="light-grey darken-3 ma-2">
       <v-card-title class="pt-2 pb-0 px-3 dont-break-out">
         <div>
-          <h3 class="headline mb-0">Pytanie {{index}}</h3>
+          <h3 class="text-h5 mb-0">Pytanie {{index}}</h3>
           <div>{{Question.Question}}</div>
         </div>
       </v-card-title>
@@ -86,7 +86,7 @@
     <v-dialog persistent max-width="600" v-model="dialog">
       <v-card>
         <v-card-title
-          class="headline"
+          class="text-h5"
         >Czy na pewno chcesz usunąć pytanie {{Question.Id}}? Ta operacja jest nieodwracalna!</v-card-title>
         <v-card-text>Pytanie: {{Question.Question}}</v-card-text>
         <v-card-actions>

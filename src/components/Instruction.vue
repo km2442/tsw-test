@@ -1,12 +1,12 @@
 <template>
   <div class="ma-3">
     <v-card class="light-blue darken-3">
-      <h3 class="display-1 pa-3 text-center">Witaj na przykładowym teście z Technologii Sieci Web</h3>
+      <h3 class="text-h4 pa-3 text-center">Witaj na przykładowym teście z Technologii Sieci Web</h3>
       <v-divider></v-divider>
       <div>
-        <h4 class="display-1 pa-3 text-center">Instrukcja</h4>
+        <h4 class="text-h4 pa-3 text-center">Instrukcja</h4>
         <div>
-          <ul class="browser-default headline mx-5">
+          <ul class="browser-default text-h5 mx-5">
             <li>Ns test przeznaczone jest 60 minut</li>
             <li>Test składa się z 30 pytań, za każde możesz otrzymać 1 punkt</li>
             <li>Test jest w formie pytań ABCD wielokrotnego wyboru - każde pytanie może mieć zero, jedną, wiele lub wszystkie poprawne odpowiedzi</li>
@@ -15,7 +15,7 @@
           </ul>
         </div>
         <v-divider></v-divider>
-        <h4 class="headline py-3 text-center">Powodzenia!</h4>
+        <h4 class="text-h5 py-3 text-center">Powodzenia!</h4>
       </div>
     </v-card>
     <v-btn block rounded color="green darken-3 my-3" router :to="{ name: 'Test'}"

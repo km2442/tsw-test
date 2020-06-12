@@ -9,7 +9,7 @@
             <v-card class="light-grey darken-3 ma-2">
               <v-card-title class="pt-2 pb-0 px-3">
                 <div>
-                  <h3 class="headline mb-0">Pytanie {{index+1}}/30</h3>
+                  <h3 class="text-h5 mb-0">Pytanie {{index+1}}/30</h3>
                   <div>{{Question.Question}}</div>
                 </div>
               </v-card-title>

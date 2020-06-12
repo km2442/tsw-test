@@ -1,10 +1,10 @@
 <template>
   <div class="ma-3">
     <v-card class="light-blue darken-3">
-      <h3 class="display-2 py-3 text-center text-uppercase">Wynik testu</h3>
+      <h3 class="text-h3 py-3 text-center text-uppercase">Wynik testu</h3>
       <v-divider></v-divider>
       <div class="px-4">
-        <p class="headline text-center">
+        <p class="text-h5 text-center">
           Udało Ci się uzyskać
           <b>{{points}} punkt(ów)</b> z testu.
         </p>
@@ -79,7 +79,7 @@ export default {
   mounted() {
     let res = this.getMark(this.points);
     this.mark = res.mark;
-    this.color = res.color + " headline text-center";
+    this.color = res.color + " text-h5 text-center";
   }
 };
 </script>

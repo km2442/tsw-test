@@ -4,7 +4,7 @@
       <v-carousel :cycle="!$vuetify.breakpoint.smAndDown">
         <v-carousel-item v-for="(img, i) in imgs" :key="i" :src="img.src">
           <p
-            class="light-blue darken-3 headline text-center main-carousel"
+            class="light-blue darken-3 text-h5 text-center main-carousel"
             style="position: absolute; bottom:10%; width:80%; border-radius: 25px; border: 2px solid; left: 10%;"
           >{{img.text}}</p>
         </v-carousel-item>
@@ -13,17 +13,17 @@
     <div class="hidden-sm-and-down">
       <v-parallax :src="require('../assets/imgs/paralax.jpg')">
         <v-layout align-center column justify-center>
-          <h1 class="display-2 font-weight-thin mb-3 black">Quiz</h1>
+          <h1 class="text-h3 font-weight-thin mb-3 black">Quiz</h1>
           <h4 class="subheading black">Z Technologii Sieci WEB</h4>
         </v-layout>
       </v-parallax>
     </div>
     <div class="ma-3">
       <v-card class="light-blue darken-3">
-        <h3 class="display-2 py-3 text-center text-uppercase">O witrynie</h3>
+        <h3 class="text-h3 py-3 text-center text-uppercase">O witrynie</h3>
         <v-divider></v-divider>
         <div class="px-4">
-          <p class="headline pb-4">
+          <p class="text-h5 pb-4">
             Witryna
             <b>Quiz PRO</b> stanowi serwis przedmiotu "
             <b>Technologie Sieci WEB</b>" prowadzonego na Wydziale Elektrotechniki i Informatyki Politechniki Rzeszowskiej (WEiI PRz).

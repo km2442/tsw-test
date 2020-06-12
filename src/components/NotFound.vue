@@ -1,7 +1,7 @@
 <template>
   <div class="red pa-3 text-center" style="height: 100%">
-    <h1 class="display-4 font-weight-black">404</h1>
-    <h1 class="display-3 font-weight-bold">Strona nie istnieje!</h1>
+    <h1 class="text-h1 font-weight-black">404</h1>
+    <h1 class="text-h2 font-weight-bold">Strona nie istnieje!</h1>
     <v-container class="pa-1">
       <v-layout row wrap justify-space-between>
         <v-flex xs12 :md6="$router.history.length > 0" class="mx-2">
