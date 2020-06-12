@@ -5,7 +5,7 @@
         <v-spacer></v-spacer>
         <strong
           class="subheading"
-        >Copyright &copy; 2019 Politechnika Rzeszowska, Autor: Kamil Klecha</strong>
+        >Copyright &copy; 2019-2020 Politechnika Rzeszowska, Autor: Kamil Klecha</strong>
         <v-spacer></v-spacer>
       </v-card-title>
     </v-card>
