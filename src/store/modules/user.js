@@ -57,7 +57,7 @@ const actions = {
                 })
                 dispatch('setLogoutTimer', res.data.expiresIn);
                 dispatch('fetchUserData');
-                router.push({ name: "Admin" });
+                router.replace({ name: "Admin" });
             })
             .catch(err => {
                 dispatch("modifySnackbar", {

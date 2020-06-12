@@ -1,6 +1,6 @@
 <template>
   <div>
-    <transition enter-active-class="animated rotateIn" leave-active-class="animated rotateOut">
+    <transition enter-active-class="animate__animated animate__rotateIn" leave-active-class="animate__animated animate__rotateOut">
       <v-hover>
         <template v-slot="{ hover }">
           <v-btn
