@@ -4,13 +4,13 @@
       <h3 class="text-h3 py-3 text-center text-uppercase">Wynik testu</h3>
       <v-divider></v-divider>
       <div class="mx-2 my-0">
-        <v-alert prominent class="text-h5 text-center text-weight-bold my-1" type="info">
+        <v-alert prominent class="text-h5 text-center my-1" type="info">
           Udało Ci się uzyskać
           <b>{{points}} punkt(ów)</b> z testu.
         </v-alert>
         <v-alert
           prominent
-          class="text-h5 text-center text-weight-bold my-1"
+          class="text-h5 text-center my-1"
           :type="points >= 18 ? 'success' : 'error'"
         >Gdyby to był egzamin, otrzymał(a) byś ocenę {{mark}}</v-alert>
       </div>
